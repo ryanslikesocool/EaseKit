@@ -1,8 +1,3 @@
-///Based on acron0's C# port of Robert Penner's Easing Functions
-///https://github.com/acron0/Easings
-///Extended to add support for more types
-///Includes methods for types float, Vector2, Vector3, and Vector4
-
 // t = time
 // b = start
 // c = delta
