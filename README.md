@@ -3,5 +3,6 @@ Based on acron0's C# port of Robert Penner's Easing Functions with support for U
 
 Robert Penner's Easing Functions
 http://robertpenner.com/easing/
+
 acron0's C# port
 https://github.com/acron0/Easings
