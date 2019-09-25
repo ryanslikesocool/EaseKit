@@ -1,6 +1,6 @@
 # Unity-Easings
 ## About
-41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with two flavors (Core, Interpolator).  Both flavors are commonly called over time, such as in a coroutine (recommended) or in the Update loop.
+41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with two flavors (Core, Interpolator).  Both flavors are meant to be called over time, such as in a coroutine (recommended) or in the Update loop.
 
 ## Core
 The classic flavor of Unity Easings.  It provides all easing methods, each with return types of `float` (recommended), `Vector2`, `Vector3`, and `Vector4`.
