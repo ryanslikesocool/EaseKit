@@ -13,6 +13,11 @@ namespace ifelse
         public bool Done { get { return Time == Duration; } }
 
         private Easing.IFunction function;
+        
+        public Interpolator()
+        {
+            SetFunction(EasingType.Linear);
+        }
 
         public Interpolator(EasingType easingType)
         {
