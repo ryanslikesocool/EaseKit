@@ -43,7 +43,7 @@ namespace ifelse
             Value = Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
         }
 
-        float Update(float deltaTime)
+        public float Update(float deltaTime)
         {
             Time += deltaTime;
             if (Time > Duration)
