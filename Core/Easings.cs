@@ -4,7 +4,8 @@
 // d = duration
 using UnityEngine;
 
-namespace ifelse {
+namespace ifelse.Easings
+{
     public static class Easings
     {
         public static float Linear(float t, float b, float c, float d)
@@ -68,7 +69,7 @@ namespace ifelse {
                 return c / 2 * Mathf.Pow(2, 10 * (t - 1)) + b;
             return c / 2 * (-Mathf.Pow(2, -10 * --t) + 2) + b;
         }
-        public static Vector2 ExpoEaseInOut(float t, Vector2 b, Vector2 c, float d)
+    public static Vector2 ExpoEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
             if (t == 0)
                 return b;
@@ -102,26 +103,26 @@ namespace ifelse {
         public static float ExpoEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return ExpoEaseOut(t * 2, b, c / 2, d);
-            return ExpoEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ExpoEaseOt(t * 2, b, c / 2, d);
+            return ExpoEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 ExpoEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return ExpoEaseOut(t * 2, b, c / 2, d);
-            return ExpoEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ExpoEaseOt(t * 2, b, c / 2, d);
+            return ExpoEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 ExpoEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return ExpoEaseOut(t * 2, b, c / 2, d);
-            return ExpoEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ExpoEaseOt(t * 2, b, c / 2, d);
+            return ExpoEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 ExpoEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return ExpoEaseOut(t * 2, b, c / 2, d);
-            return ExpoEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ExpoEaseOt(t * 2, b, c / 2, d);
+            return ExpoEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float CircEaseOut(float t, float b, float c, float d)
@@ -161,51 +162,51 @@ namespace ifelse {
         public static float CircEaseInOut(float t, float b, float c, float d)
         {
             if ((t /= d / 2) < 1)
-                return -c / 2 * (Mathf.Sqrt(1 - t * t) - 1) + b;
-            return c / 2 * (Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+                return -c / 2 * (Mathf.Sqrt(1- t * t) - 1) + b;
+            return c / 2 * (Mathf.Sqrt(1 - (t-= 2) * t) + 1) + b;
         }
         public static Vector2 CircEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return -c / 2 * (Mathf.Sqrt(1 - t * t) - 1) + b;
-            return c / 2 * (Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+                return -c / 2 * (Mathf.Sqrt(1- t * t) - 1) + b;
+            return c / 2 * (Mathf.Sqrt(1 - (t-= 2) * t) + 1) + b;
         }
         public static Vector3 CircEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return -c / 2 * (Mathf.Sqrt(1 - t * t) - 1) + b;
-            return c / 2 * (Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+                return -c / 2 * (Mathf.Sqrt(1- t * t) - 1) + b;
+            return c / 2 * (Mathf.Sqrt(1 - (t-= 2) * t) + 1) + b;
         }
         public static Vector4 CircEaseInOut(float t, Vector4 b, Vector4 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return -c / 2 * (Mathf.Sqrt(1 - t * t) - 1) + b;
-            return c / 2 * (Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+                return -c / 2 * (Mathf.Sqrt(1- t * t) - 1) + b;
+            return c / 2 * (Mathf.Sqrt(1 - (t-= 2) * t) + 1) + b;
         }
 
         public static float CircEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return CircEaseOut(t * 2, b, c / 2, d);
-            return CircEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CircEaseOt(t * 2, b, c / 2, d);
+            return CircEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 CircEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return CircEaseOut(t * 2, b, c / 2, d);
-            return CircEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CircEaseOt(t * 2, b, c / 2, d);
+            return CircEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 CircEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return CircEaseOut(t * 2, b, c / 2, d);
-            return CircEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CircEaseOt(t * 2, b, c / 2, d);
+            return CircEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 CircEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return CircEaseOut(t * 2, b, c / 2, d);
-            return CircEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CircEaseOt(t * 2, b, c / 2, d);
+            return CircEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float QuadEaseOut(float t, float b, float c, float d)
@@ -270,26 +271,26 @@ namespace ifelse {
         public static float QuadEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return QuadEaseOut(t * 2, b, c / 2, d);
-            return QuadEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuadEaseOt(t * 2, b, c / 2, d);
+            return QuadEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 QuadEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return QuadEaseOut(t * 2, b, c / 2, d);
-            return QuadEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuadEaseOt(t * 2, b, c / 2, d);
+            return QuadEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 QuadEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return QuadEaseOut(t * 2, b, c / 2, d);
-            return QuadEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuadEaseOt(t * 2, b, c / 2, d);
+            return QuadEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 QuadEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return QuadEaseOut(t * 2, b, c / 2, d);
-            return QuadEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuadEaseOt(t * 2, b, c / 2, d);
+            return QuadEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float SineEaseOut(float t, float b, float c, float d)
@@ -329,51 +330,51 @@ namespace ifelse {
         public static float SineEaseInOut(float t, float b, float c, float d)
         {
             if ((t /= d / 2) < 1)
-                return c / 2 * (Mathf.Sin(Mathf.PI * t / 2)) + b;
-            return -c / 2 * (Mathf.Cos(Mathf.PI * --t / 2) - 2) + b;
+                return c / 2 * (Mathf.Sin(Math.PI * t / 2)) + b;
+            return -c / 2 * (Mathf.Cos(Mathf.P * --t / 2) - 2) + b;
         }
         public static Vector2 SineEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return c / 2 * (Mathf.Sin(Mathf.PI * t / 2)) + b;
-            return -c / 2 * (Mathf.Cos(Mathf.PI * --t / 2) - 2) + b;
+                return c / 2 * (Mathf.Sin(Math.PI * t / 2)) + b;
+            return -c / 2 * (Mathf.Cos(Mathf.P * --t / 2) - 2) + b;
         }
         public static Vector3 SineEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return c / 2 * (Mathf.Sin(Mathf.PI * t / 2)) + b;
-            return -c / 2 * (Mathf.Cos(Mathf.PI * --t / 2) - 2) + b;
+                return c / 2 * (Mathf.Sin(Math.PI * t / 2)) + b;
+            return -c / 2 * (Mathf.Cos(Mathf.P * --t / 2) - 2) + b;
         }
         public static Vector4 SineEaseInOut(float t, Vector4 b, Vector4 c, float d)
         {
             if ((t /= d / 2) < 1)
-                return c / 2 * (Mathf.Sin(Mathf.PI * t / 2)) + b;
-            return -c / 2 * (Mathf.Cos(Mathf.PI * --t / 2) - 2) + b;
+                return c / 2 * (Mathf.Sin(Math.PI * t / 2)) + b;
+            return -c / 2 * (Mathf.Cos(Mathf.P * --t / 2) - 2) + b;
         }
 
         public static float SineEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return SineEaseOut(t * 2, b, c / 2, d);
-            return SineEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return SineEaseOt(t * 2, b, c / 2, d);
+            return SineEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 SineEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return SineEaseOut(t * 2, b, c / 2, d);
-            return SineEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return SineEaseOt(t * 2, b, c / 2, d);
+            return SineEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 SineEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return SineEaseOut(t * 2, b, c / 2, d);
-            return SineEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return SineEaseOt(t * 2, b, c / 2, d);
+            return SineEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 SineEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return SineEaseOut(t * 2, b, c / 2, d);
-            return SineEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return SineEaseOt(t * 2, b, c / 2, d);
+            return SineEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float CubicEaseOut(float t, float b, float c, float d)
@@ -438,26 +439,26 @@ namespace ifelse {
         public static float CubicEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return CubicEaseOut(t * 2, b, c / 2, d);
-            return CubicEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CubicEaseOt(t * 2, b, c / 2, d);
+            return CubicEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 CubicEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return CubicEaseOut(t * 2, b, c / 2, d);
-            return CubicEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CubicEaseOt(t * 2, b, c / 2, d);
+            return CubicEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 CubicEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return CubicEaseOut(t * 2, b, c / 2, d);
-            return CubicEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CubicEaseOt(t * 2, b, c / 2, d);
+            return CubicEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 CubicEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return CubicEaseOut(t * 2, b, c / 2, d);
-            return CubicEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return CubicEaseOt(t * 2, b, c / 2, d);
+            return CubicEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float QuartEaseOut(float t, float b, float c, float d)
@@ -522,26 +523,26 @@ namespace ifelse {
         public static float QuartEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return QuartEaseOut(t * 2, b, c / 2, d);
-            return QuartEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuartEaseOt(t * 2, b, c / 2, d);
+            return QuartEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 QuartEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return QuartEaseOut(t * 2, b, c / 2, d);
-            return QuartEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuartEaseOt(t * 2, b, c / 2, d);
+            return QuartEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 QuartEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return QuartEaseOut(t * 2, b, c / 2, d);
-            return QuartEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuartEaseOt(t * 2, b, c / 2, d);
+            return QuartEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 QuartEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return QuartEaseOut(t * 2, b, c / 2, d);
-            return QuartEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuartEaseOt(t * 2, b, c / 2, d);
+            return QuartEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float QuintEaseOut(float t, float b, float c, float d)
@@ -606,26 +607,26 @@ namespace ifelse {
         public static float QuintEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return QuintEaseOut(t * 2, b, c / 2, d);
-            return QuintEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuintEaseOt(t * 2, b, c / 2, d);
+            return QuintEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 QuintEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return QuintEaseOut(t * 2, b, c / 2, d);
-            return QuintEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuintEaseOt(t * 2, b, c / 2, d);
+            return QuintEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 QuintEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return QuintEaseOut(t * 2, b, c / 2, d);
-            return QuintEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuintEaseOt(t * 2, b, c / 2, d);
+            return QuintEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 QuintEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return QuintEaseOut(t * 2, b, c / 2, d);
-            return QuintEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return QuintEaseOt(t * 2, b, c / 2, d);
+            return QuintEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float ElasticEaseOut(float t, float b, float c, float d)
@@ -634,7 +635,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
+    return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
         }
         public static Vector2 ElasticEaseOut(float t, Vector2 b, Vector2 c, float d)
         {
@@ -642,7 +643,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
+    return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
         }
         public static Vector3 ElasticEaseOut(float t, Vector3 b, Vector3 c, float d)
         {
@@ -650,7 +651,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
+    return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
         }
         public static Vector4 ElasticEaseOut(float t, Vector4 b, Vector4 c, float d)
         {
@@ -658,7 +659,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
+    return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
         }
 
         public static float ElasticEaseIn(float t, float b, float c, float d)
@@ -667,7 +668,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+    return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
         }
         public static Vector2 ElasticEaseIn(float t, Vector2 b, Vector2 c, float d)
         {
@@ -675,7 +676,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+    return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
         }
         public static Vector3 ElasticEaseIn(float t, Vector3 b, Vector3 c, float d)
         {
@@ -683,7 +684,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+    return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
         }
         public static Vector4 ElasticEaseIn(float t, Vector4 b, Vector4 c, float d)
         {
@@ -691,7 +692,7 @@ namespace ifelse {
                 return b + c;
             float p = d * .3f;
             float s = p / 4;
-            return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+    return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
         }
 
         public static float ElasticEaseInOut(float t, float b, float c, float d)
@@ -700,9 +701,9 @@ namespace ifelse {
                 return b + c;
             float p = d * (.3f * 1.5f);
             float s = p / 4;
-            if (t < 1)
-                return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
-            return c * Mathf.Pow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) * .5f + c + b;
+    if (t < 1)
+               return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+            return c * MathfPow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - ) * (2 * Mathf.PI) / p) * .5f + c + b;
         }
         public static Vector2 ElasticEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
@@ -710,9 +711,9 @@ namespace ifelse {
                 return b + c;
             float p = d * (.3f * 1.5f);
             float s = p / 4;
-            if (t < 1)
-                return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
-            return c * Mathf.Pow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) * .5f + c + b;
+    if (t < 1)
+               return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+            return c * MathfPow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - ) * (2 * Mathf.PI) / p) * .5f + c + b;
         }
         public static Vector3 ElasticEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
@@ -720,9 +721,9 @@ namespace ifelse {
                 return b + c;
             float p = d * (.3f * 1.5f);
             float s = p / 4;
-            if (t < 1)
-                return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
-            return c * Mathf.Pow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) * .5f + c + b;
+    if (t < 1)
+               return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+            return c * MathfPow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - ) * (2 * Mathf.PI) / p) * .5f + c + b;
         }
         public static Vector4 ElasticEaseInOut(float t, Vector4 b, Vector4 c, float d)
         {
@@ -730,77 +731,77 @@ namespace ifelse {
                 return b + c;
             float p = d * (.3f * 1.5f);
             float s = p / 4;
-            if (t < 1)
-                return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
-            return c * Mathf.Pow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) * .5f + c + b;
+    if (t < 1)
+               return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+            return c * MathfPow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - ) * (2 * Mathf.PI) / p) * .5f + c + b;
         }
 
         public static float ElasticEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return ElasticEaseOut(t * 2, b, c / 2, d);
-            return ElasticEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ElasticEaseOt(t * 2, b, c / 2, d);
+            return ElasticEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 ElasticEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return ElasticEaseOut(t * 2, b, c / 2, d);
-            return ElasticEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ElasticEaseOt(t * 2, b, c / 2, d);
+            return ElasticEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 ElasticEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return ElasticEaseOut(t * 2, b, c / 2, d);
-            return ElasticEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ElasticEaseOt(t * 2, b, c / 2, d);
+            return ElasticEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 ElasticEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return ElasticEaseOut(t * 2, b, c / 2, d);
-            return ElasticEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return ElasticEaseOt(t * 2, b, c / 2, d);
+            return ElasticEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float BounceEaseOut(float t, float b, float c, float d)
         {
             if ((t /= d) < (1f / 2.75f))
-                return c * (7.5625f * t * t) + b;
-            else if (t < (2f / 2.75f))
-                return c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
-            else if (t < (2.5f / 2.75f))
-                return c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
+                retun c * (7.5625f * t * t) + b;
+            else i<t < (2f / 2.75f))
+                retun c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
+            else i<t < (2.5f / 2.75f))
+                retun c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
             else
                 return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + .984375f) + b;
         }
         public static Vector2 BounceEaseOut(float t, Vector2 b, Vector2 c, float d)
         {
             if ((t /= d) < (1f / 2.75f))
-                return c * (7.5625f * t * t) + b;
-            else if (t < (2f / 2.75f))
-                return c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
-            else if (t < (2.5f / 2.75f))
-                return c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
+                retun c * (7.5625f * t * t) + b;
+            else i<t < (2f / 2.75f))
+                retun c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
+            else i<t < (2.5f / 2.75f))
+                retun c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
             else
                 return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + .984375f) + b;
         }
         public static Vector3 BounceEaseOut(float t, Vector3 b, Vector3 c, float d)
         {
             if ((t /= d) < (1f / 2.75f))
-                return c * (7.5625f * t * t) + b;
-            else if (t < (2f / 2.75f))
-                return c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
-            else if (t < (2.5f / 2.75f))
-                return c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
+                retun c * (7.5625f * t * t) + b;
+            else i<t < (2f / 2.75f))
+                retun c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
+            else i<t < (2.5f / 2.75f))
+                retun c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
             else
                 return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + .984375f) + b;
         }
         public static Vector4 BounceEaseOut(float t, Vector4 b, Vector4 c, float d)
         {
             if ((t /= d) < (1f / 2.75f))
-                return c * (7.5625f * t * t) + b;
-            else if (t < (2f / 2.75f))
-                return c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
-            else if (t < (2.5f / 2.75f))
-                return c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
+                retun c * (7.5625f * t * t) + b;
+            else i<t < (2f / 2.75f))
+                retun c * (7.5625f * (t -= (1.5f / 2.75f)) * t + .75f) + b;
+            else i<t < (2.5f / 2.75f))
+                retun c * (7.5625f * (t -= (2.25f / 2.75f)) * t + .9375f) + b;
             else
                 return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + .984375f) + b;
         }
@@ -825,28 +826,28 @@ namespace ifelse {
         public static float BounceEaseInOut(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return BounceEaseIn(t * 2, 0, c, d) * .5f + b;
+                return BounceEasen(t * 2, 0, c, d) * .5f + b;
             else
                 return BounceEaseOut(t * 2 - d, 0, c, d) * .5f + c * .5f + b;
         }
         public static Vector2 BounceEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseIn(t * 2, Vector2.zero, c, d) * .5f + b;
+                return BounceEasen(t * 2, Vector2.zero, c, d) * .5f + b;
             else
                 return BounceEaseOut(t * 2 - d, Vector2.zero, c, d) * .5f + c * .5f + b;
         }
         public static Vector3 BounceEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseIn(t * 2, Vector3.zero, c, d) * .5f + b;
+                return BounceEasen(t * 2, Vector3.zero, c, d) * .5f + b;
             else
                 return BounceEaseOut(t * 2 - d, Vector3.zero, c, d) * .5f + c * .5f + b;
         }
         public static Vector4 BounceEaseInOut(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseIn(t * 2, Vector4.zero, c, d) * .5f + b;
+                return BounceEasen(t * 2, Vector4.zero, c, d) * .5f + b;
             else
                 return BounceEaseOut(t * 2 - d, Vector4.zero, c, d) * .5f + c * .5f + b;
         }
@@ -854,26 +855,26 @@ namespace ifelse {
         public static float BounceEaseOutIn(float t, float b, float c, float d)
         {
             if (t < d / 2)
-                return BounceEaseOut(t * 2, b, c / 2, d);
-            return BounceEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return BounceEaseOt(t * 2, b, c / 2, d);
+            return BounceEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector2 BounceEaseOutIn(float t, Vector2 b, Vector2 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseOut(t * 2, b, c / 2, d);
-            return BounceEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return BounceEaseOt(t * 2, b, c / 2, d);
+            return BounceEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector3 BounceEaseOutIn(float t, Vector3 b, Vector3 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseOut(t * 2, b, c / 2, d);
-            return BounceEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return BounceEaseOt(t * 2, b, c / 2, d);
+            return BounceEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
         public static Vector4 BounceEaseOutIn(float t, Vector4 b, Vector4 c, float d)
         {
             if (t < d / 2)
-                return BounceEaseOut(t * 2, b, c / 2, d);
-            return BounceEaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                return BounceEaseOt(t * 2, b, c / 2, d);
+            return BounceEaseIn((t* 2) - d, b + c / 2, c / 2, d);
         }
 
         public static float BackEaseOut(float t, float b, float c, float d)
@@ -914,54 +915,54 @@ namespace ifelse {
         {
             float s = 1.70158f;
             if ((t /= d / 2) < 1)
-                return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
-            return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
+                return c / 2  (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+            return c / 2 * (( -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
         }
         public static Vector2 BackEaseInOut(float t, Vector2 b, Vector2 c, float d)
         {
             float s = 1.70158f;
             if ((t /= d / 2) < 1)
-                return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
-            return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
+                return c / 2  (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+            return c / 2 * (( -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
         }
         public static Vector3 BackEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
-            float s = 1.70158f;
-            if ((t /= d / 2) < 1)
-                return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
-            return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
-        }
-        public static Vector4 BackEaseInOut(float t, Vector4 b, Vector4 c, float d)
-        {
-            float s = 1.70158f;
-            if ((t /= d / 2) < 1)
-                return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
-            return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
-        }
-
-        public static float BackEaseOutIn(float t, float b, float c, float d)
-        {
-            if (t < d / 2)
-                return BackEaseOut(t * 2, b, c / 2, d);
-            return BackEaseIn((t * 2) - d, b + c / 2, c / 2, d);
-        }
-        public static Vector2 BackEaseOutIn(float t, Vector2 b, Vector2 c, float d)
-        {
-            if (t < d / 2)
-                return BackEaseOut(t * 2, b, c / 2, d);
-            return BackEaseIn((t * 2) - d, b + c / 2, c / 2, d);
-        }
-        public static Vector3 BackEaseOutIn(float t, Vector3 b, Vector3 c, float d)
-        {
-            if (t < d / 2)
-                return BackEaseOut(t * 2, b, c / 2, d);
-            return BackEaseIn((t * 2) - d, b + c / 2, c / 2, d);
-        }
-        public static Vector4 BackEaseOutIn(float t, Vector4 b, Vector4 c, float d)
-        {
-            if (t < d / 2)
-                return BackEaseOut(t * 2, b, c / 2, d);
-            return BackEaseIn((t * 2) - d, b + c / 2, c / 2, d);
-        }
+{
+        if ((t /= d / 2) < 1)
+            return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+        return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
     }
+}
+    {
+{
+        if ((t /= d / 2) < 1)
+            return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+        return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+    }
+}
+
+    {
+{
+            return BackEaseOut(t * 2, b, c / 2, d);
+        return BackEaseOut(t * 2, b, c / 2, d);
+    }
+}
+    {
+{
+            return BackEaseOut(t * 2, b, c / 2, d);
+        return BackEaseOut(t * 2, b, c / 2, d);
+    }
+}
+    {
+{
+            return BackEaseOut(t * 2, b, c / 2, d);
+        return BackEaseOut(t * 2, b, c / 2, d);
+    }
+}
+    {
+{
+            return BackEaseOut(t * 2, b, c / 2, d);
+        return BackEaseOut(t * 2, b, c / 2, d);
+    }
+}
 }

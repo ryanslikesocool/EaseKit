@@ -1,6 +1,6 @@
 ﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
-namespace ifelse
+namespace ifelse.Easings
 {
     public enum EasingType
     {

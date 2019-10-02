@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace ifelse
+namespace ifelse.Easings
 {
     public static class Easing
     {
