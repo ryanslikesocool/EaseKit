@@ -6,7 +6,8 @@ namespace ifelse.Easings
     {
         public float Time { get; private set; }
         public float Initial { get; private set; }
-        public float Delta { get; private set; }
+        public float TotalDelta { get; private set; }
+        public float ValueDelta { get; private set; }
         public float Duration { get; private set; }
         public float Value { get; private set; }
         public float Percentage { get { return Time / Duration; } }
@@ -23,7 +24,8 @@ namespace ifelse.Easings
         {
             Time = 0;
             Initial = 0;
-            Delta = 0;
+            TotalDelta = 0;
+            ValueDelta = 0;
             Duration = 0;
             Value = 0;
             SetFunction(easingType);
@@ -32,7 +34,8 @@ namespace ifelse.Easings
         public void Begin(float startValue, float endValue, float duration)
         {
             Initial = startValue;
-            Delta = endValue - startValue;
+            TotalDelta = endValue - startValue;
+            ValueDelta = 0;
             Duration = duration;
             Value = duration == 0 ? endValue : startValue;
             Time = 0f;
@@ -40,7 +43,9 @@ namespace ifelse.Easings
 
         public void Update(bool unscaled = false)
         {
-            Value = Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
+            float newValue = Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime); ;
+            ValueDelta = newValue - Value;
+            Value = newValue;
         }
 
         public float Update(float deltaTime)
@@ -50,7 +55,7 @@ namespace ifelse.Easings
             {
                 Time = Duration;
             }
-            return function.Ease(Time, Initial, Delta, Duration);
+            return function.Ease(Time, Initial, TotalDelta, Duration);
         }
 
         public void SetFunction(EasingType easingType)
