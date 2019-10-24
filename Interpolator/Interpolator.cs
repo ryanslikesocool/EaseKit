@@ -42,7 +42,7 @@ namespace ifelse.Easings
         }
 
         public void Update(bool unscaled = false)
-        
+        {
             float newValue = Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
             ValueDelta = newValue - Value;
             Value = newValue;
