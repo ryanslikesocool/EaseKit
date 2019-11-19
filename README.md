@@ -19,17 +19,17 @@ IEnumerator LinearEase()
 
     while (time < duration)
     {
+        // Update the time.  This is necessary to get out of the loop
+        time += Time.deltaTime;
+        
+        // Get the current interpolator value
         float value = Easings.Linear(time, initial, delta, duration);
         
         // Do something with the value, such as:
         transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, value);
 
-        time += Time.deltaTime;
         yield return null;
     }
-    
-    // Finalize the interpolation
-    transform.position = Vector3.up;
 }
 ```
 
@@ -50,17 +50,17 @@ IEnumerator LinearEase()
 
     while (!interpolator.Done)
     {
+        // Update the time.  This is necessary to get out of the loop
+        // This comes with an overload if you want to use a custom deltaTime
         interpolator.Update();
+
         float value = interpolator.Value;
 
         // Do something with the value, such as:
         transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, value);
-
+        
         yield return null;
     }
-
-    // Finalize the interpolation
-    transform.position = Vector3.up;
 }
 ```
 
