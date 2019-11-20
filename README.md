@@ -30,6 +30,9 @@ IEnumerator LinearEase()
 
         yield return null;
     }
+    
+    // Finalizing the interpolation is only necessary if the duration is 0
+    transform.position = Vector3.up;
 }
 ```
 
@@ -61,6 +64,9 @@ IEnumerator LinearEase()
         
         yield return null;
     }
+    
+    // Finalizing the interpolation is only necessary if the duration is 0
+    transform.position = Vector3.up;
 }
 ```
 
