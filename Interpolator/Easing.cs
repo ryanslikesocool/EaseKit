@@ -6,7 +6,7 @@ namespace ifelse.Easings
 {
     public static class Easing
     {
-        public static readonly Easing.Function LinearEase = new Easing.Function(new Easing.EasingFunction(Easing.Linear.EaseOut));
+        public static readonly Easing.Function LinearEase = new Easing.Function(new Easing.EasingFunction(Easing.Linear.Ease));
         public static readonly Easing.Function ExpoOut = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseOut));
         public static readonly Easing.Function ExpoIn = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseIn));
         public static readonly Easing.Function ExpoInOut = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseInOut));
@@ -50,22 +50,7 @@ namespace ifelse.Easings
 
         public static class Linear
         {
-            public static float EaseOut(float t, float b, float c, float d)
-            {
-                return c * t / d + b;
-            }
-
-            public static float EaseIn(float t, float b, float c, float d)
-            {
-                return c * t / d + b;
-            }
-
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                return c * t / d + b;
-            }
-
-            public static float EaseOutIn(float t, float b, float c, float d)
+            public static float Ease(float t, float b, float c, float d)
             {
                 return c * t / d + b;
             }
