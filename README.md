@@ -74,7 +74,7 @@ IEnumerator LinearEase()
 ```
 
 ## Entities
-The Easings flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  If you're not using DOTS, be sure to remove this folder from your project, as the missing namespaces will cause errors.  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystem` is only used for updating the `Interpolator` component.
+The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  If you're not using DOTS, be sure to remove this folder from your project, as the missing namespaces will cause errors.  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystem` is only used for updating the `Interpolator` component.
 
 ### Usage
 Add an `Interpolator` component to an entity.  There are three ways to create the struct required.  The main overload takes the initial value, the target value, and the duration, with an optional boolean to trigger component removal when the interpolation is complete.  Other overloads include easing function specification and custom delta time, instead of using the default.  By default, the `Interpolator` will be removed when the easing is completed.
