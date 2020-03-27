@@ -5,7 +5,7 @@ using ifelse.Easings;
 
 [DisallowMultipleComponent]
 [RequiresEntityConversion]
-public class MoveAuthoring : MonoBehaviour, IConvertGameObjectToEntity
+public class InterpolatorAuthoring : MonoBehaviour, IConvertGameObjectToEntity
 {
     public EasingType function;
     public float initial;
