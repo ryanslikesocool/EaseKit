@@ -1,6 +1,6 @@
 ﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
-namespace ifelse.Easings
+namespace ifelse.Easings.Interpolator
 {
     public class Interpolator
     {
@@ -13,7 +13,7 @@ namespace ifelse.Easings
         public float Percentage { get { return Time / Duration; } }
         public bool Done { get { return Time == Duration; } }
 
-        private Easing.IFunction function;
+        private EasingFunctions.IFunction function;
 
         public Interpolator()
         {
@@ -63,93 +63,93 @@ namespace ifelse.Easings
             function = GetFunction(easingType);
         }
 
-        Easing.IFunction GetFunction(EasingType easing)
+        EasingFunctions.IFunction GetFunction(EasingType easing)
         {
             switch (easing)
             {
                 default:
                 case EasingType.Linear:
-                    return Easing.LinearEase;
+                    return EasingFunctions.LinearEase;
                 case EasingType.ExpoIn:
-                    return Easing.ExpoIn;
+                    return EasingFunctions.ExpoIn;
                 case EasingType.ExpoOut:
-                    return Easing.ExpoOut;
+                    return EasingFunctions.ExpoOut;
                 case EasingType.ExpoOutIn:
-                    return Easing.ExpoOutIn;
+                    return EasingFunctions.ExpoOutIn;
                 case EasingType.ExpoInOut:
-                    return Easing.ExpoInOut;
+                    return EasingFunctions.ExpoInOut;
                 case EasingType.CircIn:
-                    return Easing.CircIn;
+                    return EasingFunctions.CircIn;
                 case EasingType.CircOut:
-                    return Easing.CircOut;
+                    return EasingFunctions.CircOut;
                 case EasingType.CircOutIn:
-                    return Easing.CircOutIn;
+                    return EasingFunctions.CircOutIn;
                 case EasingType.CircInOut:
-                    return Easing.CircInOut;
+                    return EasingFunctions.CircInOut;
                 case EasingType.QuadIn:
-                    return Easing.QuadIn;
+                    return EasingFunctions.QuadIn;
                 case EasingType.QuadOut:
-                    return Easing.QuadOut;
+                    return EasingFunctions.QuadOut;
                 case EasingType.QuadOutIn:
-                    return Easing.QuadOutIn;
+                    return EasingFunctions.QuadOutIn;
                 case EasingType.QuadInOut:
-                    return Easing.QuadInOut;
+                    return EasingFunctions.QuadInOut;
                 case EasingType.SineIn:
-                    return Easing.SineIn;
+                    return EasingFunctions.SineIn;
                 case EasingType.SineOut:
-                    return Easing.SineOut;
+                    return EasingFunctions.SineOut;
                 case EasingType.SineOutIn:
-                    return Easing.SineOutIn;
+                    return EasingFunctions.SineOutIn;
                 case EasingType.SineInOut:
-                    return Easing.SineInOut;
+                    return EasingFunctions.SineInOut;
                 case EasingType.CubicIn:
-                    return Easing.CubicIn;
+                    return EasingFunctions.CubicIn;
                 case EasingType.CubicOut:
-                    return Easing.CubicOut;
+                    return EasingFunctions.CubicOut;
                 case EasingType.CubicOutIn:
-                    return Easing.CubicOutIn;
+                    return EasingFunctions.CubicOutIn;
                 case EasingType.CubicInOut:
-                    return Easing.CubicInOut;
+                    return EasingFunctions.CubicInOut;
                 case EasingType.QuartIn:
-                    return Easing.QuartIn;
+                    return EasingFunctions.QuartIn;
                 case EasingType.QuartOut:
-                    return Easing.QuartOut;
+                    return EasingFunctions.QuartOut;
                 case EasingType.QuartOutIn:
-                    return Easing.QuartOutIn;
+                    return EasingFunctions.QuartOutIn;
                 case EasingType.QuartInOut:
-                    return Easing.QuartInOut;
+                    return EasingFunctions.QuartInOut;
                 case EasingType.QuintIn:
-                    return Easing.QuintIn;
+                    return EasingFunctions.QuintIn;
                 case EasingType.QuintOut:
-                    return Easing.QuintOut;
+                    return EasingFunctions.QuintOut;
                 case EasingType.QuintOutIn:
-                    return Easing.QuintOutIn;
+                    return EasingFunctions.QuintOutIn;
                 case EasingType.QuintInOut:
-                    return Easing.QuintInOut;
+                    return EasingFunctions.QuintInOut;
                 case EasingType.ElasticIn:
-                    return Easing.ElasticIn;
+                    return EasingFunctions.ElasticIn;
                 case EasingType.ElasticOut:
-                    return Easing.ElasticOut;
+                    return EasingFunctions.ElasticOut;
                 case EasingType.ElasticOutIn:
-                    return Easing.ElasticOutIn;
+                    return EasingFunctions.ElasticOutIn;
                 case EasingType.ElasticInOut:
-                    return Easing.ElasticInOut;
+                    return EasingFunctions.ElasticInOut;
                 case EasingType.BounceIn:
-                    return Easing.BounceIn;
+                    return EasingFunctions.BounceIn;
                 case EasingType.BounceOut:
-                    return Easing.BounceOut;
+                    return EasingFunctions.BounceOut;
                 case EasingType.BounceOutIn:
-                    return Easing.BounceOutIn;
+                    return EasingFunctions.BounceOutIn;
                 case EasingType.BounceInOut:
-                    return Easing.BounceInOut;
+                    return EasingFunctions.BounceInOut;
                 case EasingType.BackIn:
-                    return Easing.BackIn;
+                    return EasingFunctions.BackIn;
                 case EasingType.BackOut:
-                    return Easing.BackOut;
+                    return EasingFunctions.BackOut;
                 case EasingType.BackOutIn:
-                    return Easing.BackOutIn;
+                    return EasingFunctions.BackOutIn;
                 case EasingType.BackInOut:
-                    return Easing.BackInOut;
+                    return EasingFunctions.BackInOut;
             }
         }
     }

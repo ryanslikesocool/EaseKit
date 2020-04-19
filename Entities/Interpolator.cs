@@ -1,7 +1,7 @@
-﻿using System;
-using Unity.Collections;
+﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
+
+using System;
 using Unity.Entities;
-using Unity.Mathematics;
 
 namespace ifelse.Easings.Entities
 {

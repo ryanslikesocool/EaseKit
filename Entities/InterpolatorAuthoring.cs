@@ -1,7 +1,7 @@
+// Made with <3 by Ryan Boyer http://ryanjboyer.com
+
 using Unity.Entities;
-using Unity.Mathematics;
 using UnityEngine;
-using ifelse.Easings;
 
 namespace ifelse.Easings.Entities
 {
@@ -17,7 +17,7 @@ namespace ifelse.Easings.Entities
 
         public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
         {
-            dstManager.AddComponentData(entity, new ifelse.Easings.Entities.Interpolator(initial, target, duration, function, removeOnDone));
+            dstManager.AddComponentData(entity, new Interpolator(initial, target, duration, function, removeOnDone));
         }
     }
 }

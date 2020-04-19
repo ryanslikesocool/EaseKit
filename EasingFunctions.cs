@@ -4,49 +4,49 @@ using UnityEngine;
 
 namespace ifelse.Easings
 {
-    public static class Easing
+    public static class EasingFunctions
     {
-        public static readonly Easing.Function LinearEase = new Easing.Function(new Easing.EasingFunction(Easing.Linear.Ease));
-        public static readonly Easing.Function ExpoOut = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseOut));
-        public static readonly Easing.Function ExpoIn = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseIn));
-        public static readonly Easing.Function ExpoInOut = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseInOut));
-        public static readonly Easing.Function ExpoOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Expo.EaseOutIn));
-        public static readonly Easing.Function CircOut = new Easing.Function(new Easing.EasingFunction(Easing.Circ.EaseOut));
-        public static readonly Easing.Function CircIn = new Easing.Function(new Easing.EasingFunction(Easing.Circ.EaseIn));
-        public static readonly Easing.Function CircInOut = new Easing.Function(new Easing.EasingFunction(Easing.Circ.EaseInOut));
-        public static readonly Easing.Function CircOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Circ.EaseOutIn));
-        public static readonly Easing.Function QuadOut = new Easing.Function(new Easing.EasingFunction(Easing.Quad.EaseOut));
-        public static readonly Easing.Function QuadIn = new Easing.Function(new Easing.EasingFunction(Easing.Quad.EaseIn));
-        public static readonly Easing.Function QuadInOut = new Easing.Function(new Easing.EasingFunction(Easing.Quad.EaseInOut));
-        public static readonly Easing.Function QuadOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Quad.EaseOutIn));
-        public static readonly Easing.Function SineOut = new Easing.Function(new Easing.EasingFunction(Easing.Sine.EaseOut));
-        public static readonly Easing.Function SineIn = new Easing.Function(new Easing.EasingFunction(Easing.Sine.EaseIn));
-        public static readonly Easing.Function SineInOut = new Easing.Function(new Easing.EasingFunction(Easing.Sine.EaseInOut));
-        public static readonly Easing.Function SineOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Sine.EaseOutIn));
-        public static readonly Easing.Function CubicOut = new Easing.Function(new Easing.EasingFunction(Easing.Cubic.EaseOut));
-        public static readonly Easing.Function CubicIn = new Easing.Function(new Easing.EasingFunction(Easing.Cubic.EaseIn));
-        public static readonly Easing.Function CubicInOut = new Easing.Function(new Easing.EasingFunction(Easing.Cubic.EaseInOut));
-        public static readonly Easing.Function CubicOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Cubic.EaseOutIn));
-        public static readonly Easing.Function QuartOut = new Easing.Function(new Easing.EasingFunction(Easing.Quart.EaseOut));
-        public static readonly Easing.Function QuartIn = new Easing.Function(new Easing.EasingFunction(Easing.Quart.EaseIn));
-        public static readonly Easing.Function QuartInOut = new Easing.Function(new Easing.EasingFunction(Easing.Quart.EaseInOut));
-        public static readonly Easing.Function QuartOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Quart.EaseOutIn));
-        public static readonly Easing.Function QuintOut = new Easing.Function(new Easing.EasingFunction(Easing.Quint.EaseOut));
-        public static readonly Easing.Function QuintIn = new Easing.Function(new Easing.EasingFunction(Easing.Quint.EaseIn));
-        public static readonly Easing.Function QuintInOut = new Easing.Function(new Easing.EasingFunction(Easing.Quint.EaseInOut));
-        public static readonly Easing.Function QuintOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Quint.EaseOutIn));
-        public static readonly Easing.Function ElasticOut = new Easing.Function(new Easing.EasingFunction(Easing.Elastic.EaseOut));
-        public static readonly Easing.Function ElasticIn = new Easing.Function(new Easing.EasingFunction(Easing.Elastic.EaseIn));
-        public static readonly Easing.Function ElasticInOut = new Easing.Function(new Easing.EasingFunction(Easing.Elastic.EaseInOut));
-        public static readonly Easing.Function ElasticOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Elastic.EaseOutIn));
-        public static readonly Easing.Function BounceOut = new Easing.Function(new Easing.EasingFunction(Easing.Bounce.EaseOut));
-        public static readonly Easing.Function BounceIn = new Easing.Function(new Easing.EasingFunction(Easing.Bounce.EaseIn));
-        public static readonly Easing.Function BounceInOut = new Easing.Function(new Easing.EasingFunction(Easing.Bounce.EaseInOut));
-        public static readonly Easing.Function BounceOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Bounce.EaseOutIn));
-        public static readonly Easing.Function BackOut = new Easing.Function(new Easing.EasingFunction(Easing.Back.EaseOut));
-        public static readonly Easing.Function BackIn = new Easing.Function(new Easing.EasingFunction(Easing.Back.EaseIn));
-        public static readonly Easing.Function BackInOut = new Easing.Function(new Easing.EasingFunction(Easing.Back.EaseInOut));
-        public static readonly Easing.Function BackOutIn = new Easing.Function(new Easing.EasingFunction(Easing.Back.EaseOutIn));
+        public static readonly Function LinearEase = new Function(new EasingFunction(Linear.Ease));
+        public static readonly Function ExpoOut = new Function(new EasingFunction(Expo.EaseOut));
+        public static readonly Function ExpoIn = new Function(new EasingFunction(Expo.EaseIn));
+        public static readonly Function ExpoInOut = new Function(new EasingFunction(Expo.EaseInOut));
+        public static readonly Function ExpoOutIn = new Function(new EasingFunction(Expo.EaseOutIn));
+        public static readonly Function CircOut = new Function(new EasingFunction(Circ.EaseOut));
+        public static readonly Function CircIn = new Function(new EasingFunction(Circ.EaseIn));
+        public static readonly Function CircInOut = new Function(new EasingFunction(Circ.EaseInOut));
+        public static readonly Function CircOutIn = new Function(new EasingFunction(Circ.EaseOutIn));
+        public static readonly Function QuadOut = new Function(new EasingFunction(Quad.EaseOut));
+        public static readonly Function QuadIn = new Function(new EasingFunction(Quad.EaseIn));
+        public static readonly Function QuadInOut = new Function(new EasingFunction(Quad.EaseInOut));
+        public static readonly Function QuadOutIn = new Function(new EasingFunction(Quad.EaseOutIn));
+        public static readonly Function SineOut = new Function(new EasingFunction(Sine.EaseOut));
+        public static readonly Function SineIn = new Function(new EasingFunction(Sine.EaseIn));
+        public static readonly Function SineInOut = new Function(new EasingFunction(Sine.EaseInOut));
+        public static readonly Function SineOutIn = new Function(new EasingFunction(Sine.EaseOutIn));
+        public static readonly Function CubicOut = new Function(new EasingFunction(Cubic.EaseOut));
+        public static readonly Function CubicIn = new Function(new EasingFunction(Cubic.EaseIn));
+        public static readonly Function CubicInOut = new Function(new EasingFunction(Cubic.EaseInOut));
+        public static readonly Function CubicOutIn = new Function(new EasingFunction(Cubic.EaseOutIn));
+        public static readonly Function QuartOut = new Function(new EasingFunction(Quart.EaseOut));
+        public static readonly Function QuartIn = new Function(new EasingFunction(Quart.EaseIn));
+        public static readonly Function QuartInOut = new Function(new EasingFunction(Quart.EaseInOut));
+        public static readonly Function QuartOutIn = new Function(new EasingFunction(Quart.EaseOutIn));
+        public static readonly Function QuintOut = new Function(new EasingFunction(Quint.EaseOut));
+        public static readonly Function QuintIn = new Function(new EasingFunction(Quint.EaseIn));
+        public static readonly Function QuintInOut = new Function(new EasingFunction(Quint.EaseInOut));
+        public static readonly Function QuintOutIn = new Function(new EasingFunction(Quint.EaseOutIn));
+        public static readonly Function ElasticOut = new Function(new EasingFunction(Elastic.EaseOut));
+        public static readonly Function ElasticIn = new Function(new EasingFunction(Elastic.EaseIn));
+        public static readonly Function ElasticInOut = new Function(new EasingFunction(Elastic.EaseInOut));
+        public static readonly Function ElasticOutIn = new Function(new EasingFunction(Elastic.EaseOutIn));
+        public static readonly Function BounceOut = new Function(new EasingFunction(Bounce.EaseOut));
+        public static readonly Function BounceIn = new Function(new EasingFunction(Bounce.EaseIn));
+        public static readonly Function BounceInOut = new Function(new EasingFunction(Bounce.EaseInOut));
+        public static readonly Function BounceOutIn = new Function(new EasingFunction(Bounce.EaseOutIn));
+        public static readonly Function BackOut = new Function(new EasingFunction(Back.EaseOut));
+        public static readonly Function BackIn = new Function(new EasingFunction(Back.EaseIn));
+        public static readonly Function BackInOut = new Function(new EasingFunction(Back.EaseInOut));
+        public static readonly Function BackOutIn = new Function(new EasingFunction(Back.EaseOutIn));
 
         public static class Linear
         {
@@ -360,9 +360,9 @@ namespace ifelse.Easings
 
         public struct Function : IFunction
         {
-            private readonly Easing.EasingFunction function;
+            private readonly EasingFunction function;
 
-            public Function(Easing.EasingFunction function)
+            public Function(EasingFunction function)
             {
                 this.function = function;
             }
