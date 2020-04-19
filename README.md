@@ -5,6 +5,9 @@
 ## Core
 Core provides extensions for each of the different easing methods, each with return types of `float`, `Vector2`, `Vector3`,  `Vector4`, and `Quaternion`.
 
+### Namespaces
+`ifelse.Easings.Core`
+
 ### Usage
 All easing functions are called with four parameters: `t` (time), `b` (initial value), `c` (delta value), and `d` (duration).
 If `time == 0`, then the result of the method is `b`, the initial value.  If `time == duration`, then the result of the method is `b + c`, the initial value plus the delta value.
@@ -38,6 +41,9 @@ IEnumerator LinearEase()
 
 ## Interpolator
 Interpolator stores easing data in a class, meant for reuse.  Interpolator provides all easing methods with the return type of `float`, meant for use with the default interpolation methods that Unity provides (`Vector3.Lerp()`, `Color.Lerp()`, etc.).  Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.
+
+### Namespaces
+`ifelse.Easings.Interpolator`
 
 ### Usage
 Create an Interpolator with an easing type, input the start value, end value, and duration in `Begin()`.  The call its `Update()` method over time.
@@ -75,6 +81,9 @@ IEnumerator LinearEase()
 
 ## Entities
 The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystem` is only used for updating the `Interpolator` component.
+
+### Namespaces
+`ifelse.Easings.Entities`
 
 ### Usage
 Add an `Interpolator` component to an entity.  There are three ways to create the struct required.  The main overload takes the initial value, the target value, and the duration, with an optional boolean to trigger component removal when the interpolation is complete.  Other overloads include easing function specification and custom delta time, instead of using the default.  By default, the `Interpolator` component will be removed when the easing is completed.
