@@ -1,4 +1,4 @@
-﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
+// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
 using Unity.Burst;
 using Unity.Collections;
@@ -54,127 +54,127 @@ namespace ifelse.Easings.Entities
                         switch (interpolator.Function)
                         {
                             case EasingType.Linear:
-                                value = EasingFunctions.Linear.Ease(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Linear.Ease(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ExpoIn:
-                                value = EasingFunctions.Expo.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Expo.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ExpoOut:
-                                value = EasingFunctions.Expo.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Expo.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ExpoOutIn:
-                                value = EasingFunctions.Expo.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Expo.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ExpoInOut:
-                                value = EasingFunctions.Expo.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Expo.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CircIn:
-                                value = EasingFunctions.Circ.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Circ.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CircOut:
-                                value = EasingFunctions.Circ.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Circ.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CircOutIn:
-                                value = EasingFunctions.Circ.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Circ.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CircInOut:
-                                value = EasingFunctions.Circ.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Circ.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuadIn:
-                                value = EasingFunctions.Quad.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quad.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuadOut:
-                                value = EasingFunctions.Quad.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quad.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuadOutIn:
-                                value = EasingFunctions.Quad.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quad.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuadInOut:
-                                value = EasingFunctions.Quad.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quad.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.SineIn:
-                                value = EasingFunctions.Sine.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Sine.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.SineOut:
-                                value = EasingFunctions.Sine.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Sine.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.SineOutIn:
-                                value = EasingFunctions.Sine.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Sine.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.SineInOut:
-                                value = EasingFunctions.Sine.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Sine.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CubicIn:
-                                value = EasingFunctions.Cubic.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Cubic.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CubicOut:
-                                value = EasingFunctions.Cubic.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Cubic.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CubicOutIn:
-                                value = EasingFunctions.Cubic.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Cubic.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.CubicInOut:
-                                value = EasingFunctions.Cubic.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Cubic.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuartIn:
-                                value = EasingFunctions.Quart.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quart.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuartOut:
-                                value = EasingFunctions.Quart.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quart.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuartOutIn:
-                                value = EasingFunctions.Quart.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quart.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuartInOut:
-                                value = EasingFunctions.Quart.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quart.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuintIn:
-                                value = EasingFunctions.Quint.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quint.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuintOut:
-                                value = EasingFunctions.Quint.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quint.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuintOutIn:
-                                value = EasingFunctions.Quint.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quint.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.QuintInOut:
-                                value = EasingFunctions.Quint.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Quint.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ElasticIn:
-                                value = EasingFunctions.Elastic.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Elastic.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ElasticOut:
-                                value = EasingFunctions.Elastic.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Elastic.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ElasticOutIn:
-                                value = EasingFunctions.Elastic.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Elastic.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.ElasticInOut:
-                                value = EasingFunctions.Elastic.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Elastic.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BounceIn:
-                                value = EasingFunctions.Bounce.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Bounce.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BounceOut:
-                                value = EasingFunctions.Bounce.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Bounce.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BounceOutIn:
-                                value = EasingFunctions.Bounce.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Bounce.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BounceInOut:
-                                value = EasingFunctions.Bounce.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Bounce.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BackIn:
-                                value = EasingFunctions.Back.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Back.EaseIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BackOut:
-                                value = EasingFunctions.Back.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Back.EaseOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BackOutIn:
-                                value = EasingFunctions.Back.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Back.EaseOutIn(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                             case EasingType.BackInOut:
-                                value = EasingFunctions.Back.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
+                                value = EasingFunctionsInline.Back.EaseInOut(interpolator.Time, interpolator.Initial, interpolator.Delta, interpolator.Duration);
                                 break;
                         }
                         interpolator.Value = value;
