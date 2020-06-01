@@ -1,0 +1,9 @@
+{
+    "name": "com.ifelse.easings.core",
+    "displayName": "Easings Core",
+    "version": "1.0",
+    "description": "Core flavor of Easings",
+    "dependencies": {
+        "com.ifelse.easings": "1.0"
+    }
+}
