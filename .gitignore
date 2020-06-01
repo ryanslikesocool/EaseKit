@@ -14,9 +14,6 @@
 # Folders, contents, and metadata
 Assets/EntityCache*
 
-# Unity metadata
-*.meta
-
 # Visual Studio and VS Code cache directory
 .vs/
 .vscode/
@@ -36,11 +33,6 @@ ExportedObj/
 *.svd
 *.pdb
 *.opendb
-
-# Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
