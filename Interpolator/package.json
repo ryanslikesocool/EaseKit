@@ -1,9 +1,0 @@
-{
-    "name": "com.ifelse.easings.interpolator",
-    "displayName": "Easings Interpolator",
-    "version": "1.0",
-    "description": "Interpolator flavor of Easings",
-    "dependencies": {
-        "com.ifelse.easings": "1.0"
-    }
-}
