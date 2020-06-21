@@ -80,32 +80,32 @@ IEnumerator LinearEase()
 ```
 
 ## Entities
-The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystem` is only used for updating the `Interpolator` component.
+The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystems.cs` is only used for updating interpolator components.
 
 ### Namespaces
 `ifelse.Easings.Entities`
 
 ### Usage
-Add an `Interpolator` component to an entity.  There are three ways to create the struct required.  The main overload takes the initial value, the target value, and the duration, with an optional boolean to trigger component removal when the interpolation is complete.  Other overloads include easing function specification and custom delta time, instead of using the default.  By default, the `Interpolator` component will be removed when the easing is completed.
+Take a peek inside `InterpolatorAuthoring.cs` to see the required setup for entity interpolation.  The core components required for interpolation are as follows
+- `InterpolatorStartTime`
+- `InterpolatorDuration`
+- `InterpolatorLocalTime`
+- `InterpolatorPercent`
+- `InterpolatorValue`
+- `InterpolatorDone`
+- one of the many `Ease` structs, found in `InterpolatorComponents.cs`
 
 ```csharp
-[BurstCompile]
-struct MoveWithInterpolatorJob : IJobForEach<Translation, Interpolator>
-{        
-    public void Execute(ref Translation translation, ref Interpolator interpolator)
+//Inside a System
+protected override void OnUpdate()
+{
+    //Quick and dirty job, iterating over components with a Translation and InterpolatorValue.
+    Entities.ForEach((ref Translation translation, in InterpolatorValue value) =>
     {
-        // This changes the entity's X position based on the interpolator value
-        float3 position = translation.Value;
-        position.x = interpolator.Value;
-        translation.Value = position;
-
-        // This bit replaces the completed Interpolator with a new one to ping-pong the easing
-        // It only works if the original Interpolator's RemoveOnDone boolean is set to false
-        if(interpolator.Done)
-        {
-            interpolator = new Interpolator(interpolator.Target, interpolator.Initial, interpolator.Duration, interpolator.Function, interpolator.RemoveOnDone);
-        }
-    }
+        //This moves the entity's position from -2 to 2 on the x axis
+        //In this example, value.Value is unclamped, the entity will keep moving at that rate after the value is greater than one
+        translation.Value.x = math.lerp(-2, 2, value.Value);
+    }).Schedule();
 }
 ```
 
