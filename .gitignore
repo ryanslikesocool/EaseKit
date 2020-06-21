@@ -1,6 +1,9 @@
 # macOS system files
 .DS_Store
 
+# Unity Meta Files
+*.meta
+
 # Folders and contents
 [Ll]ibrary/
 [Tt]emp/
@@ -40,15 +43,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-# FMOD Stuff
-# ===============
-*.fmod_editor.log
-*.fmod.log
-fmod\.log
-fmod_editor\.log
-Assets/StreamingAssets/*.bank
-Assets/StreamingAssets/*.bank.meta
-Assets/Plugins/FMOD/Resources/FMODStudioCache.asset
-Assets/Plugins/FMOD/Resources/FMODStudioCache.asset.meta
-Assets/FMODStudioCache\.asset
