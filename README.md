@@ -1,6 +1,6 @@
 # Unity-Easings
 ## About
-41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with three flavors (Core, Interpolator, Entities).  Core and Interpolator are meant to be called over time, such as in a coroutine or in the Update loop.  Entities are updated automatically with an optional custom delta time.
+41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with three flavors (Core, Interpolator, Entities).  Core and Interpolator are meant to be called over time, such as in a coroutine or in the Update loop.  Entities are updated automatically.
 
 ## Core
 Core provides extensions for each of the different easing methods, each with return types of `float`, `Vector2`, `Vector3`,  `Vector4`, and `Quaternion`.
@@ -111,12 +111,12 @@ protected override void OnUpdate()
 
 ## Notes
 - Unused flavors can be removed.  For example, if your project is not DOTS based, the Entities folder can be deleted.  If you only plan on using the Interpolator flavor, Core and Entites can be deleted.
-- The core methods that are required are stored in the root folder.  Flavors will not work without them.
+- The core methods that are required are stored in the Root folder.  Core and Interpolator flavors will not work without them.
 
 ## Dependencies
 - Core - Root folder scripts
 - Interpolator - Root folder scripts
-- Entities - Root folder scripts, DOTS packages (found in the Unity Package Manager)
+- Entities - DOTS packages (found in the Unity Package Manager)
 
 ## Credits
 Robert Penner's Easing Functions
