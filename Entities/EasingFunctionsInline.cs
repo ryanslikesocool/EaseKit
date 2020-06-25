@@ -1,7 +1,9 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
+using System;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using Unity.Entities;
 
 namespace ifelse.Easings.Entities
 {
@@ -348,6 +350,530 @@ namespace ifelse.Easings.Entities
                 if (t < d / 2)
                     return EaseOut(t * 2, b, c / 2, d);
                 return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddEasing(this EntityManager dstManager, Entity entity, EasingType easing)
+        {
+            switch (easing)
+            {
+                default:
+                    dstManager.AddComponent<EaseLinear>(entity);
+                    break;
+                case EasingType.ExpoIn:
+                    dstManager.AddComponent<EaseExpoIn>(entity);
+                    break;
+                case EasingType.ExpoOut:
+                    dstManager.AddComponent<EaseExpoOut>(entity);
+                    break;
+                case EasingType.ExpoInOut:
+                    dstManager.AddComponent<EaseExpoInOut>(entity);
+                    break;
+                case EasingType.ExpoOutIn:
+                    dstManager.AddComponent<EaseExpoOutIn>(entity);
+                    break;
+                case EasingType.CircIn:
+                    dstManager.AddComponent<EaseCircIn>(entity);
+                    break;
+                case EasingType.CircOut:
+                    dstManager.AddComponent<EaseCircOut>(entity);
+                    break;
+                case EasingType.CircInOut:
+                    dstManager.AddComponent<EaseCircInOut>(entity);
+                    break;
+                case EasingType.CircOutIn:
+                    dstManager.AddComponent<EaseCircOutIn>(entity);
+                    break;
+                case EasingType.QuadIn:
+                    dstManager.AddComponent<EaseQuadIn>(entity);
+                    break;
+                case EasingType.QuadOut:
+                    dstManager.AddComponent<EaseQuadOut>(entity);
+                    break;
+                case EasingType.QuadInOut:
+                    dstManager.AddComponent<EaseQuadInOut>(entity);
+                    break;
+                case EasingType.QuadOutIn:
+                    dstManager.AddComponent<EaseQuadOutIn>(entity);
+                    break;
+                case EasingType.SineIn:
+                    dstManager.AddComponent<EaseSineIn>(entity);
+                    break;
+                case EasingType.SineOut:
+                    dstManager.AddComponent<EaseSineOut>(entity);
+                    break;
+                case EasingType.SineInOut:
+                    dstManager.AddComponent<EaseSineInOut>(entity);
+                    break;
+                case EasingType.SineOutIn:
+                    dstManager.AddComponent<EaseSineOutIn>(entity);
+                    break;
+                case EasingType.CubicIn:
+                    dstManager.AddComponent<EaseCubicIn>(entity);
+                    break;
+                case EasingType.CubicOut:
+                    dstManager.AddComponent<EaseCubicOut>(entity);
+                    break;
+                case EasingType.CubicInOut:
+                    dstManager.AddComponent<EaseCubicInOut>(entity);
+                    break;
+                case EasingType.CubicOutIn:
+                    dstManager.AddComponent<EaseCubicOutIn>(entity);
+                    break;
+                case EasingType.QuartIn:
+                    dstManager.AddComponent<EaseQuartIn>(entity);
+                    break;
+                case EasingType.QuartOut:
+                    dstManager.AddComponent<EaseQuartOut>(entity);
+                    break;
+                case EasingType.QuartInOut:
+                    dstManager.AddComponent<EaseQuartInOut>(entity);
+                    break;
+                case EasingType.QuartOutIn:
+                    dstManager.AddComponent<EaseQuartOutIn>(entity);
+                    break;
+                case EasingType.QuintIn:
+                    dstManager.AddComponent<EaseQuintIn>(entity);
+                    break;
+                case EasingType.QuintOut:
+                    dstManager.AddComponent<EaseQuintOut>(entity);
+                    break;
+                case EasingType.QuintInOut:
+                    dstManager.AddComponent<EaseQuintInOut>(entity);
+                    break;
+                case EasingType.QuintOutIn:
+                    dstManager.AddComponent<EaseQuintOutIn>(entity);
+                    break;
+                case EasingType.ElasticIn:
+                    dstManager.AddComponent<EaseElasticIn>(entity);
+                    break;
+                case EasingType.ElasticOut:
+                    dstManager.AddComponent<EaseElasticOut>(entity);
+                    break;
+                case EasingType.ElasticInOut:
+                    dstManager.AddComponent<EaseElasticInOut>(entity);
+                    break;
+                case EasingType.ElasticOutIn:
+                    dstManager.AddComponent<EaseElasticOutIn>(entity);
+                    break;
+                case EasingType.BounceIn:
+                    dstManager.AddComponent<EaseBounceIn>(entity);
+                    break;
+                case EasingType.BounceOut:
+                    dstManager.AddComponent<EaseBounceInOut>(entity);
+                    break;
+                case EasingType.BounceInOut:
+                    dstManager.AddComponent<EaseBounceInOut>(entity);
+                    break;
+                case EasingType.BounceOutIn:
+                    dstManager.AddComponent<EaseBounceOutIn>(entity);
+                    break;
+                case EasingType.BackIn:
+                    dstManager.AddComponent<EaseBackIn>(entity);
+                    break;
+                case EasingType.BackOut:
+                    dstManager.AddComponent<EaseBackOut>(entity);
+                    break;
+                case EasingType.BackInOut:
+                    dstManager.AddComponent<EaseBackInOut>(entity);
+                    break;
+                case EasingType.BackOutIn:
+                    dstManager.AddComponent<EaseBackOutIn>(entity);
+                    break;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void RemoveEasing(this EntityManager dstManager, Entity entity, EasingType easing)
+        {
+            switch (easing)
+            {
+                default:
+                    dstManager.RemoveComponent<EaseLinear>(entity);
+                    break;
+                case EasingType.ExpoIn:
+                    dstManager.RemoveComponent<EaseExpoIn>(entity);
+                    break;
+                case EasingType.ExpoOut:
+                    dstManager.RemoveComponent<EaseExpoOut>(entity);
+                    break;
+                case EasingType.ExpoInOut:
+                    dstManager.RemoveComponent<EaseExpoInOut>(entity);
+                    break;
+                case EasingType.ExpoOutIn:
+                    dstManager.RemoveComponent<EaseExpoOutIn>(entity);
+                    break;
+                case EasingType.CircIn:
+                    dstManager.RemoveComponent<EaseCircIn>(entity);
+                    break;
+                case EasingType.CircOut:
+                    dstManager.RemoveComponent<EaseCircOut>(entity);
+                    break;
+                case EasingType.CircInOut:
+                    dstManager.RemoveComponent<EaseCircInOut>(entity);
+                    break;
+                case EasingType.CircOutIn:
+                    dstManager.RemoveComponent<EaseCircOutIn>(entity);
+                    break;
+                case EasingType.QuadIn:
+                    dstManager.RemoveComponent<EaseQuadIn>(entity);
+                    break;
+                case EasingType.QuadOut:
+                    dstManager.RemoveComponent<EaseQuadOut>(entity);
+                    break;
+                case EasingType.QuadInOut:
+                    dstManager.RemoveComponent<EaseQuadInOut>(entity);
+                    break;
+                case EasingType.QuadOutIn:
+                    dstManager.RemoveComponent<EaseQuadOutIn>(entity);
+                    break;
+                case EasingType.SineIn:
+                    dstManager.RemoveComponent<EaseSineIn>(entity);
+                    break;
+                case EasingType.SineOut:
+                    dstManager.RemoveComponent<EaseSineOut>(entity);
+                    break;
+                case EasingType.SineInOut:
+                    dstManager.RemoveComponent<EaseSineInOut>(entity);
+                    break;
+                case EasingType.SineOutIn:
+                    dstManager.RemoveComponent<EaseSineOutIn>(entity);
+                    break;
+                case EasingType.CubicIn:
+                    dstManager.RemoveComponent<EaseCubicIn>(entity);
+                    break;
+                case EasingType.CubicOut:
+                    dstManager.RemoveComponent<EaseCubicOut>(entity);
+                    break;
+                case EasingType.CubicInOut:
+                    dstManager.RemoveComponent<EaseCubicInOut>(entity);
+                    break;
+                case EasingType.CubicOutIn:
+                    dstManager.RemoveComponent<EaseCubicOutIn>(entity);
+                    break;
+                case EasingType.QuartIn:
+                    dstManager.RemoveComponent<EaseQuartIn>(entity);
+                    break;
+                case EasingType.QuartOut:
+                    dstManager.RemoveComponent<EaseQuartOut>(entity);
+                    break;
+                case EasingType.QuartInOut:
+                    dstManager.RemoveComponent<EaseQuartInOut>(entity);
+                    break;
+                case EasingType.QuartOutIn:
+                    dstManager.RemoveComponent<EaseQuartOutIn>(entity);
+                    break;
+                case EasingType.QuintIn:
+                    dstManager.RemoveComponent<EaseQuintIn>(entity);
+                    break;
+                case EasingType.QuintOut:
+                    dstManager.RemoveComponent<EaseQuintOut>(entity);
+                    break;
+                case EasingType.QuintInOut:
+                    dstManager.RemoveComponent<EaseQuintInOut>(entity);
+                    break;
+                case EasingType.QuintOutIn:
+                    dstManager.RemoveComponent<EaseQuintOutIn>(entity);
+                    break;
+                case EasingType.ElasticIn:
+                    dstManager.RemoveComponent<EaseElasticIn>(entity);
+                    break;
+                case EasingType.ElasticOut:
+                    dstManager.RemoveComponent<EaseElasticOut>(entity);
+                    break;
+                case EasingType.ElasticInOut:
+                    dstManager.RemoveComponent<EaseElasticInOut>(entity);
+                    break;
+                case EasingType.ElasticOutIn:
+                    dstManager.RemoveComponent<EaseElasticOutIn>(entity);
+                    break;
+                case EasingType.BounceIn:
+                    dstManager.RemoveComponent<EaseBounceIn>(entity);
+                    break;
+                case EasingType.BounceOut:
+                    dstManager.RemoveComponent<EaseBounceInOut>(entity);
+                    break;
+                case EasingType.BounceInOut:
+                    dstManager.RemoveComponent<EaseBounceInOut>(entity);
+                    break;
+                case EasingType.BounceOutIn:
+                    dstManager.RemoveComponent<EaseBounceOutIn>(entity);
+                    break;
+                case EasingType.BackIn:
+                    dstManager.RemoveComponent<EaseBackIn>(entity);
+                    break;
+                case EasingType.BackOut:
+                    dstManager.RemoveComponent<EaseBackOut>(entity);
+                    break;
+                case EasingType.BackInOut:
+                    dstManager.RemoveComponent<EaseBackInOut>(entity);
+                    break;
+                case EasingType.BackOutIn:
+                    dstManager.RemoveComponent<EaseBackOutIn>(entity);
+                    break;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddEasing(this EntityCommandBuffer.Concurrent cmdBuffer, int jobIndex, Entity entity, EasingType easing)
+        {
+            switch (easing)
+            {
+                default:
+                    cmdBuffer.AddComponent<EaseLinear>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoIn:
+                    cmdBuffer.AddComponent<EaseExpoIn>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoOut:
+                    cmdBuffer.AddComponent<EaseExpoOut>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoInOut:
+                    cmdBuffer.AddComponent<EaseExpoInOut>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoOutIn:
+                    cmdBuffer.AddComponent<EaseExpoOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.CircIn:
+                    cmdBuffer.AddComponent<EaseCircIn>(jobIndex, entity);
+                    break;
+                case EasingType.CircOut:
+                    cmdBuffer.AddComponent<EaseCircOut>(jobIndex, entity);
+                    break;
+                case EasingType.CircInOut:
+                    cmdBuffer.AddComponent<EaseCircInOut>(jobIndex, entity);
+                    break;
+                case EasingType.CircOutIn:
+                    cmdBuffer.AddComponent<EaseCircOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuadIn:
+                    cmdBuffer.AddComponent<EaseQuadIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuadOut:
+                    cmdBuffer.AddComponent<EaseQuadOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuadInOut:
+                    cmdBuffer.AddComponent<EaseQuadInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuadOutIn:
+                    cmdBuffer.AddComponent<EaseQuadOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.SineIn:
+                    cmdBuffer.AddComponent<EaseSineIn>(jobIndex, entity);
+                    break;
+                case EasingType.SineOut:
+                    cmdBuffer.AddComponent<EaseSineOut>(jobIndex, entity);
+                    break;
+                case EasingType.SineInOut:
+                    cmdBuffer.AddComponent<EaseSineInOut>(jobIndex, entity);
+                    break;
+                case EasingType.SineOutIn:
+                    cmdBuffer.AddComponent<EaseSineOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.CubicIn:
+                    cmdBuffer.AddComponent<EaseCubicIn>(jobIndex, entity);
+                    break;
+                case EasingType.CubicOut:
+                    cmdBuffer.AddComponent<EaseCubicOut>(jobIndex, entity);
+                    break;
+                case EasingType.CubicInOut:
+                    cmdBuffer.AddComponent<EaseCubicInOut>(jobIndex, entity);
+                    break;
+                case EasingType.CubicOutIn:
+                    cmdBuffer.AddComponent<EaseCubicOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuartIn:
+                    cmdBuffer.AddComponent<EaseQuartIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuartOut:
+                    cmdBuffer.AddComponent<EaseQuartOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuartInOut:
+                    cmdBuffer.AddComponent<EaseQuartInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuartOutIn:
+                    cmdBuffer.AddComponent<EaseQuartOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuintIn:
+                    cmdBuffer.AddComponent<EaseQuintIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuintOut:
+                    cmdBuffer.AddComponent<EaseQuintOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuintInOut:
+                    cmdBuffer.AddComponent<EaseQuintInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuintOutIn:
+                    cmdBuffer.AddComponent<EaseQuintOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticIn:
+                    cmdBuffer.AddComponent<EaseElasticIn>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticOut:
+                    cmdBuffer.AddComponent<EaseElasticOut>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticInOut:
+                    cmdBuffer.AddComponent<EaseElasticInOut>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticOutIn:
+                    cmdBuffer.AddComponent<EaseElasticOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.BounceIn:
+                    cmdBuffer.AddComponent<EaseBounceIn>(jobIndex, entity);
+                    break;
+                case EasingType.BounceOut:
+                    cmdBuffer.AddComponent<EaseBounceInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BounceInOut:
+                    cmdBuffer.AddComponent<EaseBounceInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BounceOutIn:
+                    cmdBuffer.AddComponent<EaseBounceOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.BackIn:
+                    cmdBuffer.AddComponent<EaseBackIn>(jobIndex, entity);
+                    break;
+                case EasingType.BackOut:
+                    cmdBuffer.AddComponent<EaseBackOut>(jobIndex, entity);
+                    break;
+                case EasingType.BackInOut:
+                    cmdBuffer.AddComponent<EaseBackInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BackOutIn:
+                    cmdBuffer.AddComponent<EaseBackOutIn>(jobIndex, entity);
+                    break;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void RemoveEasing(this EntityCommandBuffer.Concurrent dstManager, int jobIndex, Entity entity, EasingType easing)
+        {
+            switch (easing)
+            {
+                default:
+                    dstManager.RemoveComponent<EaseLinear>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoIn:
+                    dstManager.RemoveComponent<EaseExpoIn>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoOut:
+                    dstManager.RemoveComponent<EaseExpoOut>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoInOut:
+                    dstManager.RemoveComponent<EaseExpoInOut>(jobIndex, entity);
+                    break;
+                case EasingType.ExpoOutIn:
+                    dstManager.RemoveComponent<EaseExpoOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.CircIn:
+                    dstManager.RemoveComponent<EaseCircIn>(jobIndex, entity);
+                    break;
+                case EasingType.CircOut:
+                    dstManager.RemoveComponent<EaseCircOut>(jobIndex, entity);
+                    break;
+                case EasingType.CircInOut:
+                    dstManager.RemoveComponent<EaseCircInOut>(jobIndex, entity);
+                    break;
+                case EasingType.CircOutIn:
+                    dstManager.RemoveComponent<EaseCircOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuadIn:
+                    dstManager.RemoveComponent<EaseQuadIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuadOut:
+                    dstManager.RemoveComponent<EaseQuadOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuadInOut:
+                    dstManager.RemoveComponent<EaseQuadInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuadOutIn:
+                    dstManager.RemoveComponent<EaseQuadOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.SineIn:
+                    dstManager.RemoveComponent<EaseSineIn>(jobIndex, entity);
+                    break;
+                case EasingType.SineOut:
+                    dstManager.RemoveComponent<EaseSineOut>(jobIndex, entity);
+                    break;
+                case EasingType.SineInOut:
+                    dstManager.RemoveComponent<EaseSineInOut>(jobIndex, entity);
+                    break;
+                case EasingType.SineOutIn:
+                    dstManager.RemoveComponent<EaseSineOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.CubicIn:
+                    dstManager.RemoveComponent<EaseCubicIn>(jobIndex, entity);
+                    break;
+                case EasingType.CubicOut:
+                    dstManager.RemoveComponent<EaseCubicOut>(jobIndex, entity);
+                    break;
+                case EasingType.CubicInOut:
+                    dstManager.RemoveComponent<EaseCubicInOut>(jobIndex, entity);
+                    break;
+                case EasingType.CubicOutIn:
+                    dstManager.RemoveComponent<EaseCubicOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuartIn:
+                    dstManager.RemoveComponent<EaseQuartIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuartOut:
+                    dstManager.RemoveComponent<EaseQuartOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuartInOut:
+                    dstManager.RemoveComponent<EaseQuartInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuartOutIn:
+                    dstManager.RemoveComponent<EaseQuartOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuintIn:
+                    dstManager.RemoveComponent<EaseQuintIn>(jobIndex, entity);
+                    break;
+                case EasingType.QuintOut:
+                    dstManager.RemoveComponent<EaseQuintOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuintInOut:
+                    dstManager.RemoveComponent<EaseQuintInOut>(jobIndex, entity);
+                    break;
+                case EasingType.QuintOutIn:
+                    dstManager.RemoveComponent<EaseQuintOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticIn:
+                    dstManager.RemoveComponent<EaseElasticIn>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticOut:
+                    dstManager.RemoveComponent<EaseElasticOut>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticInOut:
+                    dstManager.RemoveComponent<EaseElasticInOut>(jobIndex, entity);
+                    break;
+                case EasingType.ElasticOutIn:
+                    dstManager.RemoveComponent<EaseElasticOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.BounceIn:
+                    dstManager.RemoveComponent<EaseBounceIn>(jobIndex, entity);
+                    break;
+                case EasingType.BounceOut:
+                    dstManager.RemoveComponent<EaseBounceInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BounceInOut:
+                    dstManager.RemoveComponent<EaseBounceInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BounceOutIn:
+                    dstManager.RemoveComponent<EaseBounceOutIn>(jobIndex, entity);
+                    break;
+                case EasingType.BackIn:
+                    dstManager.RemoveComponent<EaseBackIn>(jobIndex, entity);
+                    break;
+                case EasingType.BackOut:
+                    dstManager.RemoveComponent<EaseBackOut>(jobIndex, entity);
+                    break;
+                case EasingType.BackInOut:
+                    dstManager.RemoveComponent<EaseBackInOut>(jobIndex, entity);
+                    break;
+                case EasingType.BackOutIn:
+                    dstManager.RemoveComponent<EaseBackOutIn>(jobIndex, entity);
+                    break;
             }
         }
     }
