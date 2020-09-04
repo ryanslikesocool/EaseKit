@@ -616,7 +616,7 @@ namespace ifelse.Easings.Entities
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddEasing(this EntityCommandBuffer.Concurrent cmdBuffer, int jobIndex, Entity entity, EasingType easing)
+        public static void AddEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int jobIndex, Entity entity, EasingType easing)
         {
             switch (easing)
             {
@@ -747,7 +747,7 @@ namespace ifelse.Easings.Entities
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RemoveEasing(this EntityCommandBuffer.Concurrent dstManager, int jobIndex, Entity entity, EasingType easing)
+        public static void RemoveEasing(this EntityCommandBuffer.ParallelWriter dstManager, int jobIndex, Entity entity, EasingType easing)
         {
             switch (easing)
             {
