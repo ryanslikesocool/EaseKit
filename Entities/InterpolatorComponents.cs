@@ -50,10 +50,7 @@ namespace ifelse.Easings.Entities
     #region Linear
 
     [Serializable]
-    public struct EaseLinear : IComponentData
-    {
-        public float Value;
-    }
+    public struct EaseLinear : IComponentData { }
 
     #endregion
 

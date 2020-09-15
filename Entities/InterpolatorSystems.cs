@@ -1,4 +1,6 @@
-﻿using Unity.Burst;
+﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
+
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -7,9 +9,10 @@ using Unity.Transforms;
 
 namespace ifelse.Easings.Entities
 {
-    #region Base System
     [UpdateInGroup(typeof(SimulationSystemGroup))]
     public class InterpolatorSystemGroup : ComponentSystemGroup { }
+
+    #region Base System
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup))]
     public class InterpolatorBaseSystem : SystemBase
@@ -18,338 +21,386 @@ namespace ifelse.Easings.Entities
         {
             float elapsedTime = (float)Time.ElapsedTime;
 
-            Dependency = Entities.ForEach((ref InterpolatorLocalTime localTime, in InterpolatorStartTime startTime) =>
+            Entities.ForEach((ref InterpolatorLocalTime localTime, in InterpolatorStartTime startTime) =>
             {
                 localTime.Value = elapsedTime - startTime.Value;
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorPercent percent, in InterpolatorLocalTime localTime, in InterpolatorDuration duration) =>
+            Entities.ForEach((ref InterpolatorPercent percent, in InterpolatorLocalTime localTime, in InterpolatorDuration duration) =>
             {
                 percent.Value = localTime.Value / duration.Value;
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorDone done, in InterpolatorPercent percent) =>
+            Entities.ForEach((ref InterpolatorDone done, in InterpolatorPercent percent) =>
             {
                 done.Value = percent.Value >= 1;
-            }).Schedule(Dependency);
-
-            //CompleteDependency();
+            }).ScheduleParallel();
         }
     }
+
     #endregion
 
     #region Easings
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseLinearSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseLinear ease) =>
-            {
-                value.Value = percent.Value;
-            }).Schedule(Dependency);
+            Entities
+            .WithAll<EaseLinear>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
+           {
+               value.Value = percent.Value;
+           }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseExpoSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseExpoIn ease) =>
+            Entities
+            .WithAll<EaseExpoIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Expo.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseExpoOut ease) =>
+            Entities
+            .WithAll<EaseExpoOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Expo.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseExpoInOut ease) =>
+            Entities
+            .WithAll<EaseExpoInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Expo.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseExpoOutIn ease) =>
+            Entities
+            .WithAll<EaseExpoOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Expo.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseCircSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCircIn ease) =>
+            Entities
+            .WithAll<EaseCircIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Circ.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCircOut ease) =>
+            Entities
+            .WithAll<EaseCircOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Circ.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCircInOut ease) =>
+            Entities
+            .WithAll<EaseCircInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Circ.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCircOutIn ease) =>
+            Entities
+            .WithAll<EaseCircOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Circ.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseQuadSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuadIn ease) =>
+            Entities
+            .WithAll<EaseQuadIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quad.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuadOut ease) =>
+            Entities
+            .WithAll<EaseQuadOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quad.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuadInOut ease) =>
+            Entities
+            .WithAll<EaseQuadInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quad.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuadOutIn ease) =>
+            Entities
+            .WithAll<EaseQuadOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quad.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseSineSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineIn ease) =>
+            Entities
+            .WithAll<EaseSineIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Sine.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineOut ease) =>
+            Entities
+            .WithAll<EaseSineOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Sine.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineInOut ease) =>
+            Entities
+            .WithAll<EaseSineInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Sine.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineOutIn ease) =>
+            Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineOutIn ease) =>
             {
                 value.Value = EasingFunctionsInline.Sine.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseCubicSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCubicIn ease) =>
+            Entities
+            .WithAll<EaseCubicIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Cubic.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCubicOut ease) =>
+            Entities
+            .WithAll<EaseCubicOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Cubic.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCubicInOut ease) =>
+            Entities
+            .WithAll<EaseCubicInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Cubic.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseCubicOutIn ease) =>
+            Entities
+            .WithAll<EaseCubicOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Cubic.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseQuartSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuartIn ease) =>
+            Entities
+            .WithAll<EaseQuartIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quart.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuartOut ease) =>
+            Entities
+            .WithAll<EaseQuartOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quart.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuartInOut ease) =>
+            Entities
+            .WithAll<EaseQuartInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quart.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuartOutIn ease) =>
+            Entities
+            .WithAll<EaseQuartOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quart.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseQuintSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuintIn ease) =>
+            Entities
+            .WithAll<EaseQuintIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quint.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuintOut ease) =>
+            Entities.WithAll<EaseQuintOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quint.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuintInOut ease) =>
+            Entities
+            .WithAll<EaseQuintInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quint.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseQuintOutIn ease) =>
+            Entities
+            .WithAll<EaseQuintOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Quint.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseElasticSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseElasticIn ease) =>
+            Entities
+            .WithAll<EaseElasticIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Elastic.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseElasticOut ease) =>
+            Entities
+            .WithAll<EaseElasticOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Elastic.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseElasticInOut ease) =>
+            Entities
+            .WithAll<EaseElasticInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Elastic.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseElasticOutIn ease) =>
+            Entities
+            .WithAll<EaseElasticOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Elastic.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseBounceSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBounceIn ease) =>
+            Entities
+            .WithAll<EaseBounceIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Bounce.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBounceOut ease) =>
+            Entities
+            .WithAll<EaseBounceOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Bounce.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBounceInOut ease) =>
+            Entities
+            .WithAll<EaseBounceInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Bounce.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBounceOutIn ease) =>
+            Entities
+            .WithAll<EaseBounceOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Bounce.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
-    [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    [UpdateAfter(typeof(InterpolatorBaseSystem))]
+    [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
     public class EaseBackSystem : SystemBase
     {
         protected override void OnUpdate()
         {
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBackIn ease) =>
+            Entities
+            .WithAll<EaseBackIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Back.EaseIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBackOut ease) =>
+            Entities
+            .WithAll<EaseBackOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Back.EaseOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBackInOut ease) =>
+            Entities
+            .WithAll<EaseBackInOut>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Back.EaseInOut(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
 
-
-            Dependency = Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseBackOutIn ease) =>
+            Entities
+            .WithAll<EaseBackOutIn>()
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) =>
             {
                 value.Value = EasingFunctionsInline.Back.EaseOutIn(percent.Value, 0, 1, 1);
-            }).Schedule(Dependency);
+            }).ScheduleParallel();
         }
     }
 
