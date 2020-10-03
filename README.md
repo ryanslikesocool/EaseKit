@@ -2,13 +2,11 @@
 ## About
 41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with three flavors (Core, Interpolator, Entities).  Core and Interpolator are meant to be called over time, such as in a coroutine or in the Update loop.  Entities are updated automatically.
 
-## Core
+## Convenience
 Core provides extensions for each of the different easing methods, each with return types of `float`, `Vector2`, `Vector3`,  `Vector4`, and `Quaternion`.
 
-### Namespaces
-`ifelse.Easings.Core`
-
 ### Usage
+`using Easings.Convenience;`
 All easing functions are called with four parameters: `t` (time), `b` (initial value), `c` (delta value), and `d` (duration).
 If `time == 0`, then the result of the method is `b`, the initial value.  If `time == duration`, then the result of the method is `b + c`, the initial value plus the delta value.
 
@@ -26,7 +24,7 @@ IEnumerator LinearEase()
         time += Time.deltaTime;
         
         // Get the current interpolator value
-        float value = Easings.Linear(time, initial, delta, duration);
+        float value = ConvenienceEasings.Linear(time, initial, delta, duration);
         
         // Do something with the value, such as:
         transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, value);
@@ -42,10 +40,8 @@ IEnumerator LinearEase()
 ## Interpolator
 Interpolator stores easing data in a class, meant for reuse.  Interpolator provides all easing methods with the return type of `float`, meant for use with the default interpolation methods that Unity provides (`Vector3.Lerp()`, `Color.Lerp()`, etc.).  Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.
 
-### Namespaces
-`ifelse.Easings.Interpolator`
-
 ### Usage
+`using Easings.Interpolator;`
 Create an Interpolator with an easing type, input the start value, end value, and duration in `Begin()`.  The call its `Update()` method over time.
 
 ```csharp
@@ -82,10 +78,8 @@ IEnumerator LinearEase()
 ## Entities
 The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystems.cs` is only used for updating interpolator components.
 
-### Namespaces
-`ifelse.Easings.Entities`
-
 ### Usage
+`using Easings.Entities;`
 Take a peek inside `InterpolatorAuthoring.cs` to see the required setup for entity interpolation.  The core components required for interpolation are as follows
 - `InterpolatorStartTime`
 - `InterpolatorDuration`
@@ -110,8 +104,8 @@ protected override void OnUpdate()
 ```
 
 ## Notes
-- Unused flavors can be removed.  For example, if your project is not DOTS based, the Entities folder can be deleted.  If you only plan on using the Interpolator flavor, Core and Entites can be deleted.
-- The core methods that are required are stored in the Root folder.  Core and Interpolator flavors will not work without them.
+- Unused flavors can be removed.  For example, if your project is not DOTS based, the Entities folder can be deleted.  If you only plan on using the Interpolator flavor, Convenience and Entites can be deleted.
+- The core methods that are required are stored in the Core folder.  Convenience, Entities, and Interpolator flavors will not work without them.
 
 ## Dependencies
 - Core - Root folder scripts

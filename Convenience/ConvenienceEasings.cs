@@ -2,13 +2,13 @@
 
 using UnityEngine;
 
-namespace ifelse.Easings.Core
+namespace Easings.Convenience
 {
     // t = time
     // b = start
     // c = delta
     // d = duration
-    public static class Easings
+    public static class ConvenienceEasings
     {
         public static float Linear(float t, float b, float c, float d)
         {
@@ -437,7 +437,7 @@ namespace ifelse.Easings.Core
             return new Vector2(
                 EasingFunctions.Quad.EaseInOut(t, b.x, c.x, d),
                 EasingFunctions.Quad.EaseInOut(t, b.y, c.y, d)
-            );                           
+            );
         }
         public static Vector3 QuadEaseInOut(float t, Vector3 b, Vector3 c, float d)
         {
@@ -454,7 +454,7 @@ namespace ifelse.Easings.Core
                  EasingFunctions.Quad.EaseInOut(t, b.y, c.y, d),
                  EasingFunctions.Quad.EaseInOut(t, b.z, c.z, d),
                  EasingFunctions.Quad.EaseInOut(t, b.w, c.w, d)
-            );                              
+            );
         }
         public static Quaternion QuadEaseInOut(float t, Quaternion b, Quaternion c, float d)
         {

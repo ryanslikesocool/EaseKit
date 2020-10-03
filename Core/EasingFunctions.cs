@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace ifelse.Easings
+namespace Easings
 {
     public static class EasingFunctions
     {
@@ -372,7 +372,7 @@ namespace ifelse.Easings
                 return function(t, b, c, d);
             }
         }
-        
+
         public static Function GetFunction(EasingType easing)
         {
             switch (easing)

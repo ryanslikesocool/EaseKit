@@ -3,7 +3,7 @@
 using System;
 using Unity.Entities;
 
-namespace ifelse.Easings.Entities
+namespace Easings.Entities
 {
     #region Base
 

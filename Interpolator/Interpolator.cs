@@ -1,6 +1,6 @@
 ﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
-namespace ifelse.Easings.Interpolator
+namespace Easings.Interpolator
 {
     public class Interpolator
     {

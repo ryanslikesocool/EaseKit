@@ -1,13 +1,12 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
-using System;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using Unity.Entities;
 
-namespace ifelse.Easings.Entities
+namespace Easings.Entities
 {
-    public static class EasingFunctionsInline
+    public static class InlineEasings
     {
         public static class Linear
         {
