@@ -6,7 +6,6 @@ using UnityEngine;
 namespace Easings.Entities
 {
     [DisallowMultipleComponent]
-    [RequiresEntityConversion]
     public class InterpolatorAuthoring : MonoBehaviour, IConvertGameObjectToEntity
     {
         [SerializeField] private EasingType function = EasingType.Linear;
