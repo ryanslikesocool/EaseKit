@@ -36,11 +36,9 @@ namespace Easings.Interpolator
             Time = 0f;
         }
 
-        public void Update(bool unscaled = false)
+        public float Update(bool unscaled = false)
         {
-            float newValue = Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
-            ValueDelta = newValue - Value;
-            Value = newValue;
+            return Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
         }
 
         public float Update(float deltaTime)
@@ -50,7 +48,12 @@ namespace Easings.Interpolator
             {
                 Time = Duration;
             }
-            return function.Ease(Time, Initial, TotalDelta, Duration);
+
+            float newValue = function.Ease(Time, Initial, TotalDelta, Duration);
+            ValueDelta = newValue - Value;
+            Value = newValue;
+
+            return Value;
         }
 
         public void SetFunction(EasingType easingType)
