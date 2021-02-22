@@ -1,9 +1,10 @@
-﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
+// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
 namespace Easings.Interpolator
 {
     public class Interpolator
     {
+        public EasingType EasingType { get; private set; }
         public float Time { get; private set; }
         public float Initial { get; private set; }
         public float TotalDelta { get; private set; }
@@ -22,12 +23,6 @@ namespace Easings.Interpolator
 
         public Interpolator(EasingType easingType)
         {
-            Time = 0;
-            Initial = 0;
-            TotalDelta = 0;
-            ValueDelta = 0;
-            Duration = 0;
-            Value = 0;
             SetFunction(easingType);
         }
 
@@ -60,6 +55,7 @@ namespace Easings.Interpolator
 
         public void SetFunction(EasingType easingType)
         {
+            EasingType = easingType;
             function = GetFunction(easingType);
         }
 
