@@ -105,7 +105,7 @@ protected override void OnUpdate()
 
 ## Notes
 - Unused flavors can be removed.  For example, if your project is not DOTS based, the Entities folder can be deleted.  If you only plan on using the Interpolator flavor, Convenience and Entites can be deleted.
-- The core methods that are required are stored in the Core folder.  Convenience, Entities, and Interpolator flavors will not work without them.
+- The core methods that are required are stored in the Core folder.  Convenience and Interpolator flavors will not work without them.  Entities does not require EasingFunctions.cs, but it does require EasingType.cs
 
 ## Dependencies
 - Core - Root folder scripts
