@@ -113,8 +113,6 @@ protected override void OnUpdate()
 - Entities - DOTS packages (found in the Unity Package Manager)
 
 ## Credits
-Robert Penner's Easing Functions
-http://robertpenner.com/easing/
+[Robert Penner's Easing Functions](http://robertpenner.com/easing/)
 
-acron0's C# port
-https://github.com/acron0/Easings
+[acron0's C# port of Robert Penner's Easing Functions](https://github.com/acron0/Easings)
