@@ -1,4 +1,4 @@
-# Unity-Easings
+# Easings
 41 easing methods to make transitions nicer in Unity
 
 ## Requirements and Installation
