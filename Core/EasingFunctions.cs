@@ -1,11 +1,14 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
-using UnityEngine;
+using Unity.Mathematics;
+using System.Runtime.CompilerServices;
 
 namespace Easings
 {
     public static class EasingFunctions
     {
+        public delegate float EasingFunction(float time, float start, float delta, float duration);
+
         public static readonly Function LinearEase = new Function(new EasingFunction(Linear.Ease));
         public static readonly Function ExpoOut = new Function(new EasingFunction(Expo.EaseOut));
         public static readonly Function ExpoIn = new Function(new EasingFunction(Expo.EaseIn));
@@ -50,6 +53,7 @@ namespace Easings
 
         public static class Linear
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float Ease(float t, float b, float c, float d)
             {
                 return c * t / d + b;
@@ -58,16 +62,19 @@ namespace Easings
 
         public static class Expo
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
-                return (t == d) ? b + c : c * (-Mathf.Pow(2, -10 * t / d) + 1) + b;
+                return (t == d) ? b + c : c * (-math.pow(2, -10 * t / d) + 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
-                return (t == 0) ? b : c * Mathf.Pow(2, 10 * (t / d - 1)) + b;
+                return (t == 0) ? b : c * math.pow(2, 10 * (t / d - 1)) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if (t == 0)
@@ -75,10 +82,11 @@ namespace Easings
                 if (t == d)
                     return b + c;
                 if ((t /= d / 2) < 1)
-                    return c / 2 * Mathf.Pow(2, 10 * (t - 1)) + b;
-                return c / 2 * (-Mathf.Pow(2, -10 * --t) + 2) + b;
+                    return c / 2 * math.pow(2, 10 * (t - 1)) + b;
+                return c / 2 * (-math.pow(2, -10 * --t) + 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -89,23 +97,27 @@ namespace Easings
 
         public static class Circ
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
-                return c * Mathf.Sqrt(1 - (t = t / d - 1) * t) + b;
+                return c * math.sqrt(1 - (t = t / d - 1) * t) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
-                return -c * (Mathf.Sqrt(1 - (t /= d) * t) - 1) + b;
+                return -c * (math.sqrt(1 - (t /= d) * t) - 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
-                    return -c / 2 * (Mathf.Sqrt(1 - t * t) - 1) + b;
-                return c / 2 * (Mathf.Sqrt(1 - (t -= 2) * t) + 1) + b;
+                    return -c / 2 * (math.sqrt(1 - t * t) - 1) + b;
+                return c / 2 * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -116,16 +128,19 @@ namespace Easings
 
         public static class Quad
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 return -c * (t /= d) * (t - 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c * (t /= d) * t + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
@@ -133,6 +148,7 @@ namespace Easings
                 return -c / 2 * ((--t) * (t - 2) - 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -143,23 +159,27 @@ namespace Easings
 
         public static class Sine
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
-                return c * Mathf.Sin(t / d * (Mathf.PI / 2)) + b;
+                return c * math.sin(t / d * (math.PI / 2)) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
-                return -c * Mathf.Cos(t / d * (Mathf.PI / 2)) + c + b;
+                return -c * math.cos(t / d * (math.PI / 2)) + c + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
-                    return c / 2 * (Mathf.Sin(Mathf.PI * t / 2)) + b;
-                return -c / 2 * (Mathf.Cos(Mathf.PI * --t / 2) - 2) + b;
+                    return c / 2 * (math.sin(math.PI * t / 2)) + b;
+                return -c / 2 * (math.cos(math.PI * --t / 2) - 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -170,16 +190,19 @@ namespace Easings
 
         public static class Cubic
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 return c * ((t = t / d - 1) * t * t + 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c * (t /= d) * t * t + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
@@ -187,6 +210,7 @@ namespace Easings
                 return c / 2 * ((t -= 2) * t * t + 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -197,16 +221,19 @@ namespace Easings
 
         public static class Quart
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 return -c * ((t = t / d - 1) * t * t * t - 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c * (t /= d) * t * t * t + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
@@ -214,6 +241,7 @@ namespace Easings
                 return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -224,16 +252,19 @@ namespace Easings
 
         public static class Quint
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c * (t /= d) * t * t * t * t + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) < 1)
@@ -241,6 +272,7 @@ namespace Easings
                 return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -251,24 +283,27 @@ namespace Easings
 
         public static class Elastic
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 if ((t /= d) == 1)
                     return b + c;
                 float p = d * .3f;
                 float s = p / 4;
-                return (c * Mathf.Pow(2, -10 * t) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) + c + b);
+                return (c * math.pow(2, -10 * t) * math.sin((t * d - s) * (2 * math.PI) / p) + c + b);
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 if ((t /= d) == 1)
                     return b + c;
                 float p = d * .3f;
                 float s = p / 4;
-                return -(c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
+                return -(c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * (2 * math.PI) / p)) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if ((t /= d / 2) == 2)
@@ -276,10 +311,11 @@ namespace Easings
                 float p = d * (.3f * 1.5f);
                 float s = p / 4;
                 if (t < 1)
-                    return -.5f * (c * Mathf.Pow(2, 10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p)) + b;
-                return c * Mathf.Pow(2, -10 * (t -= 1)) * Mathf.Sin((t * d - s) * (2 * Mathf.PI) / p) * .5f + c + b;
+                    return -.5f * (c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * (2 * math.PI) / p)) + b;
+                return c * math.pow(2, -10 * (t -= 1)) * math.sin((t * d - s) * (2 * math.PI) / p) * .5f + c + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -290,6 +326,7 @@ namespace Easings
 
         public static class Bounce
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 if ((t /= d) < (1f / 2.75f))
@@ -302,11 +339,13 @@ namespace Easings
                     return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + .984375f) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c - EaseOut(d - t, 0, c, d) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -315,6 +354,7 @@ namespace Easings
                     return EaseOut(t * 2 - d, 0, c, d) * .5f + c * .5f + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
@@ -325,16 +365,19 @@ namespace Easings
 
         public static class Back
         {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
                 return c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
                 return c * (t /= d) * t * ((1.70158f + 1) * t - 1.70158f) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 float s = 1.70158f;
@@ -343,123 +386,12 @@ namespace Easings
                 return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
             }
 
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
                 if (t < d / 2)
                     return EaseOut(t * 2, b, c / 2, d);
                 return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
-            }
-        }
-
-        public interface IFunction
-        {
-            float Ease(float t, float b, float c, float d);
-        }
-
-        public delegate float EasingFunction(float t, float b, float c, float d);
-
-        public struct Function : IFunction
-        {
-            private readonly EasingFunction function;
-
-            public Function(EasingFunction function)
-            {
-                this.function = function;
-            }
-
-            public float Ease(float t, float b, float c, float d)
-            {
-                return function(t, b, c, d);
-            }
-        }
-
-        public static Function GetFunction(EasingType easing)
-        {
-            switch (easing)
-            {
-                default:
-                case EasingType.Linear:
-                    return EasingFunctions.LinearEase;
-                case EasingType.ExpoIn:
-                    return EasingFunctions.ExpoIn;
-                case EasingType.ExpoOut:
-                    return EasingFunctions.ExpoOut;
-                case EasingType.ExpoOutIn:
-                    return EasingFunctions.ExpoOutIn;
-                case EasingType.ExpoInOut:
-                    return EasingFunctions.ExpoInOut;
-                case EasingType.CircIn:
-                    return EasingFunctions.CircIn;
-                case EasingType.CircOut:
-                    return EasingFunctions.CircOut;
-                case EasingType.CircOutIn:
-                    return EasingFunctions.CircOutIn;
-                case EasingType.CircInOut:
-                    return EasingFunctions.CircInOut;
-                case EasingType.QuadIn:
-                    return EasingFunctions.QuadIn;
-                case EasingType.QuadOut:
-                    return EasingFunctions.QuadOut;
-                case EasingType.QuadOutIn:
-                    return EasingFunctions.QuadOutIn;
-                case EasingType.QuadInOut:
-                    return EasingFunctions.QuadInOut;
-                case EasingType.SineIn:
-                    return EasingFunctions.SineIn;
-                case EasingType.SineOut:
-                    return EasingFunctions.SineOut;
-                case EasingType.SineOutIn:
-                    return EasingFunctions.SineOutIn;
-                case EasingType.SineInOut:
-                    return EasingFunctions.SineInOut;
-                case EasingType.CubicIn:
-                    return EasingFunctions.CubicIn;
-                case EasingType.CubicOut:
-                    return EasingFunctions.CubicOut;
-                case EasingType.CubicOutIn:
-                    return EasingFunctions.CubicOutIn;
-                case EasingType.CubicInOut:
-                    return EasingFunctions.CubicInOut;
-                case EasingType.QuartIn:
-                    return EasingFunctions.QuartIn;
-                case EasingType.QuartOut:
-                    return EasingFunctions.QuartOut;
-                case EasingType.QuartOutIn:
-                    return EasingFunctions.QuartOutIn;
-                case EasingType.QuartInOut:
-                    return EasingFunctions.QuartInOut;
-                case EasingType.QuintIn:
-                    return EasingFunctions.QuintIn;
-                case EasingType.QuintOut:
-                    return EasingFunctions.QuintOut;
-                case EasingType.QuintOutIn:
-                    return EasingFunctions.QuintOutIn;
-                case EasingType.QuintInOut:
-                    return EasingFunctions.QuintInOut;
-                case EasingType.ElasticIn:
-                    return EasingFunctions.ElasticIn;
-                case EasingType.ElasticOut:
-                    return EasingFunctions.ElasticOut;
-                case EasingType.ElasticOutIn:
-                    return EasingFunctions.ElasticOutIn;
-                case EasingType.ElasticInOut:
-                    return EasingFunctions.ElasticInOut;
-                case EasingType.BounceIn:
-                    return EasingFunctions.BounceIn;
-                case EasingType.BounceOut:
-                    return EasingFunctions.BounceOut;
-                case EasingType.BounceOutIn:
-                    return EasingFunctions.BounceOutIn;
-                case EasingType.BounceInOut:
-                    return EasingFunctions.BounceInOut;
-                case EasingType.BackIn:
-                    return EasingFunctions.BackIn;
-                case EasingType.BackOut:
-                    return EasingFunctions.BackOut;
-                case EasingType.BackOutIn:
-                    return EasingFunctions.BackOutIn;
-                case EasingType.BackInOut:
-                    return EasingFunctions.BackInOut;
             }
         }
     }

@@ -1,55 +1,58 @@
 # Unity-Easings
-## About
-41 easing methods based on acron0's C# port of Robert Penner's Easing Functions with three flavors (Core, Interpolator, Entities).  Core and Interpolator are meant to be called over time, such as in a coroutine or in the Update loop.  Entities are updated automatically.
+41 easing methods to make transitions nicer in Unity
 
-## Convenience
-Core provides extensions for each of the different easing methods, each with return types of `float`, `Vector2`, `Vector3`,  `Vector4`, and `Quaternion`.
+## Requirements and Installation
+**Requirements**
+This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.\
+ The DOTS folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
+
+**Installation**
+Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)\
+Open with the desired Unity project\
+Import into the Plugins folder
+
+## Core
+Just the functions.  All default functions return a `float` and takes the 4 `float` parameters.
 
 ### Usage
-`using Easings.Convenience;`
-All easing functions are called with four parameters: `t` (time), `b` (initial value), `c` (delta value), and `d` (duration).
-If `time == 0`, then the result of the method is `b`, the initial value.  If `time == duration`, then the result of the method is `b + c`, the initial value plus the delta value.
-
-```csharp
-IEnumerator LinearEase()
-{
-    float time = 0;
-    float initial = 0;
-    float delta = 1;
-    float duration = 1;
-
-    while (time < duration)
-    {
-        // Update the time.  This is necessary to get out of the loop
-        time += Time.deltaTime;
-        
-        // Get the current interpolator value
-        float value = ConvenienceEasings.Linear(time, initial, delta, duration);
-        
-        // Do something with the value, such as:
-        transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, value);
-
-        yield return null;
-    }
-    
-    // Finalizing the interpolation is only necessary if the duration is 0
-    transform.position = Vector3.up;
-}
+`using Easings;`\
+You can call an easing function with either `EasingFunctions.Category.Function` or `EasingFunctions.CategoryFunction`, like this
+```cs
+EasingFunctions.Quad.EaseOut(time, start, delta, duration);
+EasingFunctions.QuadOut(time, start, delta, duration);
 ```
+These functions take 4 `float` parameters
+- `time` - the time of the interpolation.  Between 0 and `duration` is best
+- `start` - the start value.  This can be any number
+- `delta` - the change from the start value
+- `duration` - how long the interpolation will last
+- returns `t` - the value between `start` and `start + delta` sampled by `time / duration`
+
+There are also extension methods that can make life easier, if desired.
+ `EasingType.QuadOut(time, start, delta, duration);`\
+`start` and `delta` can be any of the following types, and will return the same type
+- `float`
+- `Vector2`
+- `Vector3`
+- `Vector4`
+- `Quaternion`
+- `Color`
 
 ## Interpolator
-Interpolator stores easing data in a class, meant for reuse.  Interpolator provides all easing methods with the return type of `float`, meant for use with the default interpolation methods that Unity provides (`Vector3.Lerp()`, `Color.Lerp()`, etc.).  Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.
+The Interpolator stores easing data in a class, meant for reuse.
+ Interpolator provides all easing methods with the return type of `float`, meant for use with the default interpolation methods that Unity provides (`Vector3.Lerp(a, b, t)`, `Color.Lerp(a, b, t)`, etc.). 
+ Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.
 
 ### Usage
-`using Easings.Interpolator;`
-Create an Interpolator with an easing type, input the start value, end value, and duration in `Begin()`.  The call its `Update()` method over time.
+`using Easings.Interpolator;`\
+Create an Interpolator with an easing type, input the start value, end value, and duration in `Begin(a, b, d)`.  The call its `Update()` method over time.
 
-```csharp
+```cs
 IEnumerator LinearEase()
 {
     // Create the Interpolator
     // This comes with an overload for choosing the easing function.
-    // The default function is Linear
+    // The default function is Linear with an overload for setting a specific function
     Interpolator interpolator = new Interpolator();
     // Start value = 0
     // End value = 1
@@ -59,7 +62,7 @@ IEnumerator LinearEase()
     while (!interpolator.Done)
     {
         // Update the time.  This is necessary to get out of the loop
-        // This comes with an overload if you want to use a custom deltaTime
+        // This comes with an overload if you want to use a custom deltaTime or unscaled time
         interpolator.Update();
 
         float value = interpolator.Value;
@@ -76,10 +79,14 @@ IEnumerator LinearEase()
 ```
 
 ## Entities
-The Entities flavor is meant for use with Unity's Data Oriented Tech Stack (DOTS).  The Entities flavor does not require a manual update.  Instead, you can add the `Interpolator` component to an entity.  An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.  The Entities flavor is meant for use with other systems, as the included `InterpolationSystems.cs` is only used for updating interpolator components.
+Entities is meant for use with Unity's Data Oriented Tech Stack (DOTS).
+ Entities does not require a manual update.
+ Instead, you can add the required components to an entity and it will update automatically over time.
+ An `InterpolatorAuthoring` MonoBehaviour is included for quick testing.
+ Entities is meant for use with other systems, as the included `InterpolationSystems.cs` is only used for updating interpolator components.
 
 ### Usage
-`using Easings.Entities;`
+`using Easings.Entities;`\
 Take a peek inside `InterpolatorAuthoring.cs` to see the required setup for entity interpolation.  The core components required for interpolation are as follows
 - `InterpolatorStartTime`
 - `InterpolatorDuration`
@@ -88,8 +95,14 @@ Take a peek inside `InterpolatorAuthoring.cs` to see the required setup for enti
 - `InterpolatorValue`
 - `InterpolatorDone`
 - one of the many `Ease` structs, found in `InterpolatorComponents.cs`
+You can also use one of the extension methods to add, remove, and modify the Entities interpolator.  `EntityManager` can be replaced with `EntityCommandBuffer.ParallelWriter` for use inside of Jobs
+- `EntityManager.AddInterpolator(Entity, EasingType);` - Adds all required components
+- `EntityManager.RemoveInterpolator(Entity, EasingType);` - Removes all required components
+- `EntityManager.AddEasing(Entity, EasingType)` - Adds only the easing function
+- `EntityManager.RemoveEasing(Entity, EasingType)` - Removes only the easing function
+- `EntityManager.SwapEasing(Entity, EasingType, EasingType)` - Removes the first easing function and adds the second
 
-```csharp
+```cs
 //Inside a System
 protected override void OnUpdate()
 {
@@ -104,15 +117,9 @@ protected override void OnUpdate()
 ```
 
 ## Notes
-- Unused flavors can be removed.  For example, if your project is not DOTS based, the Entities folder can be deleted.  If you only plan on using the Interpolator flavor, Convenience and Entites can be deleted.
-- The core methods that are required are stored in the Core folder.  Convenience and Interpolator flavors will not work without them.  Entities does not require EasingFunctions.cs, but it does require EasingType.cs
-
-## Dependencies
-- Core - Root folder scripts
-- Interpolator - Root folder scripts
-- Entities - DOTS packages (found in the Unity Package Manager)
+- Unused folders can be removed.  For example, if your project does not use DOTS, the Entities folder can be deleted.
+- Required methods and objects are stored in the Core folder.  Both Interpolator and Easings require them.
 
 ## Credits
-[Robert Penner's Easing Functions](http://robertpenner.com/easing/)
-
+[Robert Penner's Easing Functions](http://robertpenner.com/easing/)\
 [acron0's C# port of Robert Penner's Easing Functions](https://github.com/acron0/Easings)
