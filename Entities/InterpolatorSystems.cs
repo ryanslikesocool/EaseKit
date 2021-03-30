@@ -1,5 +1,6 @@
 ﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
+#if UNITY_ENTITIES
 using Unity.Entities;
 using Unity.Jobs;
 
@@ -402,3 +403,4 @@ namespace Easings.Entities
 
     #endregion
 }
+#endif

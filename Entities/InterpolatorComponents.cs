@@ -1,5 +1,6 @@
 ﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
 
+#if UNITY_ENTITIES
 using System;
 using Unity.Entities;
 
@@ -216,3 +217,4 @@ namespace Easings.Entities
 
     #endregion
 }
+#endif

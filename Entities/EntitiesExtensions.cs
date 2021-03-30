@@ -1,5 +1,6 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
+#if UNITY_ENTITIES
 using System;
 using System.Runtime.CompilerServices;
 using Unity.Entities;
@@ -186,3 +187,4 @@ namespace Easings.Entities
         }
     }
 }
+#endif

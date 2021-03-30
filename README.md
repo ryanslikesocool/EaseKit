@@ -1,12 +1,12 @@
-# Easings
+# Unity-Easings
 41 easing methods to make transitions nicer in Unity
 
 ## Requirements and Installation
-**Requirements**\
+**Requirements**
 This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.\
  The DOTS folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
 
-**Installation**\
+**Installation**
 Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)\
 Open with the desired Unity project\
 Import into the Plugins folder
@@ -95,7 +95,6 @@ Take a peek inside `InterpolatorAuthoring.cs` to see the required setup for enti
 - `InterpolatorValue`
 - `InterpolatorDone`
 - one of the many `Ease` structs, found in `InterpolatorComponents.cs`
-
 You can also use one of the extension methods to add, remove, and modify the Entities interpolator.  `EntityManager` can be replaced with `EntityCommandBuffer.ParallelWriter` for use inside of Jobs
 - `EntityManager.AddInterpolator(Entity, EasingType);` - Adds all required components
 - `EntityManager.RemoveInterpolator(Entity, EasingType);` - Removes all required components

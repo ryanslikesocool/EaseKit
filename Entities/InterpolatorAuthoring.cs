@@ -1,5 +1,6 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
+#if UNITY_ENTITIES
 using Unity.Entities;
 using UnityEngine;
 
@@ -23,3 +24,4 @@ namespace Easings.Entities
         }
     }
 }
+#endif
