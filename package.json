@@ -1,0 +1,17 @@
+{
+  "name": "com.ifelse.easings",
+  "displayName": "Easings",
+  "version": "1.1.1",
+  "unity": "2019.4",
+  "description": "40 non-linear easing functions and extensions to make transitions super smooth.",
+  "documentationUrl": "https://github.com/ryanslikesocool/Easings",
+  "dependencies": {
+    "com.unity.mathematics": "1.2.1"
+  },
+  "author": {
+    "name": "Ryan Boyer",
+    "email": "ryanjboyer@gmail.com",
+    "url": "http://ryanjboyer.com/"
+  },
+  "type": "library"
+}
