@@ -2,11 +2,17 @@
 41 easing methods to make transitions nicer in Unity
 
 ## Requirements and Installation
-**Requirements**
-This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.\
+**Requirements**\
+This package requires the `Unity.Mathematics` library.  It can be installed manually via the Package Manager, or added automatically when installing via the Package Manager.\
  The DOTS folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
 
-**Installation**
+**RECOMMENDED INSTALLATION**\
+Add via the Unity Package Manager\
+"Add package from git URL..."\
+`https://github.com/ryanslikesocool/Easings.git`\
+Add
+
+**Not-so Recommended Installation**\
 Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)\
 Open with the desired Unity project\
 Import into the Plugins folder
