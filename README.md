@@ -35,7 +35,7 @@ These functions take 4 `float` parameters
 - returns `t` - the value between `start` and `start + delta` sampled by `time / duration`
 
 There are also extension methods that can make life easier, if desired.
- `EasingType.QuadOut(time, start, delta, duration);`\
+ `EasingType.QuadOut.Ease(time, start, delta, duration);`\
 `start` and `delta` can be any of the following types, and will return the same type
 - `float`
 - `Vector2`
@@ -67,14 +67,10 @@ IEnumerator LinearEase()
 
     while (!interpolator.Done)
     {
-        // Update the time.  This is necessary to get out of the loop
-        // This comes with an overload if you want to use a custom deltaTime or unscaled time
-        interpolator.Update();
-
-        float value = interpolator.Value;
-
+        // Update the time with Interpolator.Update().  This is necessary to get out of the loop
+        // Interpolator.Update() comes with 2 overloads if you want to use a custom deltaTime or unscaled time, and returns the current Interpolator value
         // Do something with the value, such as:
-        transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, value);
+        transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, interpolator.Update());
         
         yield return null;
     }
@@ -82,6 +78,21 @@ IEnumerator LinearEase()
     // Finalizing the interpolation is only necessary if the duration is 0
     transform.position = Vector3.up;
 }
+```
+Or, if you're looking for something a little more readable, there's a coroutine in Interpolator that handles a lot of the boilerplate.\
+Interpolator.While takes 4 parameters: 
+- `Action<Interpolator> updateAction` - the action to execute while the Interpolator is updating (called once a frame until the Interpolator is done)
+- `Action<Interpolator> doneAction` (optional) - the action to execute once the Interpolator is done (called once)
+- `float deltaTime` (optional) - the delta time to use every frame.  Leave at the default `-1` to use `Time.deltaTime`
+- `bool unscaled` (optional) - uses unscaled time if set to `true`.  Only works if `deltaTime` is the default `-1`
+```cs
+thisMonoBehaviour.StartCoroutine(interpolator.While((Interpolator i) =>
+{
+    transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, i.value);
+}, (Interpolator i) =>
+{
+    transform.position = Vector3.up;
+}, -1, false));
 ```
 
 ## Entities
