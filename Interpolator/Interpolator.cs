@@ -102,7 +102,7 @@ namespace Easings.Interpolator
         /// <param name="deltaTime">Optional delta time.  Leave at -1 to use Time.deltaTime</param>
         /// <param name="unscaled">Optional unscaled time.  Only works if deltaTime is -1</param>
         /// <returns></returns>
-        public IEnumerator While(Action<Interpolator> updateAction, Action<Interpolator> doneAction, float deltaTime = -1, bool unscaled = false)
+        public IEnumerator While(Action<Interpolator> updateAction, Action<Interpolator> doneAction = null, float deltaTime = -1, bool unscaled = false)
         {
             while (!Done)
             {
@@ -111,7 +111,10 @@ namespace Easings.Interpolator
                 yield return null;
             }
 
-            doneAction(this);
+            if (doneAction != null)
+            {
+                doneAction(this);
+            }
         }
     }
 }
