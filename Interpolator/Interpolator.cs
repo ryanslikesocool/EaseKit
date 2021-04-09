@@ -94,27 +94,5 @@ namespace Easings.Interpolator
             EasingType = easingType;
             function = easingType.GetFunction();
         }
-
-        /// <summary>
-        /// Execute a coroutine over the duration of the Interpolator, while doing an action
-        /// </summary>
-        /// <param name="action">The action to execute</param>
-        /// <param name="deltaTime">Optional delta time.  Leave at -1 to use Time.deltaTime</param>
-        /// <param name="unscaled">Optional unscaled time.  Only works if deltaTime is -1</param>
-        /// <returns></returns>
-        public IEnumerator While(Action<Interpolator> updateAction, Action<Interpolator> doneAction = null, float deltaTime = -1, bool unscaled = false)
-        {
-            while (!Done)
-            {
-                Update(deltaTime == -1 ? (unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime) : deltaTime);
-                updateAction(this);
-                yield return null;
-            }
-
-            if (doneAction != null)
-            {
-                doneAction(this);
-            }
-        }
     }
 }
