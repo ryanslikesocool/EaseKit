@@ -81,17 +81,17 @@ namespace Easings
                     return b;
                 if (t == d)
                     return b + c;
-                if ((t /= d / 2) < 1)
-                    return c / 2 * math.pow(2, 10 * (t - 1)) + b;
-                return c / 2 * (-math.pow(2, -10 * --t) + 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * math.pow(2, 10 * (t - 1)) + b;
+                return c * 0.5f * (-math.pow(2, -10 * --t) + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -112,17 +112,17 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return -c / 2 * (math.sqrt(1 - t * t) - 1) + b;
-                return c / 2 * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return -c * 0.5f * (math.sqrt(1 - t * t) - 1) + b;
+                return c * 0.5f * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -143,17 +143,17 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return c / 2 * t * t + b;
-                return -c / 2 * ((--t) * (t - 2) - 1) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * t * t + b;
+                return -c * 0.5f * ((--t) * (t - 2) - 1) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -162,29 +162,29 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
-                return c * math.sin(t / d * (math.PI / 2)) + b;
+                return c * math.sin(t / d * (math.PI * 0.5f)) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
-                return -c * math.cos(t / d * (math.PI / 2)) + c + b;
+                return -c * math.cos(t / d * (math.PI * 0.5f)) + c + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return c / 2 * (math.sin(math.PI * t / 2)) + b;
-                return -c / 2 * (math.cos(math.PI * --t / 2) - 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * (math.sin(math.PI * t * 0.5f)) + b;
+                return -c * 0.5f * (math.cos(math.PI * --t * 0.5f) - 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -205,17 +205,17 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return c / 2 * t * t * t + b;
-                return c / 2 * ((t -= 2) * t * t + 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * t * t * t + b;
+                return c * 0.5f * ((t -= 2) * t * t + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -236,17 +236,17 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return c / 2 * t * t * t * t + b;
-                return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * t * t * t * t + b;
+                return -c * 0.5f * ((t -= 2) * t * t * t - 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -267,17 +267,17 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) < 1)
-                    return c / 2 * t * t * t * t * t + b;
-                return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * t * t * t * t * t + b;
+                return c * 0.5f * ((t -= 2) * t * t * t * t + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -306,7 +306,7 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if ((t /= d / 2) == 2)
+                if ((t /= d * 0.5f) == 2)
                     return b + c;
                 float p = d * (.3f * 1.5f);
                 float s = p / 4;
@@ -318,9 +318,9 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
-                if (t < d / 2)
+                if (t < d * 0.5f)
                     return EaseIn(t * 2, 0, c, d) * .5f + b;
                 else
                     return EaseOut(t * 2 - d, 0, c, d) * .5f + c * .5f + b;
@@ -357,9 +357,9 @@ namespace Easings
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
@@ -381,17 +381,17 @@ namespace Easings
             public static float EaseInOut(float t, float b, float c, float d)
             {
                 float s = 1.70158f;
-                if ((t /= d / 2) < 1)
-                    return c / 2 * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
-                return c / 2 * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
+                if ((t /= d * 0.5f) < 1)
+                    return c * 0.5f * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
+                return c * 0.5f * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
-                if (t < d / 2)
-                    return EaseOut(t * 2, b, c / 2, d);
-                return EaseIn((t * 2) - d, b + c / 2, c / 2, d);
+                if (t < d * 0.5f)
+                    return EaseOut(t * 2, b, c * 0.5f, d);
+                return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
     }

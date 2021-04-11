@@ -33,10 +33,11 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Execute an action over the duration of the Interpolator.  Requires manual interpolator update within updateAction
+        /// Execute an action over the duration of the Interpolator with a custom deltaTime
         /// </summary>
-        /// <param name="updateAction">Action to execute every frame.  Requires manual interpolator update</param>
-        /// <param name="doneAction">The action to execute when the interpolator is done</param>
+        /// <param name="deltaTime">The deltaTime to use</param>
+        /// <param name="updateAction">Action to execute every frame</param>
+        /// <param name="doneAction">Action to execute when the interpolator is done</param>
         /// <returns></returns>
         public static IEnumerator While(this Interpolator interpolator, Func<float> deltaTime, Action<Interpolator> updateAction, Action<Interpolator> doneAction = null)
         {
@@ -51,6 +52,33 @@ namespace Easings.Interpolator
             {
                 doneAction(interpolator);
             }
+        }
+
+        /// <summary>
+        /// Execute an action over the duration of the Interpolator
+        /// </summary>
+        /// <param name="interpolator">The interpolator to use</param>
+        /// <param name="updateAction">Action to execute every frame</param>
+        /// <param name="doneAction">Optional action to execute when the interpolator is done</param>
+        /// <param name="deltaTime">Optional delta time.  Leave at -1 to use Time.deltaTime (or Time.unscaledDeltaTime if unscaled is set to true)</param>
+        /// <param name="unscaled">Optional unscaled time.  Only works if deltaTime is -1</param>
+        /// <returns></returns>
+        public static Coroutine While(this MonoBehaviour sender, Interpolator interpolator, Action<Interpolator> updateAction, Action<Interpolator> doneAction = null, float deltaTime = -1, bool unscaled = false)
+        {
+            return sender.StartCoroutine(interpolator.While(updateAction, doneAction, deltaTime, unscaled));
+        }
+
+        /// <summary>
+        /// Execute an action over the duration of the Interpolator with a custom deltaTime
+        /// </summary>
+        /// <param name="interpolator">The interpolator to use</param>
+        /// <param name="deltaTime">The deltaTime to use</param>
+        /// <param name="updateAction">Action to execute every frame</param>
+        /// <param name="doneAction">Action to execute when the interpolator is done</param>
+        /// <returns></returns>
+        public static Coroutine While(this MonoBehaviour sender, Interpolator interpolator, Func<float> deltaTime, Action<Interpolator> updateAction, Action<Interpolator> doneAction = null)
+        {
+            return sender.StartCoroutine(interpolator.While(deltaTime, updateAction, doneAction));
         }
     }
 }

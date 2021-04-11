@@ -1,18 +1,39 @@
 // Made with <3 by Ryan Boyer http://ryanjboyer.com
 
 using UnityEngine;
+using Unity.Mathematics;
 using System.Runtime.CompilerServices;
 
 namespace Easings
 {
     public static class EasingExtensions
     {
+        /// <summary>
+        /// Ease a float with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased float</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Ease(this EasingType type, float time, float start, float delta, float duration)
         {
             Function func = type.GetFunction();
             return func.Ease(time, start, delta, duration);
         }
 
+        /// <summary>
+        /// Ease a Vector2 with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased Vector2</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2 Ease(this EasingType type, float time, Vector2 start, Vector2 delta, float duration)
         {
             Function func = type.GetFunction();
@@ -22,6 +43,16 @@ namespace Easings
             );
         }
 
+        /// <summary>
+        /// Ease a Vector3 with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased Vector3</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3 Ease(this EasingType type, float time, Vector3 start, Vector3 delta, float duration)
         {
             Function func = type.GetFunction();
@@ -32,6 +63,16 @@ namespace Easings
             );
         }
 
+        /// <summary>
+        /// Ease a Vector4 with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased Vector4</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector4 Ease(this EasingType type, float time, Vector4 start, Vector4 delta, float duration)
         {
             Function func = type.GetFunction();
@@ -43,6 +84,16 @@ namespace Easings
             );
         }
 
+        /// <summary>
+        /// Ease a Quaternion with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased Quaternion</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Quaternion Ease(this EasingType type, float time, Quaternion start, Quaternion delta, float duration)
         {
             Function func = type.GetFunction();
@@ -54,6 +105,16 @@ namespace Easings
             );
         }
 
+        /// <summary>
+        /// Ease a Color with the given easing type
+        /// </summary>
+        /// <param name="type">The easing type</param>
+        /// <param name="time">The easing time</param>
+        /// <param name="start">The start value</param>
+        /// <param name="delta">The delta value</param>
+        /// <param name="duration">The duration</param>
+        /// <returns>Returns an eased Color</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color Ease(this EasingType type, float time, Color start, Color delta, float duration)
         {
             Function func = type.GetFunction();
@@ -65,6 +126,52 @@ namespace Easings
             );
         }
 
+        public static float2 Ease(this EasingType type, float time, float2 start, float2 delta, float duration)
+        {
+            Function func = type.GetFunction();
+            return new float2(
+                func.Ease(time, start.x, delta.x, duration),
+                func.Ease(time, start.y, delta.y, duration)
+            );
+        }
+
+        public static float3 Ease(this EasingType type, float time, float3 start, float3 delta, float duration)
+        {
+            Function func = type.GetFunction();
+            return new float3(
+                func.Ease(time, start.x, delta.x, duration),
+                func.Ease(time, start.y, delta.y, duration),
+                func.Ease(time, start.z, delta.z, duration)
+            );
+        }
+
+        public static float4 Ease(this EasingType type, float time, float4 start, float4 delta, float duration)
+        {
+            Function func = type.GetFunction();
+            return new float4(
+                func.Ease(time, start.x, delta.x, duration),
+                func.Ease(time, start.y, delta.y, duration),
+                func.Ease(time, start.z, delta.z, duration),
+                func.Ease(time, start.w, delta.w, duration)
+            );
+        }
+
+        public static quaternion Ease(this EasingType type, float time, quaternion start, quaternion delta, float duration)
+        {
+            Function func = type.GetFunction();
+            return new quaternion(
+                func.Ease(time, start.value.x, delta.value.x, duration),
+                func.Ease(time, start.value.y, delta.value.y, duration),
+                func.Ease(time, start.value.z, delta.value.z, duration),
+                func.Ease(time, start.value.w, delta.value.w, duration)
+            );
+        }
+
+        /// <summary>
+        /// Gets an easing function for the specified type
+        /// </summary>
+        /// <param name="easing">The easing type to use</param>
+        /// <returns>Returns the easing function for the specified type</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Function GetFunction(this EasingType easing)
         {

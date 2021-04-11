@@ -9,53 +9,91 @@ namespace Easings.Interpolator
 {
     public class Interpolator
     {
-        public EasingType EasingType { get; private set; }
+        private EasingType easingType = EasingType.Linear;
 
+        /// <summary>
+        /// The easing type that the interpolator will use
+        /// </summary>
+        public EasingType EasingType
+        {
+            get => easingType;
+            set
+            {
+                easingType = value;
+                function = easingType.GetFunction();
+            }
+        }
+
+        /// <summary>
+        /// The interpolator's current time
+        /// </summary>
         public float Time { get; private set; }
+
+        /// <summary>
+        /// The interpolator's initial value
+        /// </summary>
         public float Initial { get; private set; }
+
+        /// <summary>
+        /// The interpolator's target value
+        /// </summary>
         public float Target { get; private set; }
+
+        /// <summary>
+        /// The interpolator's duration
+        /// </summary>
         public float Duration { get; private set; }
 
+        /// <summary>
+        /// The interpolator's value delta [Target - Initial]
+        /// </summary>
         public float TotalDelta { get; private set; }
+
+        /// <summary>
+        /// The change in Value during the last update
+        /// </summary>
         public float ValueDelta { get; private set; }
+
+        /// <summary>
+        /// The interpolator's current value
+        /// </summary>
         public float Value { get; private set; }
 
+        /// <summary>
+        /// The interpolator's completion percent [Time / Duration]
+        /// </summary>
         public float Percentage => Time / Duration;
+
+        /// <summary>
+        /// Is the interpolator done? [Time == Duration]
+        /// </summary>
         public bool Done => Time == Duration;
 
         private Function function;
 
         /// <summary>
-        /// Initialize the Interpolator with a Linear ease
-        /// </summary>
-        public Interpolator()
-        {
-            SetFunction(EasingType.Linear);
-        }
-
-        /// <summary>
         /// Initialize the Interpolator with the defined easing type
         /// </summary>
         /// <param name="easingType">The easing type to initialize with</param>
-        public Interpolator(EasingType easingType)
+        public Interpolator(EasingType easingType = EasingType.Linear)
         {
-            SetFunction(easingType);
+            EasingType = easingType;
         }
 
         /// <summary>
         /// Prepare the Interpolator for updating
         /// </summary>
-        /// <param name="startValue">The start value of the Interpolator</param>
-        /// <param name="endValue">The end value of the Interpolator</param>
+        /// <param name="initial">The start value of the Interpolator</param>
+        /// <param name="target">The end value of the Interpolator</param>
         /// <param name="duration">How long the Interpolator will last</param>
-        public void Begin(float startValue, float endValue, float duration)
+        public void Begin(float initial, float target, float duration)
         {
-            Initial = startValue;
-            Target = endValue;
-            TotalDelta = endValue - startValue;
+            Initial = initial;
+            Target = target;
+            TotalDelta = target - initial;
             ValueDelta = 0;
             Duration = duration;
-            Value = duration == 0 ? endValue : startValue;
+            Value = duration == 0 ? target : initial;
             Time = 0f;
         }
 
@@ -86,13 +124,31 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Set the Interpolator's easing function
+        /// Reset the interpolator time for reuse
         /// </summary>
-        /// <param name="easingType">The easing type to set</param>
-        public void SetFunction(EasingType easingType)
+        public void Reset()
         {
-            EasingType = easingType;
-            function = easingType.GetFunction();
+            Time = 0;
+        }
+
+        /// <summary>
+        /// Makes a copy of the interpolator, including the initial, target, duration, and easing type values
+        /// </summary>
+        /// <returns>Returns a copy of the interpolator</returns>
+        public Interpolator Copy()
+        {
+            return Interpolator.Begin(Initial, Target, Duration, EasingType);
+        }
+
+        /// <summary>
+        /// Initialize an interpolator and prepare for updating
+        /// </summary>
+        /// <returns>Returns a new interpolator that's been prepared for updating</returns>
+        public static Interpolator Begin(float startValue, float endValue, float duration, EasingType easingType = EasingType.Linear)
+        {
+            Interpolator result = new Interpolator(easingType);
+            Begin(startValue, endValue, duration);
+            return result;
         }
     }
 }

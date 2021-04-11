@@ -9,6 +9,11 @@ namespace Easings.Entities
 {
     public static class EntitiesExtensions
     {
+        /// <summary>
+        /// Adds the required interpolator components to an entity
+        /// </summary>
+        /// <param name="entity">The entity to add the components to</param>
+        /// <param name="easing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AddInterpolator(this EntityManager dstManager, Entity entity, EasingType easing)
         {
@@ -21,6 +26,11 @@ namespace Easings.Entities
             dstManager.AddComponent(entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Removes the required interpolator components to an entity
+        /// </summary>
+        /// <param name="entity">The entity to remove the components from</param>
+        /// <param name="easing">The easing type to remove</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RemoveInterpolator(this EntityManager dstManager, Entity entity, EasingType easing)
         {
@@ -33,18 +43,34 @@ namespace Easings.Entities
             dstManager.RemoveComponent(entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Adds just the easing tag to an entity
+        /// </summary>
+        /// <param name="entity">The entity to add the tag to</param>
+        /// <param name="easing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AddEasing(this EntityManager dstManager, Entity entity, EasingType easing)
         {
             dstManager.AddComponent(entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Removes just the easing tag from an entity
+        /// </summary>
+        /// <param name="entity">The entity to remove the tag from</param>
+        /// <param name="easing">The easing type to remove</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RemoveEasing(this EntityManager dstManager, Entity entity, EasingType easing)
         {
             dstManager.RemoveComponent(entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Removes an easing tag from an entity and adds another
+        /// </summary>
+        /// <param name="entity">The entity to swap easing tags on</param>
+        /// <param name="oldEasing">The easing type to remove</param>
+        /// <param name="newEasing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void SwapEasing(this EntityManager dstManager, Entity entity, EasingType oldEasing, EasingType newEasing)
         {
@@ -52,25 +78,12 @@ namespace Easings.Entities
             dstManager.AddEasing(entity, newEasing);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
-        {
-            cmdBuffer.AddComponent(sortKey, entity, easing.GetComponent());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RemoveEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
-        {
-            cmdBuffer.RemoveComponent(sortKey, entity, easing.GetComponent());
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void SwapEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType oldEasing, EasingType newEasing)
-        {
-            cmdBuffer.RemoveEasing(sortKey, entity, oldEasing);
-            cmdBuffer.AddEasing(sortKey, entity, newEasing);
-        }
-
+        /// <summary>
+        /// Adds the required interpolator components to an entity
+        /// </summary>
+        /// <param name="sortKey">The job's sort key</param>
+        /// <param name="entity">The entity to add the components to</param>
+        /// <param name="easing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AddInterpolator(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
         {
@@ -83,6 +96,12 @@ namespace Easings.Entities
             cmdBuffer.AddComponent(sortKey, entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Removes the required interpolator components to an entity
+        /// </summary>
+        /// <param name="sortKey">The job's sort key</param>
+        /// <param name="entity">The entity to remove the components from</param>
+        /// <param name="easing">The easing type to remove</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void RemoveInterpolator(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
         {
@@ -95,6 +114,49 @@ namespace Easings.Entities
             cmdBuffer.RemoveComponent(sortKey, entity, easing.GetComponent());
         }
 
+        /// <summary>
+        /// Adds just the easing tag to an entity
+        /// </summary>
+        /// <param name="sortKey">The job's sort key</param>
+        /// <param name="entity">The entity to add the tag to</param>
+        /// <param name="easing">The easing type to add</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
+        {
+            cmdBuffer.AddComponent(sortKey, entity, easing.GetComponent());
+        }
+
+        /// <summary>
+        /// Removes just the easing tag from an entity
+        /// </summary>
+        /// <param name="sortKey">The job's sort key</param>
+        /// <param name="entity">The entity to remove the tag from</param>
+        /// <param name="easing">The easing type to remove</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void RemoveEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
+        {
+            cmdBuffer.RemoveComponent(sortKey, entity, easing.GetComponent());
+        }
+
+        /// <summary>
+        /// Removes an easing tag from an entity and adds another
+        /// </summary>
+        /// <param name="sortKey">The job's sort key</param>
+        /// <param name="entity">The entity to swap easing tags on</param>
+        /// <param name="oldEasing">The easing type to remove</param>
+        /// <param name="newEasing">The easing type to add</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SwapEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType oldEasing, EasingType newEasing)
+        {
+            cmdBuffer.RemoveEasing(sortKey, entity, oldEasing);
+            cmdBuffer.AddEasing(sortKey, entity, newEasing);
+        }
+
+        /// <summary>
+        /// Gets the type of an easing tag
+        /// </summary>
+        /// <param name="easing">The easing type to get the tag for</param>
+        /// <returns>Returns the tag type for the provided easing</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Type GetComponent(this EasingType easing)
         {
