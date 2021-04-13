@@ -147,7 +147,7 @@ namespace Easings.Interpolator
         public static Interpolator Begin(float startValue, float endValue, float duration, EasingType easingType = EasingType.Linear)
         {
             Interpolator result = new Interpolator(easingType);
-            Begin(startValue, endValue, duration);
+            result.Begin(startValue, endValue, duration);
             return result;
         }
     }
