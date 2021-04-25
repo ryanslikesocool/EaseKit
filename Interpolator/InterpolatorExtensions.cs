@@ -10,7 +10,7 @@ namespace Easings.Interpolator
     public static class InterpolatorExtensions
     {
         /// <summary>
-        /// Execute an action over the duration of the Interpolator
+        /// Execute an action over the duration of the interpolator
         /// </summary>
         /// <param name="updateAction">Action to execute every frame</param>
         /// <param name="doneAction">Optional action to execute when the interpolator is done</param>
@@ -33,7 +33,7 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Execute an action over the duration of the Interpolator with a custom deltaTime
+        /// Execute an action over the duration of the interpolator with a custom deltaTime
         /// </summary>
         /// <param name="deltaTime">The deltaTime to use</param>
         /// <param name="updateAction">Action to execute every frame</param>
@@ -55,7 +55,7 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Execute an action over the duration of the Interpolator
+        /// Execute an action over the duration of the interpolator
         /// </summary>
         /// <param name="interpolator">The interpolator to use</param>
         /// <param name="updateAction">Action to execute every frame</param>
@@ -69,7 +69,7 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Execute an action over the duration of the Interpolator with a custom deltaTime
+        /// Execute an action over the duration of the interpolator with a custom deltaTime
         /// </summary>
         /// <param name="interpolator">The interpolator to use</param>
         /// <param name="deltaTime">The deltaTime to use</param>

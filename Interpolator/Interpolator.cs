@@ -72,7 +72,7 @@ namespace Easings.Interpolator
         private Function function;
 
         /// <summary>
-        /// Initialize the Interpolator with the defined easing type
+        /// Initialize the interpolator with the defined easing type
         /// </summary>
         /// <param name="easingType">The easing type to initialize with</param>
         public Interpolator(EasingType easingType = EasingType.Linear)
@@ -83,9 +83,9 @@ namespace Easings.Interpolator
         /// <summary>
         /// Prepare the Interpolator for updating
         /// </summary>
-        /// <param name="startValue">The start value of the Interpolator</param>
-        /// <param name="endValue">The end value of the Interpolator</param>
-        /// <param name="duration">How long the Interpolator will last</param>
+        /// <param name="startValue">The start value of the interpolator</param>
+        /// <param name="endValue">The end value of the interpolator</param>
+        /// <param name="duration">How long the interpolator will last</param>
         public void Begin(float startValue, float endValue, float duration)
         {
             Initial = startValue;
@@ -98,7 +98,7 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Update the Interpolator with optional unscaled time
+        /// Update the interpolator with optional unscaled time
         /// </summary>
         /// <param name="unscaled">Update with unscaled time</param>
         /// <returns>Returns new Value</returns>
@@ -108,7 +108,7 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
-        /// Update the Interpolator with a specified delta time
+        /// Update the interpolator with a specified delta time
         /// </summary>
         /// <param name="deltaTime">Delta time to use instead of Time.deltaTime</param>
         /// <returns>Returns new Value</returns>
@@ -132,6 +132,16 @@ namespace Easings.Interpolator
         }
 
         /// <summary>
+        /// Reset the interpolator time for reuse with a new duration
+        /// <param name="duration">How long the interpolator will last</param>
+        /// </summary>
+        public void Reset(float duration)
+        {
+            Time = 0;
+            Duration = duration;
+        }
+
+        /// <summary>
         /// Makes a copy of the interpolator, including the initial, target, duration, and easing type values
         /// </summary>
         /// <returns>Returns a copy of the interpolator</returns>
@@ -143,9 +153,9 @@ namespace Easings.Interpolator
         /// <summary>
         /// Initialize an interpolator and prepare for updating
         /// </summary>
-        /// <param name="startValue">The start value of the Interpolator</param>
-        /// <param name="endValue">The end value of the Interpolator</param>
-        /// <param name="duration">How long the Interpolator will last</param>
+        /// <param name="startValue">The start value of the interpolator</param>
+        /// <param name="endValue">The end value of the interpolator</param>
+        /// <param name="duration">How long the interpolator will last</param>
         /// <param name="easingType">The easing type to initialize with</param>
         /// <returns>Returns a new interpolator that's been prepared for updating</returns>
         public static Interpolator Begin(float startValue, float endValue, float duration, EasingType easingType = EasingType.Linear)
