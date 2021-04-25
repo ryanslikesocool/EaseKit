@@ -83,17 +83,17 @@ namespace Easings.Interpolator
         /// <summary>
         /// Prepare the Interpolator for updating
         /// </summary>
-        /// <param name="initial">The start value of the Interpolator</param>
-        /// <param name="target">The end value of the Interpolator</param>
+        /// <param name="startValue">The start value of the Interpolator</param>
+        /// <param name="endValue">The end value of the Interpolator</param>
         /// <param name="duration">How long the Interpolator will last</param>
-        public void Begin(float initial, float target, float duration)
+        public void Begin(float startValue, float endValue, float duration)
         {
-            Initial = initial;
-            Target = target;
-            TotalDelta = target - initial;
+            Initial = startValue;
+            Target = endValue;
+            TotalDelta = endValue - startValue;
             ValueDelta = 0;
             Duration = duration;
-            Value = duration == 0 ? target : initial;
+            Value = duration == 0 ? endValue : startValue;
             Time = 0f;
         }
 
@@ -143,11 +143,26 @@ namespace Easings.Interpolator
         /// <summary>
         /// Initialize an interpolator and prepare for updating
         /// </summary>
+        /// <param name="startValue">The start value of the Interpolator</param>
+        /// <param name="endValue">The end value of the Interpolator</param>
+        /// <param name="duration">How long the Interpolator will last</param>
+        /// <param name="easingType">The easing type to initialize with</param>
         /// <returns>Returns a new interpolator that's been prepared for updating</returns>
         public static Interpolator Begin(float startValue, float endValue, float duration, EasingType easingType = EasingType.Linear)
         {
             Interpolator result = new Interpolator(easingType);
             result.Begin(startValue, endValue, duration);
+            return result;
+        }
+
+        /// <summary>
+        /// Initialize an interpolator with values [0, 1] and prepare for updating
+        /// </summary>
+        /// <returns>Returns a new interpolator that's been prepared for updating</returns>
+        public static Interpolator Begin(float duration, EasingType easingType)
+        {
+            Interpolator result = new Interpolator(easingType);
+            result.Begin(0, 1, duration);
             return result;
         }
     }
