@@ -10,10 +10,7 @@ namespace Easings
         /// Creates an easing function object
         /// </summary>
         /// <param name="function">The function prefab to use</param>
-        public Function(EasingFunctions.EasingFunction function)
-        {
-            this.function = function;
-        }
+        public Function(EasingFunctions.EasingFunction function) => this.function = function;
 
         /// <summary>
         /// Ease the function
@@ -23,9 +20,6 @@ namespace Easings
         /// <param name="delta">The delta value</param>
         /// <param name="duration">The duration to use</param>
         /// <returns>The eased product of [start + delta * time / duration]</returns>
-        public float Ease(float time, float start, float delta, float duration)
-        {
-            return function(time, start, delta, duration);
-        }
+        public float Ease(float time, float start, float delta, float duration) => function(time, start, delta, duration);
     }
 }

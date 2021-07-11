@@ -18,11 +18,7 @@ namespace Easings
         /// <param name="duration">The duration</param>
         /// <returns>Returns an eased float</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float Ease(this EasingType type, float time, float start, float delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return func.Ease(time, start, delta, duration);
-        }
+        public static float Ease(this EasingType type, float time, float start, float delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
         /// Ease a Vector2 with the given easing type
@@ -115,57 +111,15 @@ namespace Easings
         /// <param name="duration">The duration</param>
         /// <returns>Returns an eased Color</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Color Ease(this EasingType type, float time, Color start, Color delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return new Color(
-                func.Ease(time, start.r, delta.r, duration),
-                func.Ease(time, start.g, delta.g, duration),
-                func.Ease(time, start.b, delta.b, duration),
-                func.Ease(time, start.a, delta.a, duration)
-            );
-        }
+        public static Color Ease(this EasingType type, float time, Color start, Color delta, float duration) => Color.Lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
-        public static float2 Ease(this EasingType type, float time, float2 start, float2 delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return new float2(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration)
-            );
-        }
+        public static float2 Ease(this EasingType type, float time, float2 start, float2 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
-        public static float3 Ease(this EasingType type, float time, float3 start, float3 delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return new float3(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration),
-                func.Ease(time, start.z, delta.z, duration)
-            );
-        }
+        public static float3 Ease(this EasingType type, float time, float3 start, float3 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
-        public static float4 Ease(this EasingType type, float time, float4 start, float4 delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return new float4(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration),
-                func.Ease(time, start.z, delta.z, duration),
-                func.Ease(time, start.w, delta.w, duration)
-            );
-        }
+        public static float4 Ease(this EasingType type, float time, float4 start, float4 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
-        public static quaternion Ease(this EasingType type, float time, quaternion start, quaternion delta, float duration)
-        {
-            Function func = type.GetFunction();
-            return new quaternion(
-                func.Ease(time, start.value.x, delta.value.x, duration),
-                func.Ease(time, start.value.y, delta.value.y, duration),
-                func.Ease(time, start.value.z, delta.value.z, duration),
-                func.Ease(time, start.value.w, delta.value.w, duration)
-            );
-        }
+        public static quaternion Ease(this EasingType type, float time, quaternion start, quaternion delta, float duration) => math.slerp(start, math.mul(delta, start), type.GetFunction().Ease(time, 0, 1, duration));
 
         /// <summary>
         /// Gets an easing function for the specified type

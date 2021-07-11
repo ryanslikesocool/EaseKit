@@ -64,9 +64,7 @@ namespace Easings.Interpolator
         /// <param name="unscaled">Optional unscaled time.  Only works if deltaTime is -1</param>
         /// <returns></returns>
         public static Coroutine While(this MonoBehaviour sender, Interpolator interpolator, Action<Interpolator> updateAction, Action<Interpolator> doneAction = null, float deltaTime = -1, bool unscaled = false)
-        {
-            return sender.StartCoroutine(interpolator.While(updateAction, doneAction, deltaTime, unscaled));
-        }
+            => sender.StartCoroutine(interpolator.While(updateAction, doneAction, deltaTime, unscaled));
 
         /// <summary>
         /// Execute an action over the duration of the interpolator with a custom deltaTime
@@ -77,8 +75,6 @@ namespace Easings.Interpolator
         /// <param name="doneAction">Action to execute when the interpolator is done</param>
         /// <returns></returns>
         public static Coroutine While(this MonoBehaviour sender, Interpolator interpolator, Func<float> deltaTime, Action<Interpolator> updateAction, Action<Interpolator> doneAction = null)
-        {
-            return sender.StartCoroutine(interpolator.While(deltaTime, updateAction, doneAction));
-        }
+            => sender.StartCoroutine(interpolator.While(deltaTime, updateAction, doneAction));
     }
 }

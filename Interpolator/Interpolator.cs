@@ -24,10 +24,19 @@ namespace Easings.Interpolator
             }
         }
 
+        private float time;
         /// <summary>
         /// The interpolator's current time
         /// </summary>
-        public float Time { get; private set; }
+        public float Time
+        {
+            get => time;
+            set
+            {
+                time = value;
+                Update(0);
+            }
+        }
 
         /// <summary>
         /// The interpolator's initial value
@@ -102,10 +111,7 @@ namespace Easings.Interpolator
         /// </summary>
         /// <param name="unscaled">Update with unscaled time</param>
         /// <returns>Returns new Value</returns>
-        public float Update(bool unscaled = false)
-        {
-            return Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
-        }
+        public float Update(bool unscaled = false) => Update(unscaled ? UnityEngine.Time.unscaledDeltaTime : UnityEngine.Time.deltaTime);
 
         /// <summary>
         /// Update the interpolator with a specified delta time
@@ -126,10 +132,7 @@ namespace Easings.Interpolator
         /// <summary>
         /// Reset the interpolator time for reuse
         /// </summary>
-        public void Reset()
-        {
-            Time = 0;
-        }
+        public void Reset() => Time = 0;
 
         /// <summary>
         /// Reset the interpolator time for reuse with a new duration
@@ -139,15 +142,6 @@ namespace Easings.Interpolator
         {
             Time = 0;
             Duration = duration;
-        }
-
-        /// <summary>
-        /// Makes a copy of the interpolator, including the initial, target, duration, and easing type values
-        /// </summary>
-        /// <returns>Returns a copy of the interpolator</returns>
-        public Interpolator Copy()
-        {
-            return Interpolator.Begin(Initial, Target, Duration, EasingType);
         }
 
         /// <summary>

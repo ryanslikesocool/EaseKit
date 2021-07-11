@@ -49,10 +49,7 @@ namespace Easings.Entities
         /// <param name="entity">The entity to add the tag to</param>
         /// <param name="easing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddEasing(this EntityManager dstManager, Entity entity, EasingType easing)
-        {
-            dstManager.AddComponent(entity, easing.GetComponent());
-        }
+        public static void AddEasing(this EntityManager dstManager, Entity entity, EasingType easing) =>dstManager.AddComponent(entity, easing.GetComponent());
 
         /// <summary>
         /// Removes just the easing tag from an entity
@@ -60,10 +57,7 @@ namespace Easings.Entities
         /// <param name="entity">The entity to remove the tag from</param>
         /// <param name="easing">The easing type to remove</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RemoveEasing(this EntityManager dstManager, Entity entity, EasingType easing)
-        {
-            dstManager.RemoveComponent(entity, easing.GetComponent());
-        }
+        public static void RemoveEasing(this EntityManager dstManager, Entity entity, EasingType easing) => dstManager.RemoveComponent(entity, easing.GetComponent());
 
         /// <summary>
         /// Removes an easing tag from an entity and adds another
@@ -121,10 +115,7 @@ namespace Easings.Entities
         /// <param name="entity">The entity to add the tag to</param>
         /// <param name="easing">The easing type to add</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
-        {
-            cmdBuffer.AddComponent(sortKey, entity, easing.GetComponent());
-        }
+        public static void AddEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing) =>cmdBuffer.AddComponent(sortKey, entity, easing.GetComponent());
 
         /// <summary>
         /// Removes just the easing tag from an entity
@@ -133,10 +124,7 @@ namespace Easings.Entities
         /// <param name="entity">The entity to remove the tag from</param>
         /// <param name="easing">The easing type to remove</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void RemoveEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing)
-        {
-            cmdBuffer.RemoveComponent(sortKey, entity, easing.GetComponent());
-        }
+        public static void RemoveEasing(this EntityCommandBuffer.ParallelWriter cmdBuffer, int sortKey, Entity entity, EasingType easing) => cmdBuffer.RemoveComponent(sortKey, entity, easing.GetComponent());
 
         /// <summary>
         /// Removes an easing tag from an entity and adds another
