@@ -135,6 +135,11 @@ namespace Easings.Interpolator
         public void Reset() => Time = 0;
 
         /// <summary>
+        /// Mark the interpolator as done
+        /// </summary>
+        public void SetDone() => Time = Duration;
+
+        /// <summary>
         /// Reset the interpolator time for reuse with a new duration
         /// <param name="duration">How long the interpolator will last</param>
         /// </summary>
