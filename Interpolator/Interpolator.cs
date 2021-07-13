@@ -120,7 +120,7 @@ namespace Easings.Interpolator
         /// <returns>Returns new Value</returns>
         public float Update(float deltaTime)
         {
-            Time = math.min(Time + deltaTime, Duration);
+            time = math.min(Time + deltaTime, Duration);
 
             float newValue = function.Ease(Time, Initial, TotalDelta, Duration);
             ValueDelta = newValue - Value;
@@ -132,12 +132,12 @@ namespace Easings.Interpolator
         /// <summary>
         /// Reset the interpolator time for reuse
         /// </summary>
-        public void Reset() => Time = 0;
+        public void Reset() => time = 0;
 
         /// <summary>
         /// Mark the interpolator as done
         /// </summary>
-        public void SetDone() => Time = Duration;
+        public void SetDone() => time = Duration;
 
         /// <summary>
         /// Reset the interpolator time for reuse with a new duration
@@ -145,7 +145,7 @@ namespace Easings.Interpolator
         /// </summary>
         public void Reset(float duration)
         {
-            Time = 0;
+            time = 0;
             Duration = duration;
         }
 
