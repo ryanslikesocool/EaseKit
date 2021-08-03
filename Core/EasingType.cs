@@ -4,6 +4,7 @@ namespace Easings
 {
     public enum EasingType
     {
+        Custom = -1,
         Linear,
         ExpoOut,
         ExpoIn,

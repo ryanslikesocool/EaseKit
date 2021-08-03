@@ -2,7 +2,7 @@
 
 namespace Easings
 {
-    public struct Function : IFunction
+    public struct Function
     {
         private readonly EasingFunctions.EasingFunction function;
 
