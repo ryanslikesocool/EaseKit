@@ -48,19 +48,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseExpoIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Expo.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ExpoIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseExpoOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Expo.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ExpoOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseExpoInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Expo.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ExpoInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseExpoOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Expo.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ExpoOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -71,20 +71,20 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseCircIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Circ.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CircIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseCircOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Circ.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CircOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
 
             Entities
             .WithAll<EaseCircInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Circ.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CircInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseCircOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Circ.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CircOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -95,19 +95,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseQuadIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quad.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuadIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuadOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quad.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuadOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuadInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quad.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuadInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuadOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quad.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuadOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -118,17 +118,17 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseSineIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Sine.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.SineIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseSineOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Sine.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.SineOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseSineInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Sine.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.SineInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
-            Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineOutIn ease) => value.Value = EasingFunctions.Sine.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            Entities.ForEach((ref InterpolatorValue value, in InterpolatorPercent percent, in EaseSineOutIn ease) => value.Value = EasingFunctions.SineOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -139,19 +139,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseCubicIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Cubic.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CubicIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseCubicOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Cubic.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CubicOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseCubicInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Cubic.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CubicInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseCubicOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Cubic.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.CubicOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -162,19 +162,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseQuartIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quart.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuartIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuartOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quart.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuartOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuartInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quart.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuartInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuartOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quart.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuartOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -185,18 +185,18 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseQuintIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quint.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuintIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities.WithAll<EaseQuintOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quint.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuintOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuintInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quint.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuintInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseQuintOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Quint.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.QuintOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -207,19 +207,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseElasticIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Elastic.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ElasticIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseElasticOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Elastic.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ElasticOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseElasticInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Elastic.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ElasticInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseElasticOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Elastic.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.ElasticOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -230,19 +230,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseBounceIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Bounce.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BounceIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBounceOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Bounce.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BounceOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBounceInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Bounce.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BounceInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBounceOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Bounce.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BounceOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
@@ -253,19 +253,19 @@ namespace Easings.Entities
         {
             Entities
             .WithAll<EaseBackIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Back.EaseIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BackIn(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBackOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Back.EaseOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BackOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBackInOut>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Back.EaseInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BackInOut(percent.Value, 0, 1, 1)).ScheduleParallel();
 
             Entities
             .WithAll<EaseBackOutIn>()
-            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.Back.EaseOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
+            .ForEach((ref InterpolatorValue value, in InterpolatorPercent percent) => value.Value = EasingFunctions.BackOutIn(percent.Value, 0, 1, 1)).ScheduleParallel();
         }
     }
 
