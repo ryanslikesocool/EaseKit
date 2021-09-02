@@ -15,12 +15,12 @@
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [
         {
             "name": "com.unity.entities",
-            "expression": "0.16",
+            "expression": "0.17",
             "define": "UNITY_ENTITIES"
         }
     ],

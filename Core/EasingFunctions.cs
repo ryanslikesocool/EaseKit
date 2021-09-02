@@ -8,6 +8,9 @@ using Unity.Burst;
 
 namespace Easings
 {
+#if UNITY_BURST
+    [BurstCompile]
+#endif
     public static class EasingFunctions
     {
         private const float TAU = math.PI * 2;
