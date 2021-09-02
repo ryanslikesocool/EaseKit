@@ -2,7 +2,8 @@
     "name": "Easings",
     "rootNamespace": "Easings",
     "references": [
-        "GUID:d8b63aba1907145bea998dd612889d6b"
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:2665a8d13d1b3f18800f46e256720795"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,6 +12,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.burst",
+            "expression": "1.6.0",
+            "define": "UNITY_BURST"
+        }
+    ],
     "noEngineReferences": false
 }

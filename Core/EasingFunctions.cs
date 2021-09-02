@@ -2,6 +2,9 @@
 
 using Unity.Mathematics;
 using System.Runtime.CompilerServices;
+#if UNITY_BURST
+using Unity.Burst;
+#endif
 
 namespace Easings
 {
@@ -53,20 +56,38 @@ namespace Easings
         public static readonly Function BackInOut = new Function(new EasingFunction(Back.EaseInOut));
         public static readonly Function BackOutIn = new Function(new EasingFunction(Back.EaseOutIn));
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Linear
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float Ease(float t, float b, float c, float d) => c * t / d + b;
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Expo
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => (t == d) ? b + c : c * (-math.pow(2, -10 * t / d) + 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => (t == 0) ? b : c * math.pow(2, 10 * (t / d - 1)) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -85,6 +106,9 @@ namespace Easings
                 return c * 0.5f * (-math.pow(2, -10 * --t) + 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -96,14 +120,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Circ
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sqrt(1 - (t = t / d - 1) * t) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => -c * (math.sqrt(1 - (t /= d) * t) - 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -114,6 +150,9 @@ namespace Easings
                 return c * 0.5f * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -125,14 +164,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Quad
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * (t /= d) * (t - 2) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -143,6 +194,9 @@ namespace Easings
                 return -c * 0.5f * ((--t) * (t - 2) - 1) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -154,14 +208,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Sine
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sin(t / d * (math.PI * 0.5f)) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => -c * math.cos(t / d * (math.PI * 0.5f)) + c + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -172,6 +238,9 @@ namespace Easings
                 return -c * 0.5f * (math.cos(math.PI * --t * 0.5f) - 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -183,14 +252,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Cubic
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t + 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -201,6 +282,9 @@ namespace Easings
                 return c * 0.5f * ((t -= 2) * t * t + 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -212,14 +296,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Quart
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * ((t = t / d - 1) * t * t * t - 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t * t + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -230,6 +326,9 @@ namespace Easings
                 return -c * 0.5f * ((t -= 2) * t * t * t - 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -241,14 +340,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Quint
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t * t * t + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -259,6 +370,9 @@ namespace Easings
                 return c * 0.5f * ((t -= 2) * t * t * t * t + 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -270,8 +384,14 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Elastic
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
@@ -284,6 +404,9 @@ namespace Easings
                 return (c * math.pow(2, -10 * t) * math.sin((t * d - s) * TAU / p) + c + b);
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d)
             {
@@ -296,6 +419,9 @@ namespace Easings
                 return -(c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * TAU / p)) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -312,6 +438,9 @@ namespace Easings
                 return c * math.pow(2, -10 * (t -= 1)) * math.sin((t * d - s) * TAU / p) * 0.5f + c + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -323,8 +452,14 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Bounce
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d)
             {
@@ -346,9 +481,15 @@ namespace Easings
                 }
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c - EaseOut(d - t, 0, c, d) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -362,6 +503,10 @@ namespace Easings
                 }
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
+
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
@@ -373,14 +518,26 @@ namespace Easings
             }
         }
 
+#if UNITY_BURST
+        [BurstCompile]
+#endif
         internal static class Back
         {
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * ((1.70158f + 1) * t - 1.70158f) + b;
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d)
             {
@@ -392,6 +549,9 @@ namespace Easings
                 return c * 0.5f * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
             }
 
+#if UNITY_BURST
+            [BurstCompile]
+#endif
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d)
             {
