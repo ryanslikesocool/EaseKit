@@ -1,7 +1,7 @@
 {
   "name": "com.ifelse.easings",
   "displayName": "Easings",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "unity": "2020.1",
   "description": "40 non-linear easing functions and extensions to make transitions super smooth, plus custom user-defined functions",
   "documentationUrl": "https://github.com/ryanslikesocool/Easings",

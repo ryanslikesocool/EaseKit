@@ -1,4 +1,4 @@
-﻿// Made with <3 by Ryan Boyer http://ryanjboyer.com
+﻿// Made with love by Ryan Boyer http://ryanjboyer.com <3
 
 #if UNITY_ENTITIES
 using System;
@@ -6,7 +6,7 @@ using Unity.Entities;
 
 namespace Easings.Entities
 {
-    #region Base
+#region Base
 
     [Serializable]
     public struct InterpolatorStartTime : IComponentData
@@ -44,18 +44,18 @@ namespace Easings.Entities
         public bool Value;
     }
 
-    #endregion
+#endregion
 
-    #region Easing Types
+#region Easing Types
 
-    #region Linear
+#region Linear
 
     [Serializable]
     public struct EaseLinear : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Expo
+#region Expo
 
     [Serializable]
     public struct EaseExpoIn : IComponentData { }
@@ -69,9 +69,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseExpoOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Circ
+#region Circ
 
     [Serializable]
     public struct EaseCircIn : IComponentData { }
@@ -85,9 +85,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseCircOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Quad
+#region Quad
 
     [Serializable]
     public struct EaseQuadIn : IComponentData { }
@@ -101,9 +101,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseQuadOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Sine
+#region Sine
 
     [Serializable]
     public struct EaseSineIn : IComponentData { }
@@ -117,9 +117,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseSineOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Cubic
+#region Cubic
 
     [Serializable]
     public struct EaseCubicIn : IComponentData { }
@@ -133,9 +133,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseCubicOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Quart
+#region Quart
 
     [Serializable]
     public struct EaseQuartIn : IComponentData { }
@@ -149,9 +149,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseQuartOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Quint
+#region Quint
 
     [Serializable]
     public struct EaseQuintIn : IComponentData { }
@@ -165,9 +165,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseQuintOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Elastic
+#region Elastic
 
     [Serializable]
     public struct EaseElasticIn : IComponentData { }
@@ -181,9 +181,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseElasticOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Bounce
+#region Bounce
 
     [Serializable]
     public struct EaseBounceIn : IComponentData { }
@@ -197,9 +197,9 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseBounceOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #region Back
+#region Back
 
     [Serializable]
     public struct EaseBackIn : IComponentData { }
@@ -213,8 +213,8 @@ namespace Easings.Entities
     [Serializable]
     public struct EaseBackOutIn : IComponentData { }
 
-    #endregion
+#endregion
 
-    #endregion
+#endregion
 }
 #endif
