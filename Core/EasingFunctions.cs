@@ -1,12 +1,10 @@
-// Made with love by Ryan Boyer http://ryanjboyer.com <3
+// Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
 using Unity.Mathematics;
 using System.Runtime.CompilerServices;
 
-namespace Easings
-{
-    public static class EasingFunctions
-    {
+namespace Easings {
+    public static class EasingFunctions {
         private const float TAU = math.PI * 2;
 
         public delegate float EasingFunction(float time, float start, float delta, float duration);
@@ -53,14 +51,12 @@ namespace Easings
         public static readonly Function BackInOut = new Function(new EasingFunction(Back.EaseInOut));
         public static readonly Function BackOutIn = new Function(new EasingFunction(Back.EaseOutIn));
 
-        internal static class Linear
-        {
+        internal static class Linear {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float Ease(float t, float b, float c, float d) => c * t / d + b;
         }
 
-        internal static class Expo
-        {
+        internal static class Expo {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => (t == d) ? b + c : c * (-math.pow(2, -10 * t / d) + 1) + b;
 
@@ -68,36 +64,29 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => (t == 0) ? b : c * math.pow(2, 10 * (t / d - 1)) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if (t == 0)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if (t == 0) {
                     return b;
                 }
-                if (t == d)
-                {
+                if (t == d) {
                     return b + c;
                 }
-                if ((t /= d * 0.5f) < 1)
-                {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * math.pow(2, 10 * (t - 1)) + b;
                 }
                 return c * 0.5f * (-math.pow(2, -10 * --t) + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Circ
-        {
+        internal static class Circ {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sqrt(1 - (t = t / d - 1) * t) + b;
 
@@ -105,28 +94,23 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => -c * (math.sqrt(1 - (t /= d) * t) - 1) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return -c * 0.5f * (math.sqrt(1 - t * t) - 1) + b;
                 }
                 return c * 0.5f * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Quad
-        {
+        internal static class Quad {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * (t /= d) * (t - 2) + b;
 
@@ -134,28 +118,23 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * t * t + b;
                 }
                 return -c * 0.5f * ((--t) * (t - 2) - 1) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Sine
-        {
+        internal static class Sine {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sin(t / d * (math.PI * 0.5f)) + b;
 
@@ -163,28 +142,23 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => -c * math.cos(t / d * (math.PI * 0.5f)) + c + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * (math.sin(math.PI * t * 0.5f)) + b;
                 }
                 return -c * 0.5f * (math.cos(math.PI * --t * 0.5f) - 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Cubic
-        {
+        internal static class Cubic {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t + 1) + b;
 
@@ -192,28 +166,23 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * t * t * t + b;
                 }
                 return c * 0.5f * ((t -= 2) * t * t + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Quart
-        {
+        internal static class Quart {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * ((t = t / d - 1) * t * t * t - 1) + b;
 
@@ -221,28 +190,23 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t * t + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * t * t * t * t + b;
                 }
                 return -c * 0.5f * ((t -= 2) * t * t * t - 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Quint
-        {
+        internal static class Quint {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 
@@ -250,20 +214,16 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t * t * t + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) < 1)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * t * t * t * t * t + b;
                 }
                 return c * 0.5f * ((t -= 2) * t * t * t * t + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
@@ -271,13 +231,10 @@ namespace Easings
         }
 
 
-        internal static class Elastic
-        {
+        internal static class Elastic {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOut(float t, float b, float c, float d)
-            {
-                if ((t /= d) == 1)
-                {
+            public static float EaseOut(float t, float b, float c, float d) {
+                if ((t /= d) == 1) {
                     return b + c;
                 }
                 float p = d * 0.3f;
@@ -286,10 +243,8 @@ namespace Easings
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseIn(float t, float b, float c, float d)
-            {
-                if ((t /= d) == 1)
-                {
+            public static float EaseIn(float t, float b, float c, float d) {
+                if ((t /= d) == 1) {
                     return b + c;
                 }
                 float p = d * 0.3f;
@@ -298,51 +253,37 @@ namespace Easings
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if ((t /= d * 0.5f) == 2)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if ((t /= d * 0.5f) == 2) {
                     return b + c;
                 }
                 float p = d * (.3f * 1.5f);
                 float s = p * 0.5f;
-                if (t < 1)
-                {
+                if (t < 1) {
                     return -0.5f * (c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * TAU / p)) + b;
                 }
                 return c * math.pow(2, -10 * (t -= 1)) * math.sin((t * d - s) * TAU / p) * 0.5f + c + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Bounce
-        {
+        internal static class Bounce {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOut(float t, float b, float c, float d)
-            {
-                if ((t /= d) < (1f / 2.75f))
-                {
+            public static float EaseOut(float t, float b, float c, float d) {
+                if ((t /= d) < (1f / 2.75f)) {
                     return c * (7.5625f * t * t) + b;
-                }
-                else if (t < (2f / 2.75f))
-                {
+                } else if (t < (2f / 2.75f)) {
                     return c * (7.5625f * (t -= (1.5f / 2.75f)) * t + 0.75f) + b;
-                }
-                else if (t < (2.5f / 2.75f))
-                {
+                } else if (t < (2.5f / 2.75f)) {
                     return c * (7.5625f * (t -= (2.25f / 2.75f)) * t + 0.9375f) + b;
-                }
-                else
-                {
+                } else {
                     return c * (7.5625f * (t -= (2.625f / 2.75f)) * t + 0.984375f) + b;
                 }
             }
@@ -351,31 +292,24 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c - EaseOut(d - t, 0, c, d) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseInOut(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseIn(t * 2, 0, c, d) * 0.5f + b;
-                }
-                else
-                {
+                } else {
                     return EaseOut(t * 2 - d, 0, c, d) * 0.5f + c * 0.5f + b;
                 }
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
             }
         }
 
-        internal static class Back
-        {
+        internal static class Back {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
 
@@ -383,21 +317,17 @@ namespace Easings
             public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * ((1.70158f + 1) * t - 1.70158f) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d)
-            {
+            public static float EaseInOut(float t, float b, float c, float d) {
                 float s = 1.70158f;
-                if ((t /= d * 0.5f) < 1)
-                {
+                if ((t /= d * 0.5f) < 1) {
                     return c * 0.5f * (t * t * (((s *= (1.525f)) + 1) * t - s)) + b;
                 }
                 return c * 0.5f * ((t -= 2) * t * (((s *= (1.525f)) + 1) * t + s) + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOutIn(float t, float b, float c, float d)
-            {
-                if (t < d * 0.5f)
-                {
+            public static float EaseOutIn(float t, float b, float c, float d) {
+                if (t < d * 0.5f) {
                     return EaseOut(t * 2, b, c * 0.5f, d);
                 }
                 return EaseIn((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
