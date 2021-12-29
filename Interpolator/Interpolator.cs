@@ -6,31 +6,7 @@ using Unity.Mathematics;
 using System.Collections;
 
 namespace Easings.Interpolator {
-    public class Interpolator : MonoBehaviour {
-        private static Interpolator instance = null;
-        private static Interpolator Shared {
-            get {
-                if (!(instance ?? false)) {
-                    instance = Timer.Timer.Create<Interpolator>();
-                }
-                return instance;
-            }
-        }
-
-        private void OnDestroy() => instance = null;
-
-        /// <summary>
-        /// Stops an interpolator coroutine if it's running.  The coroutine must have been started with one of the [Interpolator.Ease] methods.
-        /// </summary>
-        /// <param name="timer">The interpolator coroutine to stop.</param>
-        public static void Stop(Coroutine interpolator) {
-            if (interpolator != null) {
-                Shared.StopCoroutine(interpolator);
-                interpolator = null;
-                Timer.Timer.Shared.activeTimers--;
-            }
-        }
-
+    public static class Interpolator {
         /// <summary>
         /// Start an easing animation starting with [startValue] and ending at [endValue] over [duration] (with optionally [unscaledTime]) interpolated using the [easing] function, calling [onUpdate] every frame, and optional [onDone] when complete.
         /// </summary>
@@ -80,12 +56,10 @@ namespace Easings.Interpolator {
         public static Coroutine Ease(float duration, EasingType easing, Func<float> deltaTime, Action<EaseData> onUpdate, Action onDone = null) => Ease(0, 1, duration, easing, deltaTime, onUpdate, onDone);
 
         private static Coroutine Ease(float startValue, float endValue, float duration, EasingType easing, Func<float> deltaTime, Action<EaseData> onUpdate, Action onDone = null) {
-            return Shared.StartCoroutine(Ease());
+            return Timer.Timer.Start(Ease());
 
             IEnumerator Ease() {
                 EaseData ease = new EaseData(startValue, endValue, duration, easing);
-
-                Timer.Timer.Shared.activeTimers++;
 
                 while (!ease.IsDone) {
                     ease.Update(deltaTime());
@@ -94,8 +68,6 @@ namespace Easings.Interpolator {
                 }
 
                 onDone();
-
-                Timer.Timer.Shared.activeTimers--;
             }
         }
     }
