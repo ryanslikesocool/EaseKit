@@ -1,10 +1,11 @@
 # Unity-Easings
-41 easing methods to make transitions nicer in Unity
+40 non-linear easing methods to make transitions nicer in Unity.
 
 ## Requirements and Installation
 **Requirements**\
 This package requires the `Unity.Mathematics` library.  It can be installed manually via the Package Manager, or added automatically when installing via the Package Manager.\
- The DOTS folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
+The Entities folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
+The Interpolator folder requres the [Timer package](https://github.com/ryanslikesocool/Timer).
 
 **RECOMMENDED INSTALLATION**\
 Add via the Unity Package Manager\
@@ -18,84 +19,72 @@ Open with the desired Unity project\
 Import into the Plugins folder
 
 ## Core
-Just the functions.  All default functions return a `float` and takes the 4 `float` parameters.
+Just the functions.  State and updating is handled by the developer (you!).  All default functions return a `float` and takes the 4 `float` parameters.  There are multiple ways to call them.
 
-### Usage
-`using Easings;`\
-You can call an easing function with either `EasingFunctions.Category.Function` or `EasingFunctions.CategoryFunction`, like this
+## Usage
 ```cs
-EasingFunctions.Quad.EaseOut(time, start, delta, duration);
-EasingFunctions.QuadOut(time, start, delta, duration);
-```
-These functions take 4 `float` parameters
-- `time` - the time of the interpolation.  Between 0 and `duration` is best
-- `start` - the start value.  This can be any number
-- `delta` - the change from the start value
-- `duration` - how long the interpolation will last
-- returns `t` - the value between `start` and `start + delta` sampled by `time / duration`
+// Replace "SineIn" with the desired easing
+float time = 0;
+float start = 0;
+float delta = 1;
+float duration = 1;
+float result;
 
-There are also extension methods that can make life easier, if desired.
- `EasingType.QuadOut.Ease(time, start, delta, duration);`\
-`start` and `delta` can be any of the following types, and will return the same type
-- `float`
-- `Vector2`
-- `Vector3`
-- `Vector4`
-- `Quaternion`
-- `Color`
+// Best for hardcoded easing functions
+result = EasingFunctions.SineIn.Ease(time, start, delta, duration);
+
+// Best for editor support
+EasingType easingType = EasingType.SineIn;
+result = easingType.Ease(time, start, delta, duration);
+
+// The EasingType.SineIn.Ease() function also has overloads for easing Unity types, like vectors and colors
+```
+
+The function itself can also be stored as an object.
+```cs
+// Replace "SineIn" with the desired easing
+float time = 0;
+float start = 0;
+float delta = 1;
+float duration = 1;
+float result;
+
+EasingType easingType = EasingType.SineIn;
+Function easeFunction = easingType.GetFunction();
+result = easeFunction.Ease(time, start, delta, duration);
+```
 
 ## Interpolator
-The Interpolator stores easing data in a class, meant for reuse.
- Interpolator provides all easing methods with the return type of `float`, meant for use with the default interpolation methods that Unity provides (`Vector3.Lerp(a, b, t)`, `Color.Lerp(a, b, t)`, etc.). 
- Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.
+The Interpolator methods handle updating for you, and works with all built-in easing methods.\
+Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.\
+Interpolator requires the [Timer package](https://github.com/ryanslikesocool/Timer) to work.
 
 ### Usage
 `using Easings.Interpolator;`\
-Create an Interpolator with an easing type, input the start value, end value, and duration in `Begin(a, b, d)`.  The call its `Update()` method over time.
+`Interpolator.Ease` has multiple overloads, so make sure to choose the right one.\
+All `Interpolator.Ease` methods return a `Coroutine`, which can be stopped by calling `Timer.Stop(coroutine)` from the Timer package.
 
 ```cs
-IEnumerator LinearEase()
-{
-    // Create the Interpolator
-    // This comes with an overload for choosing the easing function.
-    // The default function is Linear with an overload for setting a specific function
-    Interpolator interpolator = new Interpolator();
-    // Start value = 0
-    // End value = 1
-    // Duration = 1
-    interpolator.Begin(0, 1, 1);
+// "start" and "end" are optional values, but if you have one you must have both.
+float start = 5; // default 0
+float end = 7; // default 1
+float duration = 2;
+EasingType easing = EasingType.SineIn;
+bool unscaledTime = false; // Optional value, "false" by default
 
-    while (!interpolator.Done)
-    {
-        // Update the time with Interpolator.Update().  This is necessary to get out of the loop
-        // Interpolator.Update() comes with 2 overloads if you want to use a custom deltaTime or unscaled time, and returns the current Interpolator value
-        // Do something with the value, such as:
-        transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, interpolator.Update());
-        
-        yield return null;
-    }
-    
-    // Finalizing the interpolation is only necessary if the duration is 0
-    transform.position = Vector3.up;
-}
-```
-Or, if you're looking for something a little more readable, there's a coroutine in Interpolator that handles a lot of the boilerplate.\
-Interpolator.While takes 4 parameters: 
-- `Action<Interpolator> updateAction` - the action to execute while the Interpolator is updating (called once a frame until the Interpolator is done)
-- `Action<Interpolator> doneAction` (optional) - the action to execute once the Interpolator is done (called once)
-- `float deltaTime` (optional) - the delta time to use every frame.  Leave at the default `-1` to use `Time.deltaTime`
-- `bool unscaled` (optional) - uses unscaled time if set to `true`.  Only works if `deltaTime` is the default `-1`
-```cs
-thisMonoBehaviour.StartCoroutine(interpolator.While((Interpolator i) =>
-{
-    transform.position = Vector3.Lerp(Vector3.zero, Vector3.up, i.value);
-}, (Interpolator i) =>
-{
-    transform.position = Vector3.up;
-}, -1, false));
+Interpolator.Ease(start, end, duration, easing, easeData => {
+    // This lambda will be called each time the interpolator updates, usually once a frame.
+
+    // easeData contains the state of the easing, with values like
+    // - the current easing type
+    // - the current value
+    // - the change between the current and previous value
+}, () => {
+    // Optional lamba, called when the interpolator is complete.
+}, unscaledTime);
 ```
 
-## Entities
+## Entities (NOT MAINTAINED)
 Entities is meant for use with Unity's Data Oriented Tech Stack (DOTS).
  Entities does not require a manual update.
  Instead, you can add the required components to an entity and it will update automatically over time.

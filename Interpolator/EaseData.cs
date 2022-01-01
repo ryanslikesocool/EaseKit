@@ -1,5 +1,6 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
+#if DWL_TIMER
 using Unity.Mathematics;
 
 namespace Easings.Interpolator {
@@ -97,3 +98,4 @@ namespace Easings.Interpolator {
         }
     }
 }
+#endif
