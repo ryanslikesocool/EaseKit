@@ -1,9 +1,7 @@
-// Made with love by Ryan Boyer http://ryanjboyer.com <3
+// Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
-namespace Easings
-{
-    public struct Function
-    {
+namespace Easings {
+    public struct Function {
         private readonly EasingFunctions.EasingFunction function;
 
         /// <summary>
