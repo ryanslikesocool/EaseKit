@@ -58,7 +58,8 @@ result = easeFunction.Ease(time, start, delta, duration);
 ## Interpolator
 The Interpolator methods handle updating for you, and works with all built-in easing methods.\
 Interpolator works similarly to Unity's default interpolation method, taking a start value and end value.\
-Interpolator requires the [Timer package](https://github.com/ryanslikesocool/Timer) to work.
+Interpolator requires the [Timer package](https://github.com/ryanslikesocool/Timer) to work.\
+Be sure to add `DWL_TIMER` to your scripting define symbols.
 
 ### Usage
 `using Easings.Interpolator;`\
