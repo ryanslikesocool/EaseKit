@@ -56,7 +56,7 @@ namespace Easings.Interpolator {
         /// <summary>
         /// The interpolator's value delta. [Target - Initial]
         /// </summary>
-        public float TotalDelta { get; private set; }
+        public float TotalDelta => Target - Initial;
 
         /// <summary>
         /// The change in [Value] during the last update.
@@ -81,7 +81,6 @@ namespace Easings.Interpolator {
         internal EaseData(float startValue, float endValue, float duration, EasingType easing = EasingType.Linear) {
             Initial = startValue;
             Target = endValue;
-            TotalDelta = endValue - startValue;
             ValueDelta = 0;
             Duration = duration;
             Value = duration == 0 ? endValue : startValue;
@@ -90,6 +89,11 @@ namespace Easings.Interpolator {
             function = easing.GetFunction();
         }
 
-        internal void Update(float deltaTime) => Time += deltaTime;
+        internal void Update(float deltaTime) {
+            Time += deltaTime;
+            float previousValue = Value;
+            Value = math.lerp(Initial, Target, Percentage);
+            ValueDelta = Value - previousValue;
+        }
     }
 }
