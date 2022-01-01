@@ -4,7 +4,7 @@
 ## Requirements and Installation
 **Requirements**\
 This package requires the `Unity.Mathematics` library.  It can be installed manually via the Package Manager, or added automatically when installing via the Package Manager.\
-The Entities folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
+The Entities folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).\
 The Interpolator folder requres the [Timer package](https://github.com/ryanslikesocool/Timer).
 
 **RECOMMENDED INSTALLATION**\
@@ -19,7 +19,8 @@ Open with the desired Unity project\
 Import into the Plugins folder
 
 ## Core
-Just the functions.  State and updating is handled by the developer (you!).  All default functions return a `float` and takes the 4 `float` parameters.  There are multiple ways to call them.
+Just the functions.  State and updating is handled by the developer (you!).\
+All default functions return a `float` and takes the 4 `float` parameters.  There are multiple ways to call them.
 
 ## Usage
 ```cs
@@ -80,7 +81,7 @@ Interpolator.Ease(start, end, duration, easing, easeData => {
     // - the current value
     // - the change between the current and previous value
 }, () => {
-    // Optional lamba, called when the interpolator is complete.
+    // Optional lamba, called one time when the easing is complete.
 }, unscaledTime);
 ```
 
