@@ -68,7 +68,9 @@ namespace Easings.Interpolator {
                     yield return null;
                 }
 
-                onDone();
+                if (onDone != null) {
+                    onDone();
+                }
             }
         }
     }

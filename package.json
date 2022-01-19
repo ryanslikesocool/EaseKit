@@ -1,7 +1,7 @@
 {
   "name": "com.developedwithlove.easings",
   "displayName": "Easings",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "unity": "2020.3",
   "description": "40 non-linear easing functions and extensions to make transitions super smooth, plus custom user-defined functions.",
   "documentationUrl": "https://github.com/ryanslikesocool/Easings",

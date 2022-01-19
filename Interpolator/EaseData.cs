@@ -36,7 +36,7 @@ namespace Easings.Interpolator {
         /// </summary>
         public float Time {
             get => time;
-            set => time = math.clamp(value, Initial, Target);
+            set => time = math.clamp(value, 0, Duration);
         }
 
         /// <summary>
