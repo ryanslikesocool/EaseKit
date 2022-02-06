@@ -93,7 +93,10 @@ namespace Easings.Interpolator {
         internal void Update(float deltaTime) {
             Time += deltaTime;
             float previousValue = Value;
-            Value = math.lerp(Initial, Target, Percentage);
+
+            float t = function.Ease(Time, 0, 1, Duration);
+            Value = math.lerp(Initial, Target, t);
+            
             ValueDelta = Value - previousValue;
         }
     }
