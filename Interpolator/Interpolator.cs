@@ -1,10 +1,9 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
-#if DWL_TIMER
 using System;
-using UnityEngine;
-using Unity.Mathematics;
 using System.Collections;
+using Unity.Mathematics;
+using UnityEngine;
 
 namespace Easings.Interpolator {
     public static class Interpolator {
@@ -75,4 +74,3 @@ namespace Easings.Interpolator {
         }
     }
 }
-#endif

@@ -1,6 +1,5 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
-#if DWL_TIMER
 using Unity.Mathematics;
 
 namespace Easings.Interpolator {
@@ -96,9 +95,8 @@ namespace Easings.Interpolator {
 
             float t = function.Ease(Time, 0, 1, Duration);
             Value = math.lerp(Initial, Target, t);
-            
+
             ValueDelta = Value - previousValue;
         }
     }
 }
-#endif
