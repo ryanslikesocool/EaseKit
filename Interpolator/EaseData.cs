@@ -17,17 +17,6 @@ namespace Easings.Interpolator {
         }
 
         private Function function;
-        /// <summary>
-        /// The easing function that the interpolator will use.
-        /// If this is not null, the [EasingType] will be set to [EasingType.Custom].
-        /// </summary>
-        public Function Function {
-            get => function;
-            set {
-                function = value;
-                easingType = EasingType.Custom;
-            }
-        }
 
         private float time;
         /// <summary>

@@ -1,8 +1,8 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
-using UnityEngine;
-using Unity.Mathematics;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
+using UnityEngine;
 
 namespace Easings {
     public static class EasingExtensions {
@@ -121,92 +121,100 @@ namespace Easings {
         /// <param name="easing">The easing type to use</param>
         /// <returns>Returns the easing function for the specified type</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Function GetFunction(this EasingType easing) {
-            switch (easing) {
-                default:
-                case EasingType.Linear:
-                    return EasingFunctions.LinearEase;
-                case EasingType.ExpoIn:
-                    return EasingFunctions.ExpoIn;
-                case EasingType.ExpoOut:
-                    return EasingFunctions.ExpoOut;
-                case EasingType.ExpoOutIn:
-                    return EasingFunctions.ExpoOutIn;
-                case EasingType.ExpoInOut:
-                    return EasingFunctions.ExpoInOut;
-                case EasingType.CircIn:
-                    return EasingFunctions.CircIn;
-                case EasingType.CircOut:
-                    return EasingFunctions.CircOut;
-                case EasingType.CircOutIn:
-                    return EasingFunctions.CircOutIn;
-                case EasingType.CircInOut:
-                    return EasingFunctions.CircInOut;
-                case EasingType.QuadIn:
-                    return EasingFunctions.QuadIn;
-                case EasingType.QuadOut:
-                    return EasingFunctions.QuadOut;
-                case EasingType.QuadOutIn:
-                    return EasingFunctions.QuadOutIn;
-                case EasingType.QuadInOut:
-                    return EasingFunctions.QuadInOut;
-                case EasingType.SineIn:
-                    return EasingFunctions.SineIn;
-                case EasingType.SineOut:
-                    return EasingFunctions.SineOut;
-                case EasingType.SineOutIn:
-                    return EasingFunctions.SineOutIn;
-                case EasingType.SineInOut:
-                    return EasingFunctions.SineInOut;
-                case EasingType.CubicIn:
-                    return EasingFunctions.CubicIn;
-                case EasingType.CubicOut:
-                    return EasingFunctions.CubicOut;
-                case EasingType.CubicOutIn:
-                    return EasingFunctions.CubicOutIn;
-                case EasingType.CubicInOut:
-                    return EasingFunctions.CubicInOut;
-                case EasingType.QuartIn:
-                    return EasingFunctions.QuartIn;
-                case EasingType.QuartOut:
-                    return EasingFunctions.QuartOut;
-                case EasingType.QuartOutIn:
-                    return EasingFunctions.QuartOutIn;
-                case EasingType.QuartInOut:
-                    return EasingFunctions.QuartInOut;
-                case EasingType.QuintIn:
-                    return EasingFunctions.QuintIn;
-                case EasingType.QuintOut:
-                    return EasingFunctions.QuintOut;
-                case EasingType.QuintOutIn:
-                    return EasingFunctions.QuintOutIn;
-                case EasingType.QuintInOut:
-                    return EasingFunctions.QuintInOut;
-                case EasingType.ElasticIn:
-                    return EasingFunctions.ElasticIn;
-                case EasingType.ElasticOut:
-                    return EasingFunctions.ElasticOut;
-                case EasingType.ElasticOutIn:
-                    return EasingFunctions.ElasticOutIn;
-                case EasingType.ElasticInOut:
-                    return EasingFunctions.ElasticInOut;
-                case EasingType.BounceIn:
-                    return EasingFunctions.BounceIn;
-                case EasingType.BounceOut:
-                    return EasingFunctions.BounceOut;
-                case EasingType.BounceOutIn:
-                    return EasingFunctions.BounceOutIn;
-                case EasingType.BounceInOut:
-                    return EasingFunctions.BounceInOut;
-                case EasingType.BackIn:
-                    return EasingFunctions.BackIn;
-                case EasingType.BackOut:
-                    return EasingFunctions.BackOut;
-                case EasingType.BackOutIn:
-                    return EasingFunctions.BackOutIn;
-                case EasingType.BackInOut:
-                    return EasingFunctions.BackInOut;
-            }
-        }
+        public static Function GetFunction(this EasingType easing) => easing switch {
+            EasingType.Linear => EasingFunctions.LinearEase,
+            EasingType.ExpoIn => EasingFunctions.ExpoIn,
+            EasingType.ExpoOut => EasingFunctions.ExpoOut,
+            EasingType.ExpoOutIn => EasingFunctions.ExpoOutIn,
+            EasingType.ExpoInOut => EasingFunctions.ExpoInOut,
+            EasingType.CircIn => EasingFunctions.CircIn,
+            EasingType.CircOut => EasingFunctions.CircOut,
+            EasingType.CircOutIn => EasingFunctions.CircOutIn,
+            EasingType.CircInOut => EasingFunctions.CircInOut,
+            EasingType.QuadIn => EasingFunctions.QuadIn,
+            EasingType.QuadOut => EasingFunctions.QuadOut,
+            EasingType.QuadOutIn => EasingFunctions.QuadOutIn,
+            EasingType.QuadInOut => EasingFunctions.QuadInOut,
+            EasingType.SineIn => EasingFunctions.SineIn,
+            EasingType.SineOut => EasingFunctions.SineOut,
+            EasingType.SineOutIn => EasingFunctions.SineOutIn,
+            EasingType.SineInOut => EasingFunctions.SineInOut,
+            EasingType.CubicIn => EasingFunctions.CubicIn,
+            EasingType.CubicOut => EasingFunctions.CubicOut,
+            EasingType.CubicOutIn => EasingFunctions.CubicOutIn,
+            EasingType.CubicInOut => EasingFunctions.CubicInOut,
+            EasingType.QuartIn => EasingFunctions.QuartIn,
+            EasingType.QuartOut => EasingFunctions.QuartOut,
+            EasingType.QuartOutIn => EasingFunctions.QuartOutIn,
+            EasingType.QuartInOut => EasingFunctions.QuartInOut,
+            EasingType.QuintIn => EasingFunctions.QuintIn,
+            EasingType.QuintOut => EasingFunctions.QuintOut,
+            EasingType.QuintOutIn => EasingFunctions.QuintOutIn,
+            EasingType.QuintInOut => EasingFunctions.QuintInOut,
+            EasingType.ElasticIn => EasingFunctions.ElasticIn,
+            EasingType.ElasticOut => EasingFunctions.ElasticOut,
+            EasingType.ElasticOutIn => EasingFunctions.ElasticOutIn,
+            EasingType.ElasticInOut => EasingFunctions.ElasticInOut,
+            EasingType.BounceIn => EasingFunctions.BounceIn,
+            EasingType.BounceOut => EasingFunctions.BounceOut,
+            EasingType.BounceOutIn => EasingFunctions.BounceOutIn,
+            EasingType.BounceInOut => EasingFunctions.BounceInOut,
+            EasingType.BackIn => EasingFunctions.BackIn,
+            EasingType.BackOut => EasingFunctions.BackOut,
+            EasingType.BackOutIn => EasingFunctions.BackOutIn,
+            EasingType.BackInOut => EasingFunctions.BackInOut,
+            _ => EasingFunctions.LinearEase
+        };
+
+        /// <summary>
+        /// Get the inverse of the specified easing type
+        /// </summary>
+        /// <param name="easing">The easing type to use</param>
+        /// <returns>Returns the inverse of the specified type</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static EasingType Inverse(this EasingType easing) => easing switch {
+            EasingType.Linear => EasingType.Linear,
+            EasingType.ExpoIn => EasingType.ExpoOut,
+            EasingType.ExpoOut => EasingType.ExpoIn,
+            EasingType.ExpoOutIn => EasingType.ExpoInOut,
+            EasingType.ExpoInOut => EasingType.ExpoOutIn,
+            EasingType.CircIn => EasingType.CircOut,
+            EasingType.CircOut => EasingType.CircIn,
+            EasingType.CircOutIn => EasingType.CircInOut,
+            EasingType.CircInOut => EasingType.CircOutIn,
+            EasingType.QuadIn => EasingType.QuadOut,
+            EasingType.QuadOut => EasingType.QuadIn,
+            EasingType.QuadOutIn => EasingType.QuadInOut,
+            EasingType.QuadInOut => EasingType.QuadOutIn,
+            EasingType.SineIn => EasingType.SineOut,
+            EasingType.SineOut => EasingType.SineIn,
+            EasingType.SineOutIn => EasingType.SineInOut,
+            EasingType.SineInOut => EasingType.SineOutIn,
+            EasingType.CubicIn => EasingType.CubicOut,
+            EasingType.CubicOut => EasingType.CubicIn,
+            EasingType.CubicOutIn => EasingType.CubicInOut,
+            EasingType.CubicInOut => EasingType.CubicOutIn,
+            EasingType.QuartIn => EasingType.QuartOut,
+            EasingType.QuartOut => EasingType.QuartIn,
+            EasingType.QuartOutIn => EasingType.QuartInOut,
+            EasingType.QuartInOut => EasingType.QuartOutIn,
+            EasingType.QuintIn => EasingType.QuintOut,
+            EasingType.QuintOut => EasingType.QuintIn,
+            EasingType.QuintOutIn => EasingType.QuintInOut,
+            EasingType.QuintInOut => EasingType.QuintOutIn,
+            EasingType.ElasticIn => EasingType.ElasticOut,
+            EasingType.ElasticOut => EasingType.ElasticIn,
+            EasingType.ElasticOutIn => EasingType.ElasticInOut,
+            EasingType.ElasticInOut => EasingType.ElasticOutIn,
+            EasingType.BounceIn => EasingType.BounceOut,
+            EasingType.BounceOut => EasingType.BounceIn,
+            EasingType.BounceOutIn => EasingType.BounceInOut,
+            EasingType.BounceInOut => EasingType.BounceOutIn,
+            EasingType.BackIn => EasingType.BackOut,
+            EasingType.BackOut => EasingType.BackIn,
+            EasingType.BackOutIn => EasingType.BackInOut,
+            EasingType.BackInOut => EasingType.BackOutIn,
+            _ => EasingType.Linear
+        };
     }
 }
