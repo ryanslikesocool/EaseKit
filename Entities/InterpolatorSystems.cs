@@ -12,7 +12,7 @@ namespace Easings.Entities
 #region Base System
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup))]
-    public class InterpolatorBaseSystem : SystemBase
+    public partial class InterpolatorBaseSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -31,7 +31,7 @@ namespace Easings.Entities
 #region Easings
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseLinearSystem : SystemBase
+    public partial class EaseLinearSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -42,7 +42,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseExpoSystem : SystemBase
+    public partial class EaseExpoSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -65,7 +65,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseCircSystem : SystemBase
+    public partial class EaseCircSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -89,7 +89,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseQuadSystem : SystemBase
+    public partial class EaseQuadSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -112,7 +112,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseSineSystem : SystemBase
+    public partial class EaseSineSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -133,7 +133,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseCubicSystem : SystemBase
+    public partial class EaseCubicSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -156,7 +156,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseQuartSystem : SystemBase
+    public partial class EaseQuartSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -179,7 +179,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseQuintSystem : SystemBase
+    public partial class EaseQuintSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -201,7 +201,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseElasticSystem : SystemBase
+    public partial class EaseElasticSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -224,7 +224,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseBounceSystem : SystemBase
+    public partial class EaseBounceSystem : SystemBase
     {
         protected override void OnUpdate()
         {
@@ -247,7 +247,7 @@ namespace Easings.Entities
     }
 
     [UpdateInGroup(typeof(InterpolatorSystemGroup)), UpdateAfter(typeof(InterpolatorBaseSystem))]
-    public class EaseBackSystem : SystemBase
+    public partial class EaseBackSystem : SystemBase
     {
         protected override void OnUpdate()
         {

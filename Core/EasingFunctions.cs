@@ -51,12 +51,12 @@ namespace Easings {
         public static readonly Function BackInOut = new Function(new EasingFunction(Back.EaseInOut));
         public static readonly Function BackOutIn = new Function(new EasingFunction(Back.EaseOutIn));
 
-        internal static class Linear {
+        public static class Linear {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float Ease(float t, float b, float c, float d) => c * t / d + b;
         }
 
-        internal static class Expo {
+        public static class Expo {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => (t == d) ? b + c : c * (-math.pow(2, -10 * t / d) + 1) + b;
 
@@ -86,7 +86,7 @@ namespace Easings {
             }
         }
 
-        internal static class Circ {
+        public static class Circ {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sqrt(1 - (t = t / d - 1) * t) + b;
 
@@ -110,7 +110,7 @@ namespace Easings {
             }
         }
 
-        internal static class Quad {
+        public static class Quad {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * (t /= d) * (t - 2) + b;
 
@@ -134,7 +134,7 @@ namespace Easings {
             }
         }
 
-        internal static class Sine {
+        public static class Sine {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * math.sin(t / d * (math.PI * 0.5f)) + b;
 
@@ -158,7 +158,7 @@ namespace Easings {
             }
         }
 
-        internal static class Cubic {
+        public static class Cubic {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t + 1) + b;
 
@@ -182,7 +182,7 @@ namespace Easings {
             }
         }
 
-        internal static class Quart {
+        public static class Quart {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => -c * ((t = t / d - 1) * t * t * t - 1) + b;
 
@@ -206,7 +206,7 @@ namespace Easings {
             }
         }
 
-        internal static class Quint {
+        public static class Quint {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * t * t * t + 1) + b;
 
@@ -230,8 +230,7 @@ namespace Easings {
             }
         }
 
-
-        internal static class Elastic {
+        public static class Elastic {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) {
                 if ((t /= d) == 1) {
@@ -274,7 +273,7 @@ namespace Easings {
             }
         }
 
-        internal static class Bounce {
+        public static class Bounce {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) {
                 if ((t /= d) < (1f / 2.75f)) {
@@ -309,7 +308,7 @@ namespace Easings {
             }
         }
 
-        internal static class Back {
+        public static class Back {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
 
