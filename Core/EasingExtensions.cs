@@ -7,119 +7,238 @@ using UnityEngine;
 namespace Easings {
     public static class EasingExtensions {
         /// <summary>
-        /// Ease a float with the given easing type
+        /// Ease a float with the given easing type.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased float</returns>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Ease(this EasingType type, float time, float start, float delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
-        /// Ease a Vector2 with the given easing type
+        /// Ease a float with the given custom easing.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased Vector2</returns>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector2 Ease(this EasingType type, float time, Vector2 start, Vector2 delta, float duration) {
-            Function func = type.GetFunction();
-            return new Vector2(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration)
-            );
-        }
+        public static float Ease(this CustomEasing type, float time, float start, float delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
-        /// Ease a Vector3 with the given easing type
+        /// Ease a Vector2 with the given easing type.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased Vector3</returns>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector2.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector3 Ease(this EasingType type, float time, Vector3 start, Vector3 delta, float duration) {
-            Function func = type.GetFunction();
-            return new Vector3(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration),
-                func.Ease(time, start.z, delta.z, duration)
-            );
-        }
+        public static Vector2 Ease(this EasingType type, float time, Vector2 start, Vector2 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
-        /// Ease a Vector4 with the given easing type
+        /// Ease a Vector2 with the given custom easing.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased Vector4</returns>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector2.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector4 Ease(this EasingType type, float time, Vector4 start, Vector4 delta, float duration) {
-            Function func = type.GetFunction();
-            return new Vector4(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration),
-                func.Ease(time, start.z, delta.z, duration),
-                func.Ease(time, start.w, delta.w, duration)
-            );
-        }
+        public static Vector2 Ease(this CustomEasing type, float time, Vector2 start, Vector2 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
-        /// Ease a Quaternion with the given easing type
+        /// Ease a Vector3 with the given easing type.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased Quaternion</returns>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector3.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion Ease(this EasingType type, float time, Quaternion start, Quaternion delta, float duration) {
-            Function func = type.GetFunction();
-            return new Quaternion(
-                func.Ease(time, start.x, delta.x, duration),
-                func.Ease(time, start.y, delta.y, duration),
-                func.Ease(time, start.z, delta.z, duration),
-                func.Ease(time, start.w, delta.w, duration)
-            );
-        }
+        public static Vector3 Ease(this EasingType type, float time, Vector3 start, Vector3 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
 
         /// <summary>
-        /// Ease a Color with the given easing type
+        /// Ease a Vector3 with the given custom easing.
         /// </summary>
-        /// <param name="type">The easing type</param>
-        /// <param name="time">The easing time</param>
-        /// <param name="start">The start value</param>
-        /// <param name="delta">The delta value</param>
-        /// <param name="duration">The duration</param>
-        /// <returns>Returns an eased Color</returns>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector3.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector3 Ease(this CustomEasing type, float time, Vector3 start, Vector3 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
+
+        /// <summary>
+        /// Ease a Vector4 with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector4.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector4 Ease(this EasingType type, float time, Vector4 start, Vector4 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
+
+        /// <summary>
+        /// Ease a Vector4 with the given custom easing.
+        /// </summary>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Vector4.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector4 Ease(this CustomEasing type, float time, Vector4 start, Vector4 delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
+
+        /// <summary>
+        /// Ease a Quaternion with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Quaternion.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion Ease(this EasingType type, float time, Quaternion start, Quaternion delta, float duration) => type.GetFunction().Ease(time, start, delta, duration);
+
+        /// <summary>
+        /// Ease a Color with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Color.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Color Ease(this EasingType type, float time, Color start, Color delta, float duration) => Color.Lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
+        /// <summary>
+        /// Ease a Color with the given custom easing.
+        /// </summary>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased Color.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Color Ease(this CustomEasing type, float time, Color start, Color delta, float duration) => Color.Lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
+
+        /// <summary>
+        /// Ease a float2 with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float2.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float2 Ease(this EasingType type, float time, float2 start, float2 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
+        /// <summary>
+        /// Ease a float2 with the given custom easing.
+        /// </summary>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float2.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float2 Ease(this CustomEasing type, float time, float2 start, float2 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
+
+        /// <summary>
+        /// Ease a float3 with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float3.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float3 Ease(this EasingType type, float time, float3 start, float3 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
+        /// <summary>
+        /// Ease a float3 with the given custom easing.
+        /// </summary>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float3.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float3 Ease(this CustomEasing type, float time, float3 start, float3 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
+
+        /// <summary>
+        /// Ease a float4 with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float4.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float4 Ease(this EasingType type, float time, float4 start, float4 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
 
+        /// <summary>
+        /// Ease a float4 with the given custom easing.
+        /// </summary>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased float4.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float4 Ease(this CustomEasing type, float time, float4 start, float4 delta, float duration) => math.lerp(start, start + delta, type.GetFunction().Ease(time, 0, 1, duration));
+
+        /// <summary>
+        /// Ease a quaternion with the given easing type.
+        /// </summary>
+        /// <param name="type">The easing type.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased quaternion.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static quaternion Ease(this EasingType type, float time, quaternion start, quaternion delta, float duration) => math.slerp(start, math.mul(delta, start), type.GetFunction().Ease(time, 0, 1, duration));
 
         /// <summary>
-        /// Gets an easing function for the specified type
+        /// Ease a quaternion with the given custom easing.
         /// </summary>
-        /// <param name="easing">The easing type to use</param>
-        /// <returns>Returns the easing function for the specified type</returns>
+        /// <param name="type">The custom easing asset.</param>
+        /// <param name="time">The easing time.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="delta">The delta value.</param>
+        /// <param name="duration">The duration.</param>
+        /// <returns>Returns an eased quaternion.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static quaternion Ease(this CustomEasing type, float time, quaternion start, quaternion delta, float duration) => math.slerp(start, math.mul(delta, start), type.GetFunction().Ease(time, 0, 1, duration));
+
+        /// <summary>
+        /// Gets an easing function for the specified type.
+        /// </summary>
+        /// <param name="easing">The easing type to use.</param>
+        /// <returns>Returns the easing function for the specified type.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Function GetFunction(this EasingType easing) => easing switch {
             EasingType.Linear => EasingFunctions.LinearEase,
@@ -167,10 +286,18 @@ namespace Easings {
         };
 
         /// <summary>
-        /// Get the inverse of the specified easing type
+        /// Gets an easing function for the specified custom easing.
         /// </summary>
-        /// <param name="easing">The easing type to use</param>
-        /// <returns>Returns the inverse of the specified type</returns>
+        /// <param name="easing">The custom easing asset to use.</param>
+        /// <returns>Returns the easing function for the specified custom easing.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Function GetFunction(this CustomEasing easing) => easing.function;
+
+        /// <summary>
+        /// Get the inverse of the specified easing type.
+        /// </summary>
+        /// <param name="easing">The easing type to use.</param>
+        /// <returns>Returns the inverse of the specified type.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static EasingType Inverse(this EasingType easing) => easing switch {
             EasingType.Linear => EasingType.Linear,

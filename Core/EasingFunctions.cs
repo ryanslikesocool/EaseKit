@@ -1,7 +1,7 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
-using Unity.Mathematics;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 
 namespace Easings {
     public static class EasingFunctions {

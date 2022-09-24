@@ -4,18 +4,6 @@ using Unity.Mathematics;
 
 namespace Easings.Interpolator {
     public struct EaseData {
-        private EasingType easingType;
-        /// <summary>
-        /// The easing type that the interpolator will use.
-        /// </summary>
-        public EasingType EasingType {
-            get => easingType;
-            set {
-                easingType = value;
-                function = easingType.GetFunction();
-            }
-        }
-
         private Function function;
 
         private float time;
@@ -67,15 +55,14 @@ namespace Easings.Interpolator {
         /// </summary>
         public bool IsDone => Time == Duration;
 
-        internal EaseData(float startValue, float endValue, float duration, EasingType easing = EasingType.Linear) {
+        internal EaseData(float startValue, float endValue, float duration, Function easing) {
             Initial = startValue;
             Target = endValue;
             ValueDelta = 0;
             Duration = duration;
             Value = duration == 0 ? endValue : startValue;
             time = 0f;
-            easingType = easing;
-            function = easing.GetFunction();
+            function = easing;
         }
 
         internal void Update(float deltaTime) {
