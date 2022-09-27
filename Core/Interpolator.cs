@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Easings.Interpolator {
+namespace Easings {
     public static class Interpolator {
         /// <summary>
         /// Start an easing animation starting with [startValue] and ending at [endValue] over [duration] (with optionally [unscaledTime]) interpolated using the [easing] function, calling [onUpdate] every frame, and optional [onDone] when complete.

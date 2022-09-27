@@ -2,7 +2,7 @@
 
 using Unity.Mathematics;
 
-namespace Easings.Interpolator {
+namespace Easings {
     public struct EaseData {
         private Function function;
 

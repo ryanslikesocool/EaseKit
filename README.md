@@ -3,20 +3,18 @@
 
 ## Requirements and Installation
 **Requirements**\
+The [Timer](https://github.com/ryanslikesocool/Timer) package is a required dependency.\
 This package requires the `Unity.Mathematics` library.  It can be installed manually via the Package Manager, or added automatically when installing via the Package Manager.\
-The Entities folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).\
-The Interpolator folder requres the [Timer package](https://github.com/ryanslikesocool/Timer).
+The Entities folder requires the DOTS packages.  These are hidden from the Package Manager but [can still be installed](https://forum.unity.com/threads/visibility-changes-for-preview-packages-in-2020-1.910880/).
 
-**RECOMMENDED INSTALLATION**\
-Add via the Unity Package Manager\
-"Add package from git URL..."\
-`https://github.com/ryanslikesocool/Easings.git`\
-Add
+**Recommended Installation** (Unity Package Manager)\
+- "Add package from git URL..."
+- `https://github.com/ryanslikesocool/Easings.git`
 
-**Not-so Recommended Installation**\
-Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)\
-Open with the desired Unity project\
-Import into the Plugins folder
+**Alternate Installation**\
+- Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)
+- Open with the desired Unity project
+- Import into the Plugins folder
 
 ## Core
 Just the functions.  State and updating is handled by the developer (you!).\
@@ -62,7 +60,7 @@ Interpolator requires the [Timer package](https://github.com/ryanslikesocool/Tim
 Be sure to add `DWL_TIMER` to your scripting define symbols.
 
 ### Usage
-`using Easings.Interpolator;`\
+`using Easings;`\
 `Interpolator.Ease` has multiple overloads, so make sure to choose the right one.\
 All `Interpolator.Ease` methods return a `Coroutine`, which can be stopped by calling `Timer.Stop(coroutine)` from the Timer package.
 
@@ -126,7 +124,7 @@ protected override void OnUpdate()
 
 ## Notes
 - Unused folders can be removed.  For example, if your project does not use DOTS, the Entities folder can be deleted.
-- Required methods and objects are stored in the Core folder.  Both Interpolator and Easings require them.
+- Required methods and objects are stored in the Core folder.
 
 ## Credits
 [Robert Penner's Easing Functions](http://robertpenner.com/easing/)\
