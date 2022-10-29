@@ -4,13 +4,13 @@
 ## Requirements and Installation
 **Requirements**\
 The [Timer](https://github.com/ryanslikesocool/Timer) package is a required dependency.\
-This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.\
+This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.
 
-**Recommended Installation** (Unity Package Manager)\
+**Recommended Installation** (Unity Package Manager)
 - "Add package from git URL..."
 - `https://github.com/ryanslikesocool/Easings.git`
 
-**Alternate Installation**\
+**Alternate Installation**
 - Get the latest [release](https://github.com/ryanslikesocool/Easings/releases)
 - Open with the desired Unity project
 - Import into the Plugins folder
