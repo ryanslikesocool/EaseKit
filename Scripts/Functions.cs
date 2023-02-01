@@ -1,55 +1,74 @@
 // Developed With Love by Ryan Boyer http://ryanjboyer.com <3
 
 using System.Runtime.CompilerServices;
+#if UNITY_MATHEMATICS
 using Unity.Mathematics;
+#endif
 
-namespace Easings {
-    public static class EasingFunctions {
-        private const float TAU = math.PI * 2;
+namespace EaseKit {
+    public static class Functions {
+        private delegate float f_f_delegate(float v);
+        private delegate float ff_f_delegate(float v, float n);
+#if UNITY_MATHEMATICS
+        private const float PI = math.PI;
+        private const float TAU = PI * 2;
+        private static readonly f_f_delegate sqrt = math.sqrt;
+        private static readonly ff_f_delegate pow = math.pow;
+        private static readonly f_f_delegate sin = math.sin;
+        private static readonly f_f_delegate cos = math.cos;
 
-        public delegate float EasingFunction(float time, float start, float delta, float duration);
+#else
+        private const float PI = Mathf.Pi;
+        private const float TAU = PI * 2;
+        private static readonly f_f_delegate sqrt = Mathf.Sqrt;
+        private static readonly ff_f_delegate pow = Mathf.Pow;
+        private static readonly f_f_delegate sin = Mathf.Sin;
+        private static readonly f_f_delegate cos = Mathf.Cos;
+#endif
 
-        public static readonly Function LinearEase = new Function(new EasingFunction(Linear.Ease));
-        public static readonly Function ExpoOut = new Function(new EasingFunction(Expo.EaseOut));
-        public static readonly Function ExpoIn = new Function(new EasingFunction(Expo.EaseIn));
-        public static readonly Function ExpoInOut = new Function(new EasingFunction(Expo.EaseInOut));
-        public static readonly Function ExpoOutIn = new Function(new EasingFunction(Expo.EaseOutIn));
-        public static readonly Function CircOut = new Function(new EasingFunction(Circ.EaseOut));
-        public static readonly Function CircIn = new Function(new EasingFunction(Circ.EaseIn));
-        public static readonly Function CircInOut = new Function(new EasingFunction(Circ.EaseInOut));
-        public static readonly Function CircOutIn = new Function(new EasingFunction(Circ.EaseOutIn));
-        public static readonly Function QuadOut = new Function(new EasingFunction(Quad.EaseOut));
-        public static readonly Function QuadIn = new Function(new EasingFunction(Quad.EaseIn));
-        public static readonly Function QuadInOut = new Function(new EasingFunction(Quad.EaseInOut));
-        public static readonly Function QuadOutIn = new Function(new EasingFunction(Quad.EaseOutIn));
-        public static readonly Function SineOut = new Function(new EasingFunction(Sine.EaseOut));
-        public static readonly Function SineIn = new Function(new EasingFunction(Sine.EaseIn));
-        public static readonly Function SineInOut = new Function(new EasingFunction(Sine.EaseInOut));
-        public static readonly Function SineOutIn = new Function(new EasingFunction(Sine.EaseOutIn));
-        public static readonly Function CubicOut = new Function(new EasingFunction(Cubic.EaseOut));
-        public static readonly Function CubicIn = new Function(new EasingFunction(Cubic.EaseIn));
-        public static readonly Function CubicInOut = new Function(new EasingFunction(Cubic.EaseInOut));
-        public static readonly Function CubicOutIn = new Function(new EasingFunction(Cubic.EaseOutIn));
-        public static readonly Function QuartOut = new Function(new EasingFunction(Quart.EaseOut));
-        public static readonly Function QuartIn = new Function(new EasingFunction(Quart.EaseIn));
-        public static readonly Function QuartInOut = new Function(new EasingFunction(Quart.EaseInOut));
-        public static readonly Function QuartOutIn = new Function(new EasingFunction(Quart.EaseOutIn));
-        public static readonly Function QuintOut = new Function(new EasingFunction(Quint.EaseOut));
-        public static readonly Function QuintIn = new Function(new EasingFunction(Quint.EaseIn));
-        public static readonly Function QuintInOut = new Function(new EasingFunction(Quint.EaseInOut));
-        public static readonly Function QuintOutIn = new Function(new EasingFunction(Quint.EaseOutIn));
-        public static readonly Function ElasticOut = new Function(new EasingFunction(Elastic.EaseOut));
-        public static readonly Function ElasticIn = new Function(new EasingFunction(Elastic.EaseIn));
-        public static readonly Function ElasticInOut = new Function(new EasingFunction(Elastic.EaseInOut));
-        public static readonly Function ElasticOutIn = new Function(new EasingFunction(Elastic.EaseOutIn));
-        public static readonly Function BounceOut = new Function(new EasingFunction(Bounce.EaseOut));
-        public static readonly Function BounceIn = new Function(new EasingFunction(Bounce.EaseIn));
-        public static readonly Function BounceInOut = new Function(new EasingFunction(Bounce.EaseInOut));
-        public static readonly Function BounceOutIn = new Function(new EasingFunction(Bounce.EaseOutIn));
-        public static readonly Function BackOut = new Function(new EasingFunction(Back.EaseOut));
-        public static readonly Function BackIn = new Function(new EasingFunction(Back.EaseIn));
-        public static readonly Function BackInOut = new Function(new EasingFunction(Back.EaseInOut));
-        public static readonly Function BackOutIn = new Function(new EasingFunction(Back.EaseOutIn));
+        public delegate float Function(float time, float start, float delta, float duration);
+
+        public static readonly Function LinearEase = Linear.Ease;
+        public static readonly Function ExpoOut = Expo.EaseOut;
+        public static readonly Function ExpoIn = Expo.EaseIn;
+        public static readonly Function ExpoInOut = Expo.EaseInOut;
+        public static readonly Function ExpoOutIn = Expo.EaseOutIn;
+        public static readonly Function CircOut = Circ.EaseOut;
+        public static readonly Function CircIn = Circ.EaseIn;
+        public static readonly Function CircInOut = Circ.EaseInOut;
+        public static readonly Function CircOutIn = Circ.EaseOutIn;
+        public static readonly Function QuadOut = Quad.EaseOut;
+        public static readonly Function QuadIn = Quad.EaseIn;
+        public static readonly Function QuadInOut = Quad.EaseInOut;
+        public static readonly Function QuadOutIn = Quad.EaseOutIn;
+        public static readonly Function SineOut = Sine.EaseOut;
+        public static readonly Function SineIn = Sine.EaseIn;
+        public static readonly Function SineInOut = Sine.EaseInOut;
+        public static readonly Function SineOutIn = Sine.EaseOutIn;
+        public static readonly Function CubicOut = Cubic.EaseOut;
+        public static readonly Function CubicIn = Cubic.EaseIn;
+        public static readonly Function CubicInOut = Cubic.EaseInOut;
+        public static readonly Function CubicOutIn = Cubic.EaseOutIn;
+        public static readonly Function QuartOut = Quart.EaseOut;
+        public static readonly Function QuartIn = Quart.EaseIn;
+        public static readonly Function QuartInOut = Quart.EaseInOut;
+        public static readonly Function QuartOutIn = Quart.EaseOutIn;
+        public static readonly Function QuintOut = Quint.EaseOut;
+        public static readonly Function QuintIn = Quint.EaseIn;
+        public static readonly Function QuintInOut = Quint.EaseInOut;
+        public static readonly Function QuintOutIn = Quint.EaseOutIn;
+        public static readonly Function ElasticOut = Elastic.EaseOut;
+        public static readonly Function ElasticIn = Elastic.EaseIn;
+        public static readonly Function ElasticInOut = Elastic.EaseInOut;
+        public static readonly Function ElasticOutIn = Elastic.EaseOutIn;
+        public static readonly Function BounceOut = Bounce.EaseOut;
+        public static readonly Function BounceIn = Bounce.EaseIn;
+        public static readonly Function BounceInOut = Bounce.EaseInOut;
+        public static readonly Function BounceOutIn = Bounce.EaseOutIn;
+        public static readonly Function BackOut = Back.EaseOut;
+        public static readonly Function BackIn = Back.EaseIn;
+        public static readonly Function BackInOut = Back.EaseInOut;
+        public static readonly Function BackOutIn = Back.EaseOutIn;
 
         public static class Linear {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -58,10 +77,10 @@ namespace Easings {
 
         public static class Expo {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOut(float t, float b, float c, float d) => (t == d) ? b + c : c * (-math.pow(2, -10 * t / d) + 1) + b;
+            public static float EaseOut(float t, float b, float c, float d) => (t == d) ? b + c : c * (-pow(2, -10 * t / d) + 1) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseIn(float t, float b, float c, float d) => (t == 0) ? b : c * math.pow(2, 10 * (t / d - 1)) + b;
+            public static float EaseIn(float t, float b, float c, float d) => (t == 0) ? b : c * pow(2, 10 * (t / d - 1)) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d) {
@@ -72,9 +91,9 @@ namespace Easings {
                     return b + c;
                 }
                 if ((t /= d * 0.5f) < 1) {
-                    return c * 0.5f * math.pow(2, 10 * (t - 1)) + b;
+                    return c * 0.5f * pow(2, 10 * (t - 1)) + b;
                 }
-                return c * 0.5f * (-math.pow(2, -10 * --t) + 2) + b;
+                return c * 0.5f * (-pow(2, -10 * --t) + 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -88,17 +107,17 @@ namespace Easings {
 
         public static class Circ {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOut(float t, float b, float c, float d) => c * math.sqrt(1 - (t = t / d - 1) * t) + b;
+            public static float EaseOut(float t, float b, float c, float d) => c * sqrt(1 - (t = t / d - 1) * t) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseIn(float t, float b, float c, float d) => -c * (math.sqrt(1 - (t /= d) * t) - 1) + b;
+            public static float EaseIn(float t, float b, float c, float d) => -c * (sqrt(1 - (t /= d) * t) - 1) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d) {
                 if ((t /= d * 0.5f) < 1) {
-                    return -c * 0.5f * (math.sqrt(1 - t * t) - 1) + b;
+                    return -c * 0.5f * (sqrt(1 - t * t) - 1) + b;
                 }
-                return c * 0.5f * (math.sqrt(1 - (t -= 2) * t) + 1) + b;
+                return c * 0.5f * (sqrt(1 - (t -= 2) * t) + 1) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -136,17 +155,17 @@ namespace Easings {
 
         public static class Sine {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseOut(float t, float b, float c, float d) => c * math.sin(t / d * (math.PI * 0.5f)) + b;
+            public static float EaseOut(float t, float b, float c, float d) => c * sin(t / d * (PI * 0.5f)) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseIn(float t, float b, float c, float d) => -c * math.cos(t / d * (math.PI * 0.5f)) + c + b;
+            public static float EaseIn(float t, float b, float c, float d) => -c * cos(t / d * (PI * 0.5f)) + c + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseInOut(float t, float b, float c, float d) {
                 if ((t /= d * 0.5f) < 1) {
-                    return c * 0.5f * (math.sin(math.PI * t * 0.5f)) + b;
+                    return c * 0.5f * (sin(PI * t * 0.5f)) + b;
                 }
-                return -c * 0.5f * (math.cos(math.PI * --t * 0.5f) - 2) + b;
+                return -c * 0.5f * (cos(PI * --t * 0.5f) - 2) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -238,7 +257,7 @@ namespace Easings {
                 }
                 float p = d * 0.3f;
                 float s = p * 0.5f;
-                return (c * math.pow(2, -10 * t) * math.sin((t * d - s) * TAU / p) + c + b);
+                return (c * pow(2, -10 * t) * sin((t * d - s) * TAU / p) + c + b);
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -248,7 +267,7 @@ namespace Easings {
                 }
                 float p = d * 0.3f;
                 float s = p * 0.5f;
-                return -(c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * TAU / p)) + b;
+                return -(c * pow(2, 10 * (t -= 1)) * sin((t * d - s) * TAU / p)) + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -259,9 +278,9 @@ namespace Easings {
                 float p = d * (.3f * 1.5f);
                 float s = p * 0.5f;
                 if (t < 1) {
-                    return -0.5f * (c * math.pow(2, 10 * (t -= 1)) * math.sin((t * d - s) * TAU / p)) + b;
+                    return -0.5f * (c * pow(2, 10 * (t -= 1)) * sin((t * d - s) * TAU / p)) + b;
                 }
-                return c * math.pow(2, -10 * (t -= 1)) * math.sin((t * d - s) * TAU / p) * 0.5f + c + b;
+                return c * pow(2, -10 * (t -= 1)) * sin((t * d - s) * TAU / p) * 0.5f + c + b;
             }
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]

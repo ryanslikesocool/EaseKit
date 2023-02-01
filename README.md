@@ -3,8 +3,9 @@
 
 ## Requirements and Installation
 **Requirements**\
-The [Timer](https://github.com/ryanslikesocool/Timer) package is a required dependency.\
-This package requires the `Unity.Mathematics` library.  It can be installed via the Package Manager.
+- Unity 2021.3 or greater
+- Unity.Mathematics package (optional)
+- ClockKit package (optional)
 
 **Recommended Installation** (Unity Package Manager)
 - "Add package from git URL..."

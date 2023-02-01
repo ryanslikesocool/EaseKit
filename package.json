@@ -1,14 +1,10 @@
 {
-  "name": "com.developedwithlove.easings",
-  "displayName": "Easings",
-  "version": "2.4.0",
+  "name": "com.developedwithlove.easekit",
+  "displayName": "EaseKit",
+  "version": "3.0.0",
   "unity": "2021.3",
   "description": "40 non-linear easing functions and extensions to make transitions super smooth, plus custom user-defined functions.",
   "documentationUrl": "https://github.com/ryanslikesocool/Easings",
-  "dependencies": {
-    "com.unity.mathematics": "1.2.6",
-    "com.developedwithlove.timer": "1.5.0"
-  },
   "author": {
     "name": "Ryan Boyer",
     "email": "ryanjboyer@gmail.com",
