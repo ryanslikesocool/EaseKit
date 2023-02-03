@@ -28,13 +28,14 @@ using EaseKit;
 
 ### With Other Packages
 EaseKit has optional support for 2 other packages.
-If [Unity.Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@1.2/manual/index.html) (1.2.4) is included in the project, interpolators for types provided by the library are enabled.\
+
+If [Unity.Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@latest/manual/index.html) (1.2.4 or later) is included in the project, interpolators for types provided by the library are enabled.\
 Supported `Unity.Mathematics` interpolator types include:
 - All `float` vectors
 - `double` and all `double` vectors
 - `quaternion`
 
-If [ClockKit](https://github.com/ryanslikesocool/ClockKit) (2.0.0 or later) is included in the project, convenience functions to start animations with easings and interpolators are enabled.
+If [ClockKit](https://github.com/ryanslikesocool/ClockKit) (2.0.0 or later) is included in the project, convenience functions to start timers with easings and interpolators are enabled.
 
 ## Acknowledgements
 [Robert Penner's Easing Functions](http://robertpenner.com/easing/)\

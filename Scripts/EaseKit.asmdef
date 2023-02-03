@@ -3,7 +3,6 @@
     "rootNamespace": "EaseKit",
     "references": [
         "GUID:d8b63aba1907145bea998dd612889d6b",
-        "GUID:12278bc2331c74f02b243ef9e6c17c40",
         "GUID:d9366e63b425d409b97e07a533ec79d9"
     ],
     "includePlatforms": [],
@@ -18,11 +17,6 @@
             "name": "com.unity.mathematics",
             "expression": "1.2.4",
             "define": "UNITY_MATHEMATICS"
-        },
-        {
-            "name": "com.developedwithlove.clockkit",
-            "expression": "2.0.0",
-            "define": "CLOCKKIT_2"
         }
     ],
     "noEngineReferences": false
