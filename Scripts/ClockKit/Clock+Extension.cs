@@ -32,16 +32,16 @@ namespace EaseKit {
             => clock.Ease(Queue.Default, UUID.Create(), interpolator, easing, duration, start, end, onUpdate, onComplete);
 
         public static UUID Ease<Value>(this Clock clock, Queue queue, in UUID key, Easing easing, float duration, Value start, Value end, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.UpdateCallback onUpdate, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.CompletionCallback onComplete = null)
-            => clock.Ease(queue, key, start.CreateInterpolator(), easing, duration, start, end, onUpdate, onComplete);
+            => clock.Ease(queue, key, EasingUtility.CreateInterpolator<Value>(), easing, duration, start, end, onUpdate, onComplete);
 
         public static UUID Ease<Value>(this Clock clock, in UUID key, Easing easing, float duration, Value start, Value end, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.UpdateCallback onUpdate, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.CompletionCallback onComplete = null)
-            => clock.Ease(Queue.Default, key, start.CreateInterpolator(), easing, duration, start, end, onUpdate, onComplete);
+            => clock.Ease(Queue.Default, key, EasingUtility.CreateInterpolator<Value>(), easing, duration, start, end, onUpdate, onComplete);
 
         public static UUID Ease<Value>(this Clock clock, Queue queue, Easing easing, float duration, Value start, Value end, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.UpdateCallback onUpdate, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.CompletionCallback onComplete = null)
-            => clock.Ease(queue, UUID.Create(), start.CreateInterpolator(), easing, duration, start, end, onUpdate, onComplete);
+            => clock.Ease(queue, UUID.Create(), EasingUtility.CreateInterpolator<Value>(), easing, duration, start, end, onUpdate, onComplete);
 
         public static UUID Ease<Value>(this Clock clock, Easing easing, float duration, Value start, Value end, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.UpdateCallback onUpdate, AnimationUpdatingTimer<Value, IFixedDurationAnimation<Value>>.CompletionCallback onComplete = null)
-            => clock.Ease(Queue.Default, UUID.Create(), start.CreateInterpolator(), easing, duration, start, end, onUpdate, onComplete);
+            => clock.Ease(Queue.Default, UUID.Create(), EasingUtility.CreateInterpolator<Value>(), easing, duration, start, end, onUpdate, onComplete);
     }
 }
 #endif

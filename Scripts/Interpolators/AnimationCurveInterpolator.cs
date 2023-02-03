@@ -1,23 +1,18 @@
 using UnityEngine;
-#if UNITY_MATHEMATICS
-using Unity.Mathematics;
-#endif
 
 namespace EaseKit {
-    public struct AnimationCurveInterpolator : IInterpolator<float> {
+    public struct AnimationCurveInterpolator<Value> : IInterpolator<Value> {
         public readonly AnimationCurve animationCurve;
+        public readonly IInterpolator<Value> subinterpolator;
 
-        public AnimationCurveInterpolator(AnimationCurve animationCurve) {
+        public AnimationCurveInterpolator(AnimationCurve animationCurve, IInterpolator<Value> subinterpolator) {
             this.animationCurve = animationCurve;
+            this.subinterpolator = subinterpolator;
         }
 
-        public float Evaluate(float start, float end, float percent) {
+        public Value Evaluate(Value start, Value end, float percent) {
             float animationCurveValue = animationCurve.Evaluate(percent);
-#if UNITY_MATHEMATICS
-            return math.lerp(start, end, animationCurveValue);
-#else
-            return Mathf.Lerp(start, end, animationCurveValue);
-#endif
+            return subinterpolator.Evaluate(start, end, animationCurveValue);
         }
     }
 }
