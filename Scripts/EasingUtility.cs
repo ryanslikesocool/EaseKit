@@ -10,6 +10,23 @@ namespace EaseKit {
     public static class EasingUtility {
         public delegate float Function(float time, float start, float delta, float duration);
 
+        public static readonly floatInterpolator floatInterpolator = new floatInterpolator();
+        public static readonly Vector2Interpolator Vector2Interpolator = new Vector2Interpolator();
+        public static readonly Vector3Interpolator Vector3Interpolator = new Vector3Interpolator();
+        public static readonly Vector4Interpolator Vector4Interpolator = new Vector4Interpolator();
+        public static readonly QuaternionInterpolator QuaternionInterpolator = new QuaternionInterpolator();
+        public static readonly ColorInterpolator ColorInterpolator = new ColorInterpolator();
+#if UNITY_MATHEMATICS
+        public static readonly float2Interpolator float2Interpolator = new float2Interpolator();
+        public static readonly float3Interpolator float3Interpolator = new float3Interpolator();
+        public static readonly float4Interpolator float4Interpolator = new float4Interpolator();
+        public static readonly quaternionInterpolator quaternionInterpolator = new quaternionInterpolator();
+        public static readonly doubleInterpolator doubleInterpolator = new doubleInterpolator();
+        public static readonly double2Interpolator double2Interpolator = new double2Interpolator();
+        public static readonly double3Interpolator double3Interpolator = new double3Interpolator();
+        public static readonly double4Interpolator double4Interpolator = new double4Interpolator();
+#endif
+
         // MARK: - Functions
 
         // MARK: Base
@@ -221,22 +238,22 @@ namespace EaseKit {
         /// <returns>The interpolator for the provided type.  This struct can be reused.</returns>
         public static IInterpolator<Value> CreateInterpolator<Value>() {
             switch ((Value)default) {
-                case float _: return new floatInterpolator() as IInterpolator<Value>;
+                case float _: return floatInterpolator as IInterpolator<Value>;
 #if UNITY_MATHEMATICS
-                case float2 _: return new float2Interpolator() as IInterpolator<Value>;
-                case float3 _: return new float3Interpolator() as IInterpolator<Value>;
-                case float4 _: return new float4Interpolator() as IInterpolator<Value>;
-                case double _: return new doubleInterpolator() as IInterpolator<Value>;
-                case double2 _: return new double2Interpolator() as IInterpolator<Value>;
-                case double3 _: return new double3Interpolator() as IInterpolator<Value>;
-                case double4 _: return new double4Interpolator() as IInterpolator<Value>;
-                case quaternion _: return new quaternionInterpolator() as IInterpolator<Value>;
+                case float2 _: return float2Interpolator as IInterpolator<Value>;
+                case float3 _: return float3Interpolator as IInterpolator<Value>;
+                case float4 _: return float4Interpolator as IInterpolator<Value>;
+                case double _: return doubleInterpolator as IInterpolator<Value>;
+                case double2 _: return double2Interpolator as IInterpolator<Value>;
+                case double3 _: return double3Interpolator as IInterpolator<Value>;
+                case double4 _: return double4Interpolator as IInterpolator<Value>;
+                case quaternion _: return quaternionInterpolator as IInterpolator<Value>;
 #endif
-                case Vector2 _: return new Vector2Interpolator() as IInterpolator<Value>;
-                case Vector3 _: return new Vector3Interpolator() as IInterpolator<Value>;
-                case Vector4 _: return new Vector4Interpolator() as IInterpolator<Value>;
-                case Quaternion _: return new QuaternionInterpolator() as IInterpolator<Value>;
-                case Color _: return new ColorInterpolator() as IInterpolator<Value>;
+                case Vector2 _: return Vector2Interpolator as IInterpolator<Value>;
+                case Vector3 _: return Vector3Interpolator as IInterpolator<Value>;
+                case Vector4 _: return Vector4Interpolator as IInterpolator<Value>;
+                case Quaternion _: return QuaternionInterpolator as IInterpolator<Value>;
+                case Color _: return ColorInterpolator as IInterpolator<Value>;
                 default: throw new System.Exception($"{typeof(Value)} does not have an interpolator implementation.");
             }
         }
