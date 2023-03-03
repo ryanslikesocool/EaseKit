@@ -5,6 +5,9 @@ using UnityEngine;
 #if UNITY_MATHEMATICS
 using Unity.Mathematics;
 #endif
+#if FOUNDATION_PACKAGE
+using Foundation;
+#endif
 
 namespace EaseKit {
     public static class EasingUtility {
@@ -25,6 +28,9 @@ namespace EaseKit {
         public static readonly double2Interpolator double2Interpolator = new double2Interpolator();
         public static readonly double3Interpolator double3Interpolator = new double3Interpolator();
         public static readonly double4Interpolator double4Interpolator = new double4Interpolator();
+#endif
+#if FOUNDATION_PACKAGE
+        public static readonly ClosedRangeFloatInterpolator closedRangeFloatInterpolator = new ClosedRangeFloatInterpolator();
 #endif
 
         // MARK: - Functions
@@ -239,6 +245,11 @@ namespace EaseKit {
         public static IInterpolator<Value> CreateInterpolator<Value>() {
             switch ((Value)default) {
                 case float _: return floatInterpolator as IInterpolator<Value>;
+                case Vector2 _: return Vector2Interpolator as IInterpolator<Value>;
+                case Vector3 _: return Vector3Interpolator as IInterpolator<Value>;
+                case Vector4 _: return Vector4Interpolator as IInterpolator<Value>;
+                case Quaternion _: return QuaternionInterpolator as IInterpolator<Value>;
+                case Color _: return ColorInterpolator as IInterpolator<Value>;
 #if UNITY_MATHEMATICS
                 case float2 _: return float2Interpolator as IInterpolator<Value>;
                 case float3 _: return float3Interpolator as IInterpolator<Value>;
@@ -249,11 +260,9 @@ namespace EaseKit {
                 case double4 _: return double4Interpolator as IInterpolator<Value>;
                 case quaternion _: return quaternionInterpolator as IInterpolator<Value>;
 #endif
-                case Vector2 _: return Vector2Interpolator as IInterpolator<Value>;
-                case Vector3 _: return Vector3Interpolator as IInterpolator<Value>;
-                case Vector4 _: return Vector4Interpolator as IInterpolator<Value>;
-                case Quaternion _: return QuaternionInterpolator as IInterpolator<Value>;
-                case Color _: return ColorInterpolator as IInterpolator<Value>;
+#if FOUNDATION_PACKAGE
+                case ClosedRange<float> _: return closedRangeFloatInterpolator as IInterpolator<Value>;
+#endif
                 default: throw new System.Exception($"{typeof(Value)} does not have an interpolator implementation.");
             }
         }
