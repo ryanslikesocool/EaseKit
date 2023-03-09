@@ -531,12 +531,8 @@ namespace EaseKit {
             public static float EaseIn(float t, float b, float c, float d) => -c * cos(t / d * (PI * 0.5f)) + c + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public static float EaseInOut(float t, float b, float c, float d) {
-                if ((t /= d * 0.5f) < 1) {
-                    return EaseIn(t * 2, b, c * 0.5f, d);
-                }
-                return EaseOut((t * 2) - d, b + c * 0.5f, c * 0.5f, d);
-            }
+            public static float EaseInOut(float t, float b, float c, float d)
+                => c * 0.5f * (1 - cos(t / d * PI)) + b;
 
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             public static float EaseOutIn(float t, float b, float c, float d) {
