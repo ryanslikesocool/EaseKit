@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace EaseKit {
-    public struct AnimationCurveInterpolator<Value> : IInterpolator<Value> {
+    public readonly struct AnimationCurveInterpolator<Value> : IInterpolator<Value> {
         public readonly AnimationCurve animationCurve;
         public readonly IInterpolator<Value> subinterpolator;
 
