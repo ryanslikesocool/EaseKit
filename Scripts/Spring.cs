@@ -1,6 +1,9 @@
 using System;
 
 namespace EaseKit {
+    /// <summary>
+    /// The description of a spring.
+    /// </summary>
     [Serializable]
     public struct Spring {
         public float stiffness; // The spring stiffness coefficient.
@@ -43,6 +46,13 @@ Spring(
 )
             ";
 
+        /// <summary>
+        /// A <see cref="Spring"/> solver.
+        /// </summary>
+        /// <remarks>
+        /// Solvers should be cached the first time they are needed, since they can be expensive to create every frame.
+        /// <remarks/>
+        /// <seealso cref="Spring"/>
         // from https://github.com/skevy/wobble/blob/develop/src/index.ts
         public readonly struct Solver {
             private readonly Spring configuration;
@@ -52,6 +62,14 @@ Spring(
             private readonly float omega1; // exponential decay
             private readonly float omega2; // frequency of damped oscillation
 
+            /// <summary>
+            /// Create a Solver from a <see cref="Spring"/> description.
+            /// </summary>
+            /// <remarks>
+            /// The Solver should be cached for use in animation, since it can be expensive to create every frame.
+            /// </remarks>
+            /// <param name="configuration">The spring description.</param>
+            /// <seealso cref="Spring"/>
             public Solver(in Spring configuration) {
                 this.configuration = configuration;
 
@@ -100,6 +118,12 @@ Spring(
                 this.omega2 = omega2;
             }
 
+            /// <summary>
+            /// Evaluate the spring from a local time and existing spring state.
+            /// </summary>
+            /// <param name="time">The time since the spring was started.</param>
+            /// <param name="state">The spring state.</param>
+            /// <returns>A parametric value.  This can be used as the <c>t</c> value in an unclamped interpolation function.</returns>
             public float Evaluate(float time, ref State state) {
                 if (state.IsComplete) {
                     return state.currentValue;
@@ -165,6 +189,11 @@ Spring(
                 return isNoDisplacement && isNoVelocity;
             }
 
+            /// <summary>
+            /// Create an initial spring state with an initial velocity.
+            /// </summary>
+            /// <param name="initialVelocity">The initial velocity of the spring.  This is useful for smoother movement when interrupting or continuing animations.</param>
+            /// <returns>A new spring state for use in a solver.</returns>
             public State CreateState(float initialVelocity)
                 => new State(initialVelocity);
 
@@ -186,6 +215,9 @@ Spring.Solver(
 )
                 ";
 
+            /// <summary>
+            /// A spring state.  This contains essential information about the current state of an animating spring, and should be cached for reuse with a solver.
+            /// </summary>
             public struct State {
                 public readonly float initialVelocity;
                 public float currentValue;
