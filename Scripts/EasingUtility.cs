@@ -396,6 +396,9 @@ namespace EaseKit {
         internal static readonly f_f_delegate exp = math.exp;
         internal static readonly f_f_delegate sin = math.sin;
         internal static readonly f_f_delegate cos = math.cos;
+        internal static readonly f_f_delegate sinh = math.sinh;
+        internal static readonly f_f_delegate cosh = math.cosh;
+        internal static readonly f_f_delegate abs = math.abs;
         internal static readonly fff_f_delegate lerp = math.lerp;
 #else
         internal const float PI = Mathf.Pi;
@@ -405,6 +408,9 @@ namespace EaseKit {
         internal static readonly f_f_delegate exp = Mathf.Exp;
         internal static readonly f_f_delegate sin = Mathf.Sin;
         internal static readonly f_f_delegate cos = Mathf.Cos;
+        internal static readonly f_f_delegate sinh = Mathf.Sinh;
+        internal static readonly f_f_delegate cosh = Mathf.Cosh;
+        internal static readonly f_f_delegate abs = Mathf.Abs;
         internal static readonly fff_f_delegate lerp = Mathf.Lerp;
 #endif
 
