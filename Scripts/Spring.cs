@@ -48,8 +48,6 @@ Spring(
 
         // from https://github.com/skevy/wobble/blob/develop/src/index.ts
         public struct Solver {
-            private const float MAX_DELTA_TIME = 1f / 15f; // advance 4 frames at max
-
             private const float FROM_VALUE = 0f;
             private const float TO_VALUE = 1f;
             private const float X0 = TO_VALUE - FROM_VALUE;
@@ -116,22 +114,12 @@ Spring(
             }
 
             public float Evaluate(float time, ref State state) {
-                // `_advanceSpringToTime` updates `_currentTime` and triggers the listeners.
-                // Because of these side effects, it's only safe to call when an animation
-                // is already in-progress.
                 if (IsComplete) {
                     return state.currentValue;
                 }
 
                 float deltaTime = time - state.currentTime;
 
-                // If for some reason we lost a lot of frames (e.g. process large payload or
-                // stopped in the debugger), we only advance by 4 frames worth of
-                // computation and will continue on the next frame. It's better to have it
-                // running at slower speed than jumping to the end.
-                if (deltaTime > MAX_DELTA_TIME) {
-                    deltaTime = MAX_DELTA_TIME;
-                }
                 state.springTime += deltaTime;
 
                 float oscillation = 0.0f;

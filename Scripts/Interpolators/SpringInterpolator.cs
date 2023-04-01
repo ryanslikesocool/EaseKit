@@ -14,10 +14,6 @@ namespace EaseKit {
             this.subinterpolator = subinterpolator;
             this.solver = spring.CreateSolver();
             this.state = solver.CreateState();
-
-            UnityEngine.Debug.Log(spring);
-            UnityEngine.Debug.Log(solver);
-            UnityEngine.Debug.Log(state);
         }
 
         public Value Evaluate(Value start, Value end, float time) {
