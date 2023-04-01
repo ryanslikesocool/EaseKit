@@ -4,16 +4,16 @@ namespace EaseKit {
         private readonly Spring.Solver solver;
         private Spring.Solver.State state;
 
-        public bool IsComplete => solver.IsComplete;
+        public bool IsComplete => state.IsComplete;
 
-        public SpringInterpolator(in Spring spring) : this(spring, EasingUtility.CreateInterpolator<Value>()) { }
+        public SpringInterpolator(in Spring spring, float initialVelocity = 0) : this(spring, EasingUtility.CreateInterpolator<Value>(), initialVelocity) { }
 
-        public SpringInterpolator(IInterpolator<Value> subinterpolator) : this(Spring.Default, subinterpolator) { }
+        public SpringInterpolator(in IInterpolator<Value> subinterpolator, float initialVelocity = 0) : this(Spring.Default, subinterpolator, initialVelocity) { }
 
-        public SpringInterpolator(in Spring spring, IInterpolator<Value> subinterpolator) {
+        public SpringInterpolator(in Spring spring, in IInterpolator<Value> subinterpolator, float initialVelocity = 0) {
             this.subinterpolator = subinterpolator;
             this.solver = spring.CreateSolver();
-            this.state = solver.CreateState();
+            this.state = solver.CreateState(initialVelocity);
         }
 
         public Value Evaluate(Value start, Value end, float time) {
