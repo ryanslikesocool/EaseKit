@@ -4,6 +4,11 @@ namespace EaseKit {
     /// <br/>
     /// All default interpolators inherit from this interface.
     /// </summary>
+    /// <remarks>
+    /// Interpolators are used for linearly interpolating between two values.  Most default interpolators are built around Unity's existing Lerp methods.
+    /// <br/>
+    /// Interpolators should not contain fields or perform any other logic.  They are meant to be lightweight.
+    /// </remarks>
     /// <typeparam name="Value">The value type to interpolate.</typeparam>
     public interface IInterpolator<Value> {
         /// <summary>
