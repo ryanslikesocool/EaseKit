@@ -25,7 +25,7 @@ namespace EaseKit {
             this.restDisplacementThreshold = restDisplacementThreshold;
         }
 
-        internal Solver CreateSolver()
+        public Solver CreateSolver()
             => new Solver(this);
 
         public static Spring Default => new Spring(1, 100, 10);
@@ -90,6 +90,14 @@ Spring(
                 this.omega2 = omega2;
 
                 this.zeta = zeta;
+            }
+
+            internal Solver(in Spring configuration, float zeta, float omega0, float omega1, float omega2) {
+                this.configuration = configuration;
+                this.zeta = zeta;
+                this.omega0 = omega0;
+                this.omega1 = omega1;
+                this.omega2 = omega2;
             }
 
             public float Evaluate(float time, ref State state) {
@@ -160,6 +168,14 @@ Spring(
             public State CreateState(float initialVelocity)
                 => new State(initialVelocity);
 
+            public static Solver Default => new Solver(
+                configuration: Spring.Default,
+                zeta: 0.5f,
+                omega0: 10f,
+                omega1: 8.660254f,
+                omega2: 0f
+            );
+
             public override string ToString()
                 => $@"
 Spring.Solver(
@@ -186,6 +202,8 @@ Spring.Solver(
                     currentVelocity = initialVelocity;
                     IsComplete = false;
                 }
+
+                public static State Default => new State(0);
 
                 public override string ToString()
                     => $@"
