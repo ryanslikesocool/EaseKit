@@ -18,6 +18,6 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The interpolation percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The interpolated value, between <paramref name="start"/> and <paramref name="end"/>.</returns>
-        Value Evaluate(Value start, Value end, float percent);
+        Value Evaluate(in Value start, in Value end, float percent);
     }
 }
