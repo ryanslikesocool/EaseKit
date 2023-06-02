@@ -7,7 +7,7 @@
 
 **Recommended Installation** (Unity Package Manager)
 - "Add package from git URL..."
-- `https://github.com/ryanslikesocool/Easings.git`
+- `https://github.com/ryanslikesocool/EaseKit.git`
 
 **Alternate Installation** (Not recommended)
 - Get the latest [release](https://github.com/ryanslikesocool/EaseKit/releases)
@@ -27,7 +27,7 @@ using EaseKit;
 `// TODO`
 
 ### With Other Packages
-EaseKit has optional support for 2 other packages.
+EaseKit has optional support for 3 other packages.
 
 If [Unity.Mathematics](https://docs.unity3d.com/Packages/com.unity.mathematics@latest/manual/index.html) (1.2.4 or later) is included in the project, interpolators for types provided by the library are enabled.\
 Supported `Unity.Mathematics` interpolator types include:
@@ -36,6 +36,10 @@ Supported `Unity.Mathematics` interpolator types include:
 - `quaternion`
 
 If [ClockKit](https://github.com/ryanslikesocool/ClockKit) (2.0.0 or later) is included in the project, convenience functions to start timers with easings and interpolators are enabled.
+
+If [UnityFoundation](https://github.com/ryanslikesocool/UnityFoundation) (0.1.0-pre.1 or later) is included in the project, interpolators for types provided by the library are enabled.\
+Support `UnityFoundation` interpolator types include:
+- `ClosedRange<Float>`
 
 ## Acknowledgements
 [Robert Penner's Easing Functions](http://robertpenner.com/easing/)\
