@@ -28,8 +28,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The lerped value.</returns>
-        public static Value Ease<Value>(Value start, Value end, float percent)
-            => CreateInterpolator<Value>().Ease(start, end, percent);
+        public static Value Evaluate<Value>(Value start, Value end, float percent)
+            => Evaluate(CreateInterpolator<Value>(), start, end, percent);
 
         // MARK: - Function
 
@@ -42,7 +42,7 @@ namespace EaseKit {
         /// <param name="function">The easing function to use.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased percentage.</returns>
-        public static float Ease(this Function function, float percent)
+        public static float Evaluate(this Function function, float percent)
             => function.Invoke(percent, 0, 1, 1);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static float Ease(this Function function, float start, float end, float percent)
+        public static float Evaluate(this Function function, float start, float end, float percent)
             => function.Invoke(percent, start, end - start, 1);
 
         // MARK: - Easing
@@ -74,8 +74,8 @@ namespace EaseKit {
         /// <param name="easing">The easing type to use.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased percentage.</returns>
-        public static float Ease(this Easing easing, float percent)
-            => Ease(easing.GetFunction(), percent);
+        public static float Evaluate(this Easing easing, float percent)
+            => Evaluate(easing.GetFunction(), percent);
 
         /// <summary>
         /// Get an eased value from an easing type and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -92,8 +92,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static float Ease(this Easing easing, float start, float end, float percent)
-            => Ease(easing.GetFunction(), start, end, percent);
+        public static float Evaluate(this Easing easing, float start, float end, float percent)
+            => Evaluate(easing.GetFunction(), start, end, percent);
 
         /// <summary>
         /// Get an eased value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -110,8 +110,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this Easing easing, Value start, Value end, float percent)
-            => CreateInterpolator<Value>().Ease(easing, start, end, percent);
+        public static Value Evaluate<Value>(this Easing easing, Value start, Value end, float percent)
+            => CreateInterpolator<Value>().Evaluate(easing, start, end, percent);
 
         // MARK: - Animation Curve
 
@@ -126,7 +126,7 @@ namespace EaseKit {
         /// <param name="end">The end value.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static float Ease(this AnimationCurve animationCurve, float start, float end, float percent) {
+        public static float Evaluate(this AnimationCurve animationCurve, float start, float end, float percent) {
             float easePercent = animationCurve.Evaluate(percent);
             return EasingUtility.lerp(start, end, easePercent);
         }
@@ -145,9 +145,9 @@ namespace EaseKit {
         /// <param name="end">The end value.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this AnimationCurve animationCurve, Value start, Value end, float percent) {
+        public static Value Evaluate<Value>(this AnimationCurve animationCurve, Value start, Value end, float percent) {
             float easePercent = animationCurve.Evaluate(percent);
-            return Easing.Linear.Ease(start, end, percent);
+            return Easing.Linear.Evaluate(start, end, percent);
         }
 
         // MARK: - Spring
@@ -165,7 +165,7 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The lerped value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Value start, Value end, float percent)
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Value start, Value end, float percent)
             => interpolator.Evaluate(start, end, percent);
 
         /// <summary>
@@ -181,8 +181,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Function function, Value start, Value end, float percent) {
-            float easePercent = function.Ease(percent);
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Function function, Value start, Value end, float percent) {
+            float easePercent = function.Evaluate(percent);
             return interpolator.Evaluate(start, end, easePercent);
         }
 
@@ -202,8 +202,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Easing easing, Value start, Value end, float percent)
-            => interpolator.Ease(easing.GetFunction(), start, end, percent);
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Easing easing, Value start, Value end, float percent)
+            => interpolator.Evaluate(easing.GetFunction(), start, end, percent);
 
         /// <summary>
         /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -217,7 +217,7 @@ namespace EaseKit {
         /// <param name="end">The end value.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, AnimationCurve animationCurve, Value start, Value end, float percent) {
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, AnimationCurve animationCurve, Value start, Value end, float percent) {
             float easePercent = animationCurve.Evaluate(percent);
             return interpolator.Evaluate(start, end, percent);
         }
