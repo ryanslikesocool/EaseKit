@@ -13,29 +13,55 @@ namespace EaseKit {
     public static class EasingUtility {
         public delegate float Function(float time, float start, float delta, float duration);
 
-        public static readonly floatInterpolator floatInterpolator = new floatInterpolator();
-        public static readonly Vector2Interpolator Vector2Interpolator = new Vector2Interpolator();
-        public static readonly Vector3Interpolator Vector3Interpolator = new Vector3Interpolator();
-        public static readonly Vector4Interpolator Vector4Interpolator = new Vector4Interpolator();
-        public static readonly QuaternionInterpolator QuaternionInterpolator = new QuaternionInterpolator();
-        public static readonly ColorInterpolator ColorInterpolator = new ColorInterpolator();
-#if UNITY_MATHEMATICS
-        public static readonly float2Interpolator float2Interpolator = new float2Interpolator();
-        public static readonly float3Interpolator float3Interpolator = new float3Interpolator();
-        public static readonly float4Interpolator float4Interpolator = new float4Interpolator();
-        public static readonly quaternionInterpolator quaternionInterpolator = new quaternionInterpolator();
-        public static readonly doubleInterpolator doubleInterpolator = new doubleInterpolator();
-        public static readonly double2Interpolator double2Interpolator = new double2Interpolator();
-        public static readonly double3Interpolator double3Interpolator = new double3Interpolator();
-        public static readonly double4Interpolator double4Interpolator = new double4Interpolator();
-#endif
-#if FOUNDATION_PACKAGE
-        public static readonly ClosedRangeFloatInterpolator closedRangeFloatInterpolator = new ClosedRangeFloatInterpolator();
-#endif
-
         // MARK: - Functions
 
-        // MARK: Base
+        // MARK: - Base
+
+        /// <summary>
+        /// Get a lerped value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <remarks>
+        /// This function may be costly, as the interpolator is created each time this function is called.
+        /// For repeated use, such as in an animation, the interpolator should be cached with <see cref="CreateInterpolator"/>.
+        /// </remarks>
+        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
+        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The lerped value.</returns>
+        public static Value Evaluate<Value>(Value start, Value end, float percent)
+            => Evaluate(CreateInterpolator<Value>(), start, end, percent);
+
+        // MARK: - Function
+
+        /// <summary>
+        /// Get an eased percentage from an easing function.
+        /// </summary>
+        /// <remarks>
+        /// Some easing functions may return a value outside of the range <c>[0.0 ... 1.0]</c>, such as the <c>Back</c> and <c>Elastic</c> functions.
+        /// </remarks>
+        /// <param name="function">The easing function to use.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The eased percentage.</returns>
+        public static float Evaluate(this Function function, float percent)
+            => function.Invoke(percent, 0, 1, 1);
+
+        /// <summary>
+        /// Get an eased value from an easing function and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <remarks>
+        /// Some easing functions may return a value outside of the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>,
+        /// such as the <c>Back</c> and <c>Elastic</c> functions.
+        /// </remarks>
+        /// <param name="function">The easing function to use.</param>
+        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
+        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The eased value.</returns>
+        public static float Evaluate(this Function function, float start, float end, float percent)
+            => function.Invoke(percent, start, end - start, 1);
+
+        // MARK: - Easing
+
         /// <summary>
         /// Get an eased percentage from an easing type.
         /// </summary>
@@ -48,8 +74,8 @@ namespace EaseKit {
         /// <param name="easing">The easing type to use.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased percentage.</returns>
-        public static float Ease(this Easing easing, float percent)
-            => Ease(easing.GetFunction(), percent);
+        public static float Evaluate(this Easing easing, float percent)
+            => Evaluate(easing.GetFunction(), percent);
 
         /// <summary>
         /// Get an eased value from an easing type and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -66,114 +92,8 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static float Ease(this Easing easing, float start, float end, float percent)
-            => Ease(easing.GetFunction(), start, end, percent);
-
-        /// <summary>
-        /// Get an eased percentage from an easing function.
-        /// </summary>
-        /// <remarks>
-        /// Some easing functions may return a value outside of the range <c>[0.0 ... 1.0]</c>, such as the <c>Back</c> and <c>Elastic</c> functions.
-        /// </remarks>
-        /// <param name="function">The easing function to use.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The eased percentage.</returns>
-        public static float Ease(this Function function, float percent)
-            => function.Invoke(percent, 0, 1, 1);
-
-        /// <summary>
-        /// Get an eased value from an easing function and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <remarks>
-        /// Some easing functions may return a value outside of the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>,
-        /// such as the <c>Back</c> and <c>Elastic</c> functions.
-        /// </remarks>
-        /// <param name="function">The easing function to use.</param>
-        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
-        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The eased value.</returns>
-        public static float Ease(this Function function, float start, float end, float percent)
-            => function.Invoke(percent, start, end - start, 1);
-
-        /// <summary>
-        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <remarks>
-        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
-        /// </remarks>
-        /// <param name="animationCurve">The animation curve to evaluate.</param>
-        /// <param name="start">The start value.</param>
-        /// <param name="end">The end value.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The eased value.</returns>
-        public static float Ease(this AnimationCurve animationCurve, float start, float end, float percent) {
-            float easePercent = animationCurve.Evaluate(percent);
-            return EasingUtility.lerp(start, end, easePercent);
-        }
-
-        // MARK: Interpolator
-
-        /// <summary>
-        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <remarks>
-        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
-        /// <br/>
-        /// This function may be costly, as the easing function is retrieved each time this function is called.
-        /// For repeated use, such as in an animation, the easing function should be cached with <see cref="GetFunction"/>.
-        /// </remarks>
-        /// <param name="animationCurve">The animation curve to evaluate.</param>
-        /// <param name="start">The start value.</param>
-        /// <param name="end">The end value.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this AnimationCurve animationCurve, Value start, Value end, float percent) {
-            float easePercent = animationCurve.Evaluate(percent);
-            return Easing.Linear.Ease(start, end, percent);
-        }
-
-        /// <summary>
-        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <remarks>
-        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
-        /// </remarks>
-        /// <param name="interpolator">The interpolator to use.</param>
-        /// <param name="animationCurve">The animation curve to evaluate.</param>
-        /// <param name="start">The start value.</param>
-        /// <param name="end">The end value.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, AnimationCurve animationCurve, Value start, Value end, float percent) {
-            float easePercent = animationCurve.Evaluate(percent);
-            return interpolator.Evaluate(start, end, percent);
-        }
-
-        /// <summary>
-        /// Get a lerped value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <remarks>
-        /// This function may be costly, as the interpolator is created each time this function is called.
-        /// For repeated use, such as in an animation, the interpolator should be cached with <see cref="CreateInterpolator"/>.
-        /// </remarks>
-        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
-        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The lerped value.</returns>
-        public static Value Ease<Value>(Value start, Value end, float percent)
-            => CreateInterpolator<Value>().Ease(start, end, percent);
-
-        /// <summary>
-        /// Get a lerped value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
-        /// </summary>
-        /// <param name="interpolator">The interpolator to use.</param>
-        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
-        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
-        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
-        /// <returns>The lerped value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Value start, Value end, float percent)
-            => interpolator.Evaluate(start, end, percent);
+        public static float Evaluate(this Easing easing, float start, float end, float percent)
+            => Evaluate(easing.GetFunction(), start, end, percent);
 
         /// <summary>
         /// Get an eased value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -190,8 +110,81 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this Easing easing, Value start, Value end, float percent)
-            => CreateInterpolator<Value>().Ease(easing, start, end, percent);
+        public static Value Evaluate<Value>(this Easing easing, Value start, Value end, float percent)
+            => CreateInterpolator<Value>().Evaluate(easing, start, end, percent);
+
+        // MARK: - Animation Curve
+
+        /// <summary>
+        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <remarks>
+        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
+        /// </remarks>
+        /// <param name="animationCurve">The animation curve to evaluate.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="end">The end value.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The eased value.</returns>
+        public static float Evaluate(this AnimationCurve animationCurve, float start, float end, float percent) {
+            float easePercent = animationCurve.Evaluate(percent);
+            return EasingUtility.lerp(start, end, easePercent);
+        }
+
+        /// <summary>
+        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <remarks>
+        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
+        /// <br/>
+        /// This function may be costly, as the easing function is retrieved each time this function is called.
+        /// For repeated use, such as in an animation, the easing function should be cached with <see cref="GetFunction"/>.
+        /// </remarks>
+        /// <param name="animationCurve">The animation curve to evaluate.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="end">The end value.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The eased value.</returns>
+        public static Value Evaluate<Value>(this AnimationCurve animationCurve, Value start, Value end, float percent) {
+            float easePercent = animationCurve.Evaluate(percent);
+            return Easing.Linear.Evaluate(start, end, percent);
+        }
+
+        // MARK: - Spring
+
+        // TODO
+        // or maybe not because spring solvers are expensive to create, especially once a frame
+
+        // MARK: - Interpolator
+
+        /// <summary>
+        /// Get a lerped value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <param name="interpolator">The interpolator to use.</param>
+        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
+        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The lerped value.</returns>
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Value start, Value end, float percent)
+            => interpolator.Evaluate(start, end, percent);
+
+        /// <summary>
+        /// Get an eased value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// </summary>
+        /// <remarks>
+        /// Some easing functions may return a value outside of the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>,
+        /// such as the <c>Back</c> and <c>Elastic</c> functions.
+        /// </remarks>
+        /// <param name="interpolator">The interpolator to use.</param>
+        /// <param name="function">The easing function to use.</param>
+        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
+        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
+        /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
+        /// <returns>The eased value.</returns>
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Function function, Value start, Value end, float percent) {
+            float easePercent = function.Evaluate(percent);
+            return interpolator.Evaluate(start, end, easePercent);
+        }
 
         /// <summary>
         /// Get an eased value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
@@ -209,25 +202,24 @@ namespace EaseKit {
         /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Easing easing, Value start, Value end, float percent)
-            => interpolator.Ease(easing.GetFunction(), start, end, percent);
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, Easing easing, Value start, Value end, float percent)
+            => interpolator.Evaluate(easing.GetFunction(), start, end, percent);
 
         /// <summary>
-        /// Get an eased value from the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
+        /// Get an eased value from an animation curve and the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>.
         /// </summary>
         /// <remarks>
-        /// Some easing functions may return a value outside of the range <c>[</c><paramref name="start"/><c> ... </c><paramref name="end"/><c>]</c>,
-        /// such as the <c>Back</c> and <c>Elastic</c> functions.
+        /// For best results, use an animation curve with the start point at <c>[0.0, 0.0]</c> and the end point at <c>[1.0, 1.0]</c>.
         /// </remarks>
         /// <param name="interpolator">The interpolator to use.</param>
-        /// <param name="function">The easing function to use.</param>
-        /// <param name="start">The start value, returned when <paramref name="percent"/> is <c>0.0</c>.</param>
-        /// <param name="end">The end value, returned when <paramref name="percent"/> is <c>1.0</c>.</param>
+        /// <param name="animationCurve">The animation curve to evaluate.</param>
+        /// <param name="start">The start value.</param>
+        /// <param name="end">The end value.</param>
         /// <param name="percent">The ease percent, within the range <c>[0.0 ... 1.0]</c>.</param>
         /// <returns>The eased value.</returns>
-        public static Value Ease<Value>(this IInterpolator<Value> interpolator, Function function, Value start, Value end, float percent) {
-            float easePercent = function.Ease(percent);
-            return interpolator.Evaluate(start, end, easePercent);
+        public static Value Evaluate<Value>(this IInterpolator<Value> interpolator, AnimationCurve animationCurve, Value start, Value end, float percent) {
+            float easePercent = animationCurve.Evaluate(percent);
+            return interpolator.Evaluate(start, end, percent);
         }
 
         // MARK: - Interpolator
@@ -244,24 +236,24 @@ namespace EaseKit {
         /// <returns>The interpolator for the provided type.  This struct can be reused.</returns>
         public static IInterpolator<Value> CreateInterpolator<Value>() {
             switch ((Value)default) {
-                case float _: return floatInterpolator as IInterpolator<Value>;
-                case Vector2 _: return Vector2Interpolator as IInterpolator<Value>;
-                case Vector3 _: return Vector3Interpolator as IInterpolator<Value>;
-                case Vector4 _: return Vector4Interpolator as IInterpolator<Value>;
-                case Quaternion _: return QuaternionInterpolator as IInterpolator<Value>;
-                case Color _: return ColorInterpolator as IInterpolator<Value>;
+                case float _: return floatInterpolator.shared as IInterpolator<Value>;
+                case Vector2 _: return Vector2Interpolator.shared as IInterpolator<Value>;
+                case Vector3 _: return Vector3Interpolator.shared as IInterpolator<Value>;
+                case Vector4 _: return Vector4Interpolator.shared as IInterpolator<Value>;
+                case Quaternion _: return QuaternionInterpolator.shared as IInterpolator<Value>;
+                case Color _: return ColorInterpolator.shared as IInterpolator<Value>;
 #if UNITY_MATHEMATICS
-                case float2 _: return float2Interpolator as IInterpolator<Value>;
-                case float3 _: return float3Interpolator as IInterpolator<Value>;
-                case float4 _: return float4Interpolator as IInterpolator<Value>;
-                case double _: return doubleInterpolator as IInterpolator<Value>;
-                case double2 _: return double2Interpolator as IInterpolator<Value>;
-                case double3 _: return double3Interpolator as IInterpolator<Value>;
-                case double4 _: return double4Interpolator as IInterpolator<Value>;
-                case quaternion _: return quaternionInterpolator as IInterpolator<Value>;
+                case float2 _: return float2Interpolator.shared as IInterpolator<Value>;
+                case float3 _: return float3Interpolator.shared as IInterpolator<Value>;
+                case float4 _: return float4Interpolator.shared as IInterpolator<Value>;
+                case double _: return doubleInterpolator.shared as IInterpolator<Value>;
+                case double2 _: return double2Interpolator.shared as IInterpolator<Value>;
+                case double3 _: return double3Interpolator.shared as IInterpolator<Value>;
+                case double4 _: return double4Interpolator.shared as IInterpolator<Value>;
+                case quaternion _: return quaternionInterpolator.shared as IInterpolator<Value>;
 #endif
-#if FOUNDATION_PACKAGE
-                case ClosedRange<float> _: return closedRangeFloatInterpolator as IInterpolator<Value>;
+#if FOUNDATION
+                case ClosedRange<float> _: return ClosedRangeFloatInterpolator.shared as IInterpolator<Value>;
 #endif
                 default: throw new System.Exception($"{typeof(Value)} does not have an interpolator implementation.");
             }
@@ -381,16 +373,24 @@ namespace EaseKit {
         internal const float TAU = PI * 2;
         internal static readonly f_f_delegate sqrt = math.sqrt;
         internal static readonly ff_f_delegate pow = math.pow;
+        internal static readonly f_f_delegate exp = math.exp;
         internal static readonly f_f_delegate sin = math.sin;
         internal static readonly f_f_delegate cos = math.cos;
+        internal static readonly f_f_delegate sinh = math.sinh;
+        internal static readonly f_f_delegate cosh = math.cosh;
+        internal static readonly f_f_delegate abs = math.abs;
         internal static readonly fff_f_delegate lerp = math.lerp;
 #else
         internal const float PI = Mathf.Pi;
         internal const float TAU = PI * 2;
         internal static readonly f_f_delegate sqrt = Mathf.Sqrt;
         internal static readonly ff_f_delegate pow = Mathf.Pow;
+        internal static readonly f_f_delegate exp = Mathf.Exp;
         internal static readonly f_f_delegate sin = Mathf.Sin;
         internal static readonly f_f_delegate cos = Mathf.Cos;
+        internal static readonly f_f_delegate sinh = Mathf.Sinh;
+        internal static readonly f_f_delegate cosh = Mathf.Cosh;
+        internal static readonly f_f_delegate abs = Mathf.Abs;
         internal static readonly fff_f_delegate lerp = Mathf.Lerp;
 #endif
 

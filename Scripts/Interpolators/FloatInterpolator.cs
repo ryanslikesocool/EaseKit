@@ -1,6 +1,8 @@
 namespace EaseKit {
-    public struct floatInterpolator : IInterpolator<float> {
-        public float Evaluate(float start, float end, float percent)
+    public readonly struct floatInterpolator : IInterpolator<float> {
+        public static readonly floatInterpolator shared = new floatInterpolator();
+
+        public float Evaluate(in float start, in float end, float percent)
             => EasingUtility.lerp(start, end, percent);
     }
 }
