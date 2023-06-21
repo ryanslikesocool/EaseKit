@@ -1,7 +1,7 @@
 {
   "name": "com.developedwithlove.easekit",
   "displayName": "EaseKit",
-  "version": "3.1.0-pre.1",
+  "version": "3.1.0",
   "unity": "2021.3",
   "description": "40 non-linear easing functions and extensions to make transitions super smooth.",
   "documentationUrl": "https://github.com/ryanslikesocool/Easings",
