@@ -2,7 +2,7 @@
 40 non-linear easing methods to make transitions nicer in Unity.
 
 ## Dependencies and Installation
-**Dependencies**\
+**Dependencies**
 - Unity 2021.3 or greater
 
 **Recommended Installation** (Unity Package Manager)
