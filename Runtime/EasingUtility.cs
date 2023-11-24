@@ -148,7 +148,7 @@ namespace EaseKit {
 		/// <returns>The eased value.</returns>
 		public static Value Evaluate<Value>(this AnimationCurve animationCurve, Value start, Value end, float percent) {
 			float easePercent = animationCurve.Evaluate(percent);
-			return Easing.Linear.Evaluate(start, end, percent);
+			return Easing.Linear.Evaluate(start, end, easePercent);
 		}
 
 		// MARK: - Spring
@@ -234,47 +234,35 @@ namespace EaseKit {
 		/// If a default interpolator for the provided type does not exist, this function will throw.
 		/// </remarks>
 		/// <typeparam name="Value">The value type to create an interpolator for.</typeparam>
-		/// <returns>The interpolator for the provided type.  This struct can be reused.</returns>
-		public static IInterpolator<Value> CreateInterpolator<Value>() {
-			switch ((Value)default) {
-				case float _:
-					return floatInterpolator.shared as IInterpolator<Value>;
-				case Vector2 _:
-					return Vector2Interpolator.shared as IInterpolator<Value>;
-				case Vector3 _:
-					return Vector3Interpolator.shared as IInterpolator<Value>;
-				case Vector4 _:
-					return Vector4Interpolator.shared as IInterpolator<Value>;
-				case Quaternion _:
-					return QuaternionInterpolator.shared as IInterpolator<Value>;
-				case Color _:
-					return ColorInterpolator.shared as IInterpolator<Value>;
+		/// <returns>The interpolator for the provided type.  This struct can be safely reused.</returns>
+		public static IInterpolator<Value> CreateInterpolator<Value>() => default(Value) switch {
+			int => intInterpolator.shared as IInterpolator<Value>,
+			float => floatInterpolator.shared as IInterpolator<Value>,
+			Vector2 => Vector2Interpolator.shared as IInterpolator<Value>,
+			Vector3 => Vector3Interpolator.shared as IInterpolator<Value>,
+			Vector4 => Vector4Interpolator.shared as IInterpolator<Value>,
+			Vector2Int => Vector2IntInterpolator.shared as IInterpolator<Value>,
+			Vector3Int => Vector3IntInterpolator.shared as IInterpolator<Value>,
+			Quaternion => QuaternionInterpolator.shared as IInterpolator<Value>,
+			Color => ColorInterpolator.shared as IInterpolator<Value>,
 #if UNITY_MATHEMATICS
-				case float2 _:
-					return float2Interpolator.shared as IInterpolator<Value>;
-				case float3 _:
-					return float3Interpolator.shared as IInterpolator<Value>;
-				case float4 _:
-					return float4Interpolator.shared as IInterpolator<Value>;
-				case double _:
-					return doubleInterpolator.shared as IInterpolator<Value>;
-				case double2 _:
-					return double2Interpolator.shared as IInterpolator<Value>;
-				case double3 _:
-					return double3Interpolator.shared as IInterpolator<Value>;
-				case double4 _:
-					return double4Interpolator.shared as IInterpolator<Value>;
-				case quaternion _:
-					return quaternionInterpolator.shared as IInterpolator<Value>;
+			int2 => int2Interpolator.shared as IInterpolator<Value>,
+			int3 => int3Interpolator.shared as IInterpolator<Value>,
+			int4 => int4Interpolator.shared as IInterpolator<Value>,
+			float2 => float2Interpolator.shared as IInterpolator<Value>,
+			float3 => float3Interpolator.shared as IInterpolator<Value>,
+			float4 => float4Interpolator.shared as IInterpolator<Value>,
+			double => doubleInterpolator.shared as IInterpolator<Value>,
+			double2 => double2Interpolator.shared as IInterpolator<Value>,
+			double3 => double3Interpolator.shared as IInterpolator<Value>,
+			double4 => double4Interpolator.shared as IInterpolator<Value>,
+			quaternion => quaternionInterpolator.shared as IInterpolator<Value>,
 #endif
 #if FOUNDATION_PACKAGE
-				case ClosedRange<float> _:
-					return ClosedRangeFloatInterpolator.shared as IInterpolator<Value>;
+			ClosedRange<float> => ClosedRangeFloatInterpolator.shared as IInterpolator<Value>,
 #endif
-				default:
-					throw new System.Exception($"{typeof(Value)} does not have an interpolator implementation.");
-			}
-		}
+			_ => throw new Exception($"Type {typeof(Value)} does not have an interpolator implementation.")
+		};
 
 		// MARK: - Easings
 
@@ -325,7 +313,7 @@ namespace EaseKit {
 			Easing.BackOut => EasingUtility.BackOut,
 			Easing.BackOutIn => EasingUtility.BackOutIn,
 			Easing.BackInOut => EasingUtility.BackInOut,
-			_ => EasingUtility.LinearEase
+			_ => throw new ArgumentException($"An easing function for {easing} does not exist.  Did you pass in a valid easing function?")
 		};
 
 		/// <summary>
@@ -375,7 +363,7 @@ namespace EaseKit {
 			Easing.BackOut => Easing.BackIn,
 			Easing.BackOutIn => Easing.BackInOut,
 			Easing.BackInOut => Easing.BackOutIn,
-			_ => Easing.Linear
+			_ => throw new ArgumentException($"An inverse easing function for {easing} does not exist.  Did you pass in a valid easing function?")
 		};
 
 #if FOUNDATION_PACKAGE
