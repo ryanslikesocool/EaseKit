@@ -17,10 +17,10 @@ namespace EaseKit {
 		[InspectorName("Quadratic In")] QuadraticIn,
 		[InspectorName("Quadratic In Out")] QuadraticInOut,
 		[InspectorName("Quadratic Out In")] QuadraticOutIn,
-		[InspectorName("Sine Out")] SineOut,
-		[InspectorName("Sine In")] SineIn,
-		[InspectorName("Sine In Out")] SineInOut,
-		[InspectorName("Sine Out In")] SineOutIn,
+		[InspectorName("Sinusoidal Out")] SinusoidalOut,
+		[InspectorName("Sinusoidal In")] SinusoidalIn,
+		[InspectorName("Sinusoidal In Out")] SinusoidalInOut,
+		[InspectorName("Sinusoidal Out In")] SinusoidalOutIn,
 		[InspectorName("Cubic Out")] CubicOut,
 		[InspectorName("Cubic In")] CubicIn,
 		[InspectorName("Cubic In Out")] CubicInOut,
@@ -45,7 +45,6 @@ namespace EaseKit {
 		[InspectorName("Back In")] BackIn,
 		[InspectorName("Back In Out")] BackInOut,
 		[InspectorName("Back Out In")] BackOutIn,
-
 
 		/// Equivalent to <see cref="Easing.ExponentialOut"/>
 		[HideInInspector] ExpoOut = ExponentialOut,
@@ -82,6 +81,18 @@ namespace EaseKit {
 
 		/// Equivalent to <see cref="Easing.QuadraticOutIn"/>
 		[HideInInspector] QuadOutIn = QuadraticOutIn,
+
+		/// Equivalent to <see cref="Easing.SinusoidalOut"/>
+		[HideInInspector] SineOut = SinusoidalOut,
+
+		/// Equivalent to <see cref="Easing.SinusoidalIn"/>
+		[HideInInspector] SineIn = SinusoidalIn,
+
+		/// Equivalent to <see cref="Easing.SinusoidalInOut"/>
+		[HideInInspector] SineInOut = SinusoidalInOut,
+
+		/// Equivalent to <see cref="Easing.SinusoidalOutIn"/>
+		[HideInInspector] SineOutIn = SinusoidalOutIn,
 
 		/// Equivalent to <see cref="Easing.QuarticOut"/>
 		[HideInInspector] QuartOut = QuarticOut,
