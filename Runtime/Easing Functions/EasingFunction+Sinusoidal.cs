@@ -8,10 +8,12 @@ namespace EaseKit {
 	public static partial class EasingFunction {
 		public static class Sinusoidal {
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseOut(float t, float b, float c, float d) => c * sin(t / d * (PI * 0.5f)) + b;
+			public static float EaseOut(float t, float b, float c, float d)
+				=> c * sin(t / d * (PI * 0.5f)) + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseIn(float t, float b, float c, float d) => -c * cos(t / d * (PI * 0.5f)) + c + b;
+			public static float EaseIn(float t, float b, float c, float d)
+				=> -c * cos(t / d * (PI * 0.5f)) + c + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float EaseInOut(float t, float b, float c, float d)

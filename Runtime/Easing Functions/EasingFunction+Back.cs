@@ -6,10 +6,12 @@ namespace EaseKit {
 	public static partial class EasingFunction {
 		public static class Back {
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseOut(float t, float b, float c, float d) => c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
+			public static float EaseOut(float t, float b, float c, float d)
+				=> c * ((t = t / d - 1) * t * ((1.70158f + 1) * t + 1.70158f) + 1) + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * ((1.70158f + 1) * t - 1.70158f) + b;
+			public static float EaseIn(float t, float b, float c, float d)
+				=> c * (t /= d) * t * ((1.70158f + 1) * t - 1.70158f) + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float EaseInOut(float t, float b, float c, float d) {

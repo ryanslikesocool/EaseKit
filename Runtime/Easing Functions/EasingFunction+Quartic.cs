@@ -6,10 +6,12 @@ namespace EaseKit {
 	public static partial class EasingFunction {
 		public static class Quartic {
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseOut(float t, float b, float c, float d) => -c * ((t = t / d - 1) * t * t * t - 1) + b;
+			public static float EaseOut(float t, float b, float c, float d)
+				=> -c * ((t = t / d - 1) * t * t * t - 1) + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseIn(float t, float b, float c, float d) => c * (t /= d) * t * t * t + b;
+			public static float EaseIn(float t, float b, float c, float d)
+				=> c * (t /= d) * t * t * t + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float EaseInOut(float t, float b, float c, float d) {

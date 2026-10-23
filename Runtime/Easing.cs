@@ -38,7 +38,7 @@ namespace EaseKit {
 		[InspectorName("Elastic/In Out")] ElasticInOut,
 		[InspectorName("Elastic/Out In")] ElasticOutIn,
 		[InspectorName("Bounce/Out")] BounceOut,
-		[InspectorName("Bounce/Out In")] BounceIn,
+		[InspectorName("Bounce/In")] BounceIn,
 		[InspectorName("Bounce/In Out")] BounceInOut,
 		[InspectorName("Bounce/Out In")] BounceOutIn,
 		[InspectorName("Back/Out")] BackOut,
@@ -47,122 +47,122 @@ namespace EaseKit {
 		[InspectorName("Back/Out In")] BackOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.ExponentialOut"/>
+		/// This value is equivalent to <see cref="ExponentialOut"/>
 		/// </summary>
 		[HideInInspector] ExpoOut = ExponentialOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.ExponentialIn"/>
+		/// This value is equivalent to <see cref="ExponentialIn"/>
 		/// </summary>
 		[HideInInspector] ExpoIn = ExponentialIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.ExponentialInOut"/>
+		/// This value is equivalent to <see cref="ExponentialInOut"/>
 		/// </summary>
 		[HideInInspector] ExpoInOut = ExponentialInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.ExponentialOutIn"/>
+		/// This value is equivalent to <see cref="ExponentialOutIn"/>
 		/// </summary>
 		[HideInInspector] ExpoOutIn = ExponentialOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.CircularOut"/>
+		/// This value is equivalent to <see cref="CircularOut"/>
 		/// </summary>
 		[HideInInspector] CircOut = CircularOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.CircularIn"/>
+		/// This value is equivalent to <see cref="CircularIn"/>
 		/// </summary>
 		[HideInInspector] CircIn = CircularIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.CircularInOut"/>
+		/// This value is equivalent to <see cref="CircularInOut"/>
 		/// </summary>
 		[HideInInspector] CircInOut = CircularInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.CircularOutIn"/>
+		/// This value is equivalent to <see cref="CircularOutIn"/>
 		/// </summary>
 		[HideInInspector] CircOutIn = CircularOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuadraticOut"/>
+		/// This value is equivalent to <see cref="QuadraticOut"/>
 		/// </summary>
 		[HideInInspector] QuadOut = QuadraticOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuadraticIn"/>
+		/// This value is equivalent to <see cref="QuadraticIn"/>
 		/// </summary>
 		[HideInInspector] QuadIn = QuadraticIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuadraticInOut"/>
+		/// This value is equivalent to <see cref="QuadraticInOut"/>
 		/// </summary>
 		[HideInInspector] QuadInOut = QuadraticInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuadraticOutIn"/>
+		/// This value is equivalent to <see cref="QuadraticOutIn"/>
 		/// </summary>
 		[HideInInspector] QuadOutIn = QuadraticOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.SinusoidalOut"/>
+		/// This value is equivalent to <see cref="SinusoidalOut"/>
 		/// </summary>
 		[HideInInspector] SineOut = SinusoidalOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.SinusoidalIn"/>
+		/// This value is equivalent to <see cref="SinusoidalIn"/>
 		/// </summary>
 		[HideInInspector] SineIn = SinusoidalIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.SinusoidalInOut"/>
+		/// This value is equivalent to <see cref="SinusoidalInOut"/>
 		/// </summary>
 		[HideInInspector] SineInOut = SinusoidalInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.SinusoidalOutIn"/>
+		/// This value is equivalent to <see cref="SinusoidalOutIn"/>
 		/// </summary>
 		[HideInInspector] SineOutIn = SinusoidalOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuarticOut"/>
+		/// This value is equivalent to <see cref="QuarticOut"/>
 		/// </summary>
 		[HideInInspector] QuartOut = QuarticOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuarticIn"/>
+		/// This value is equivalent to <see cref="QuarticIn"/>
 		/// </summary>
 		[HideInInspector] QuartIn = QuarticIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuarticInOut"/>
+		/// This value is equivalent to <see cref="QuarticInOut"/>
 		/// </summary>
 		[HideInInspector] QuartInOut = QuarticInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuarticOutIn"/>
+		/// This value is equivalent to <see cref="QuarticOutIn"/>
 		/// </summary>
 		[HideInInspector] QuartOutIn = QuarticOutIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuinticOut"/>
+		/// This value is equivalent to <see cref="QuinticOut"/>
 		/// </summary>
 		[HideInInspector] QuintOut = QuinticOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuinticIn"/>
+		/// This value is equivalent to <see cref="QuinticIn"/>
 		/// </summary>
 		[HideInInspector] QuintIn = QuinticIn,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuinticInOut"/>
+		/// This value is equivalent to <see cref="QuinticInOut"/>
 		/// </summary>
 		[HideInInspector] QuintInOut = QuinticInOut,
 
 		/// <summary>
-		/// Equivalent to <see cref="Easing.QuinticOutIn"/>
+		/// This value is equivalent to <see cref="QuinticOutIn"/>
 		/// </summary>
 		[HideInInspector] QuintOutIn = QuinticOutIn,
 	}

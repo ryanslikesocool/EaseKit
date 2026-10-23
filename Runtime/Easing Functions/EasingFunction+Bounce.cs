@@ -19,7 +19,8 @@ namespace EaseKit {
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			public static float EaseIn(float t, float b, float c, float d) => c - EaseOut(d - t, 0, c, d) + b;
+			public static float EaseIn(float t, float b, float c, float d)
+				=> c - EaseOut(d - t, 0, c, d) + b;
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			public static float EaseInOut(float t, float b, float c, float d) {
